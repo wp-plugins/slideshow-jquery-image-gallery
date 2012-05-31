@@ -1,0 +1,1 @@
+<a onclick="return false;" title="Upload image" class="thickbox" id="add_image" href="<?php echo bloginfo('name') ?>/wp-admin/media-upload.php?type=image&amp;TB_iframe=true&amp;width=640&amp;hei‌​ght=105">Upload Image</a>
