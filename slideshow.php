@@ -3,7 +3,7 @@
  Plugin Name: Slideshow
  Plugin URI: http://stefanboonstra.com
  Description: This plugin offers a slideshow that is easily deployable in your website. Images can be assigned through the media page. Options are customizable for every single slideshow on your website.
- Version: 1.0
+ Version: 1.0.1
  Requires at least: 3.0
  Author: StefanBoonstra
  Author URI: http://stefanboonstra.com
@@ -38,12 +38,21 @@ class SlideshowMain {
 	}
 
 	/**
-	 * Returns url to the basepath of this plugin.
+	 * Returns url to the base directory of this plugin.
 	 *
 	 * @return string pluginUrl
 	 */
 	static function getPluginUrl(){
 		return plugins_url('', __FILE__);
+	}
+
+	/**
+	 * Returns path to the base directory of this plugin
+	 *
+	 * @return string pluginPath
+	 */
+	static function getPluginPath(){
+		return dirname(__FILE__);
 	}
 
 	/**
