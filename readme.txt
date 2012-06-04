@@ -1,12 +1,14 @@
 === Slideshow ===
+
 Contributors: stefanboonstra
 Tags: slideshow, slider, slide, images, image, photo, gallery, galleries
 Requires at least: 3.0
 Tested up to: 3.2.2
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
+
 
 == Description ==
 
@@ -47,8 +49,9 @@ different images and settings for each one of them.
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 *	Initial release
+
 
 == Links ==
 

@@ -1,5 +1,7 @@
 <?php
 /**
+ * Class Slideslow is called whenever a slideshow do_action tag is come across.
+ * Responsible for outputting the slideshow's HTML, CSS and Javascript.
  *
  * @author: Stefan Boonstra
  * @version: 25-5-12
