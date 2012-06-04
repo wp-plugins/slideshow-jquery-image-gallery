@@ -10,8 +10,20 @@
  License: GPL
 */
 
+/**
+ * Class SlideshowMain fires up the application on plugin load and provides some
+ * methods for the other classes to use like the auto-includer and the
+ * base path/url returning method.
+ *
+ * @author Stefan Boonstra
+ * @version 04-06-12
+ */
 class SlideshowMain {
 
+	/**
+	 * Bootstraps the application by assigning the right functions to
+	 * the right action hooks.
+	 */
 	static function bootStrap(){
 		self::autoInclude();
 
@@ -74,4 +86,7 @@ class SlideshowMain {
 	}
 }
 
+/**
+ * Activate plugin
+ */
 SlideShowMain::bootStrap();

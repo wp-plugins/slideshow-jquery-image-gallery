@@ -48,6 +48,7 @@ different images and settings for each one of them.
 == Changelog ==
 
 = 1.0.1 =
+*   Added documentary comments
 *   Fixed error with directory paths causing Slideshows post type page to generate warnings.
 
 = 1.0 =

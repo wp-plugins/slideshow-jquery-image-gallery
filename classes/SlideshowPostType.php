@@ -1,9 +1,10 @@
 <?php
 /**
- *
+ * Slideshow post type creates a post type specifically designed for
+ * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 26-5-12
+ * @version: 04-06-12
  */
 class SlideshowPostType {
 
