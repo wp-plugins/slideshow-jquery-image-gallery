@@ -11,6 +11,7 @@ class Slideshow {
 	/** Variables */
 	private static $stylesheet = '/style/style.css';
 	private static $scriptfile = '/js/slideshow.js';
+	private static $jQuery = '/js/jquery-min.js';
 	private static $htmlfile = 'slideshow.html';
 
 	/**
@@ -70,11 +71,20 @@ class Slideshow {
 			</script>
 		';
 
-		// Enqueue script
+		// Enqueue jQuery
+		wp_enqueue_script(
+			'jQuery',
+			SlideshowMain::getPluginUrl() . self::$jQuery,
+			array(),
+			'',
+			true
+		);
+
+		// Enqueue slideshow script
 		wp_enqueue_script(
 			'slideshow_script',
 			SlideshowMain::getPluginUrl() . self::$scriptfile,
-			array(),
+			array('jQuery'),
 			'',
 			true
 		);
