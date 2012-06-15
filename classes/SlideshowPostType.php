@@ -1,9 +1,10 @@
 <?php
 /**
- *
+ * Slideshow post type creates a post type specifically designed for
+ * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 26-5-12
+ * @version: 04-06-12
  */
 class SlideshowPostType {
 
@@ -97,7 +98,7 @@ class SlideshowPostType {
 
 		$snippet = htmlentities(sprintf('<?php do_action(\'slideshow_deploy\', \'%s\'); ?>', $post->ID));
 
-		include(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/' . __CLASS__ . '/information.php');
+		include(SlideshowMain::getPluginPath() . '/views/' . __CLASS__ . '/information.php');
 	}
 
 	/**
@@ -113,7 +114,7 @@ class SlideshowPostType {
 			'post_parent' => $post->ID
 		));
 
-		include(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/' . __CLASS__ . '/slides.php');
+		include(SlideshowMain::getPluginPath() . '/views/' . __CLASS__ . '/slides.php');
 	}
 
 	/**
@@ -140,7 +141,7 @@ class SlideshowPostType {
 			if(empty($value))
 				$settings[$key] = $defaults[$key];
 
-		include(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views/' . __CLASS__ . '/settings.php');
+		include(SlideshowMain::getPluginPath() . '/views/' . __CLASS__ . '/settings.php');
 	}
 
 	/**
