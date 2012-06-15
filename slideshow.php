@@ -3,7 +3,7 @@
  Plugin Name: Slideshow
  Plugin URI: http://stefanboonstra.com
  Description: This plugin offers a slideshow that is easily deployable in your website. Images can be assigned through the media page. Options are customizable for every single slideshow on your website.
- Version: 1.1.0
+ Version: 1.2.0
  Requires at least: 3.0
  Author: StefanBoonstra
  Author URI: http://stefanboonstra.com
@@ -16,7 +16,7 @@
  * base path/url returning method.
  *
  * @author Stefan Boonstra
- * @version 04-06-12
+ * @version 15-06-12
  */
 class SlideshowMain {
 
@@ -31,7 +31,13 @@ class SlideshowMain {
 		add_action('init', array(__CLASS__, 'translator'));
 
 		// Deploy slide show on do_action('slideshow_deploy'); hook.
-		add_action('slideshow_deploy', array('Slideshow', 'initialize'));
+		add_action('slideshow_deploy', array('Slideshow', 'deploy'));
+
+		// Add shortcode
+		add_shortcode(SlideshowShortcode::$shortCode, array('SlideshowShortcode', 'slideshowDeploy'));
+
+		// Register widget
+		add_action('widgets_init', array('SlideshowWidget', 'registerWidget'));
 
 		// Register slideshow post type
 		add_action('init', array('SlideshowPostType', 'registerSlideshowPostType'));

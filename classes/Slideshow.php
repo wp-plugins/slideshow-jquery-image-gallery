@@ -4,7 +4,7 @@
  * Responsible for outputting the slideshow's HTML, CSS and Javascript.
  *
  * @author: Stefan Boonstra
- * @version: 25-5-12
+ * @version: 15-06-12
  */
 class Slideshow {
 
@@ -15,11 +15,27 @@ class Slideshow {
 	private static $htmlfile = 'slideshow.html';
 
 	/**
-	 * Function initialize prints out the required html and enqueues
-	 * the scripts and stylesheets necessary for displaying the slideshow
+	 * Function deploy prints out the prepared html
+	 *
+	 * @param int $postId
 	 */
-	static function initialize($postId = ''){
-		if(empty($postId) || !is_numeric($postId)){
+	static function deploy($postId = ''){
+		echo self::prepare($postId);
+	}
+
+	/**
+	 * Function prepare returns the required html and enqueues
+	 * the scripts and stylesheets necessary for displaying the slideshow
+	 *
+	 * Passing this function no parameter or passing it a negative one will
+	 * result in a random pick of slideshow
+	 *
+	 * @param int $postId
+	 * @return String $output
+	 */
+	static function prepare($postId = ''){
+		// Check if defined which Slideshow to use
+		if(empty($postId) || !is_numeric($postId) || $postId < 0){
 			$post = get_posts(array(
 				'numberposts' => 1,
 				'orderby' => 'rand',
@@ -31,11 +47,15 @@ class Slideshow {
 		}else
 			$post = wp_get_single_post($postId);
 
+		// Exit function on error
 		if(empty($post))
 			return;
 
+		// Store output for return
+		$output = '';
+
 		// Output basic html
-		echo file_get_contents(SlideshowMain::getPluginUrl() . '/views/' . __CLASS__ . '/' . self::$htmlfile);
+		$output .= file_get_contents(SlideshowMain::getPluginUrl() . '/views/' . __CLASS__ . '/' . self::$htmlfile);
 
 		// Get settings
 		$settings = SlideshowPostType::$defaults;
@@ -64,7 +84,7 @@ class Slideshow {
 		}
 
 		// Output settings and images
-		echo '
+		$output .= '
 			<script type="text/javascript">
 				var slideshow_images = ' . json_encode($images) . ';
 				var slideshow_settings = ' . json_encode($settings) . ';
@@ -94,5 +114,8 @@ class Slideshow {
 			'slideshow_style',
 			SlideshowMain::getPluginUrl() . self::$stylesheet
 		);
+
+		// Return output
+		return $output;
 	}
 }

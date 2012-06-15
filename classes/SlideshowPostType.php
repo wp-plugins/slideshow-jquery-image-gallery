@@ -4,14 +4,14 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 04-06-12
+ * @version: 15-06-12
  */
 class SlideshowPostType {
 
 	/** Variables */
 	private static $adminIcon = 'images/adminIcon.png';
-	public static $postType = 'slideshow';
-	public static $defaults = array(
+	static $postType = 'slideshow';
+	static $defaults = array(
 		'slideSpeed' => 1,
 		'descriptionSpeed' => 0.3,
 		'intervalSpeed' => 5,
@@ -97,6 +97,7 @@ class SlideshowPostType {
 		global $post;
 
 		$snippet = htmlentities(sprintf('<?php do_action(\'slideshow_deploy\', \'%s\'); ?>', $post->ID));
+		$shortCode = htmlentities(sprintf('[' . SlideshowShortcode::$shortCode . ' id=%s]', $post->ID));
 
 		include(SlideshowMain::getPluginPath() . '/views/' . __CLASS__ . '/information.php');
 	}
@@ -107,6 +108,7 @@ class SlideshowPostType {
 	static function slidesMetaBox(){
 		global $post;
 
+		// Get slideshow attachments
 		$attachments = get_posts(array(
 			'post_type' => 'attachment',
 			'numberposts' => null,
@@ -114,6 +116,10 @@ class SlideshowPostType {
 			'post_parent' => $post->ID
 		));
 
+		// Set url from which a substitute icon can be fetched
+		$noPreviewIcon = SlideshowMain::getPluginUrl() . '/images/no-img2.png';
+
+		// Include slides preview file
 		include(SlideshowMain::getPluginPath() . '/views/' . __CLASS__ . '/slides.php');
 	}
 
