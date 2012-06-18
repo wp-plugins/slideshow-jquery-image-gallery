@@ -115,13 +115,25 @@ var Slideshow = {
 
 		// Miscellaneous settings
 		if(settings['stretch'] != '')
-			slideShow.stretch = settings['stretch'];
+			if(settings['stretch'] == 'true')
+				slideShow.stretch = true;
+			else
+				slideShow.stretch = false;
 		if(settings['controllable'] != '')
-			slideShow.controllable = settings['controllable'];
+			if(settings['controllable'] == 'true')
+				slideShow.controllable = true;
+			else
+				slideShow.controllable = false;
 		if(settings['urlsActive'] != '')
-			slideShow.urlsActive = settings['urlsActive'];
+			if(settings['urlsActive'] == 'true')
+				slideShow.urlsActive = true;
+			else
+				slideShow.urlsActive = false;
 		if(settings['showText'] != '')
-			slideShow.showText = settings['showText'];
+			if(settings['showText'] == 'true')
+				slideShow.showText = true;
+			else
+				slideShow.showText = false;
 	},
 
 	/**
