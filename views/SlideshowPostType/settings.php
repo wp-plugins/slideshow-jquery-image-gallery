@@ -30,22 +30,38 @@
 	</tr>
 	<tr>
 		<td><? _e('Fit image into slideshow (making it smaller)', 'slideshow-plugin'); ?></td>
-		<td><input type="checkbox" name="stretch" value="1" <? checked($settings['stretch'], 1); ?> /></td>
-		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['stretch']) _e('Checked', 'slideshow-plugin'); else _e('Not checked', 'slideshow-plugin'); ?></i></td>
+		<td>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="stretch" value="true" <? checked($settings['stretch'], 'true'); ?> /> Yes</label>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="stretch" value="false" <? checked($settings['stretch'], 'false'); ?> /> No</label>
+		</td>
+		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['stretch']) _e('Yes', 'slideshow-plugin'); else _e('No', 'slideshow-plugin'); ?></i></td>
 	</tr>
 	<tr>
 		<td><? _e('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'); ?></td>
-		<td><input type="checkbox" name="controllable" value="1" <? checked($settings['controllable'], 1); ?> /></td>
-		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['controllable']) _e('Checked', 'slideshow-plugin'); else _e('Not checked', 'slideshow-plugin'); ?></i></td>
+		<td>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="controllable" value="true" <? checked($settings['controllable'], 'true'); ?> /> Yes</label>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="controllable" value="false" <? checked($settings['controllable'], 'false'); ?> /> No</label>
+		</td>
+		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['controllable']) _e('Yes', 'slideshow-plugin'); else _e('No', 'slideshow-plugin'); ?></i></td>
 	</tr>
 	<tr>
 		<td><? _e('Send user to image URL on click', 'slideshow-plugin'); ?></td>
-		<td><input type="checkbox" name="urlsActive" value="1" <? checked($settings['urlsActive'], 1); ?> /></td>
-		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['urlsActive']) _e('Checked', 'slideshow-plugin'); else _e('Not checked', 'slideshow-plugin'); ?></i></td>
+		<td>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="urlsActive" value="true" <? checked($settings['urlsActive'], 'true'); ?> /> Yes</label>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="urlsActive" value="false" <? checked($settings['urlsActive'], 'false'); ?> /> No</label>
+		</td>
+		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['urlsActive']) _e('Yes', 'slideshow-plugin'); else _e('No', 'slideshow-plugin'); ?></i></td>
 	</tr>
 	<tr>
 		<td><? _e('Show title and description', 'slideshow-plugin'); ?></td>
-		<td><input type="checkbox" name="showText" value="1" <? checked($settings['showText'], 1); ?> /></td>
-		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['showText']) _e('Checked', 'slideshow-plugin'); else _e('Not checked', 'slideshow-plugin'); ?></i></td>
+		<td>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="showText" value="true" <? checked($settings['showText'], 'true'); ?> /> Yes</label>
+			<label class="slideshow_radiobutton_label"><input type="radio" name="showText" value="false" <? checked($settings['showText'], 'false'); ?> /> No</label>
+		</td>
+		<td><i><? _e('Default', 'slideshow-plugin'); ?>: <? if($defaults['showText']) _e('Yes', 'slideshow-plugin'); else _e('No', 'slideshow-plugin'); ?></i></td>
 	</tr>
+
+	<style type="text/css">
+		.slideshow_radiobutton_label { padding-right: 5px; }
+	</style>
 </table>

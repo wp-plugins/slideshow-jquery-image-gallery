@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 15-06-12
+ * @version: 18-06-12
  */
 class SlideshowPostType {
 
@@ -17,10 +17,10 @@ class SlideshowPostType {
 		'intervalSpeed' => 5,
 		'width' => 0,
 		'height' => 200,
-		'stretch' => 0,
-		'controllable' => 1,
-		'urlsActive' => 0,
-		'showText' => 1
+		'stretch' => 'false',
+		'controllable' => 'true',
+		'urlsActive' => 'false',
+		'showText' => 'true'
 	);
 
 	/**
@@ -134,7 +134,7 @@ class SlideshowPostType {
 		$settings = array(
 			'slideSpeed' => get_post_meta($post->ID, 'slideSpeed', true),
 			'descriptionSpeed' => get_post_meta($post->ID, 'descriptionSpeed', true),
-			'intervalSpeed' => get_post_meta($post->ID, 'intevalSpeed', true),
+			'intervalSpeed' => get_post_meta($post->ID, 'intervalSpeed', true),
 			'width' => get_post_meta($post->ID, 'width', true),
 			'height' => get_post_meta($post->ID, 'height', true),
 			'stretch' => get_post_meta($post->ID, 'stretch', true),
@@ -153,7 +153,7 @@ class SlideshowPostType {
 	/**
 	 * Called for saving settings
 	 *
-	 * @param stdObject $post
+	 * @param int $post
 	 */
 	static function save($post){
 		foreach(self::$defaults as $key => $default){

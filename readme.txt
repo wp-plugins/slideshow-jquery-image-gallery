@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, images, image, photo, gallery, galleries
 Requires at least: 3.0
 Tested up to: 3.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -48,6 +48,9 @@ different images and settings for each one of them.
 
 
 == Changelog ==
+
+= 1.2.1 =
+*   Fixed: Slideshow specific settings not saving.
 
 = 1.2.0 =
 *   Slideshows can now be placed in posts as well, using shortcode [slideshow id=*SlideshowPostId*].
