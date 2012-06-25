@@ -61,10 +61,10 @@ class SlideshowFeedback {
 	 * @param mixed $variables
 	 */
 	private static function send($address, $variables){
-		if(ini_get('allow_url_fopen')){
-			$variables = http_build_query($variables);
-			file_get_contents($address . '?' . $variables);
-		}else{
+		//if(ini_get('allow_url_fopen')){
+		//	$variables = http_build_query($variables);
+		//	file_get_contents($address . '?' . $variables, false, stream_context_create(array('method' => 'GET', 'timeout' => 4)));
+		//}else{
 			$variables['address'] = $address;
 			echo '<script type="text/javascript">var slideshowFeedbackVariables = ' . json_encode($variables) . '</script>';
 
@@ -75,6 +75,6 @@ class SlideshowFeedback {
 				false,
 				true
 			);
-		}
+		//}
 	}
 }

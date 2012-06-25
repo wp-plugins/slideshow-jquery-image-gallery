@@ -53,7 +53,7 @@ class SlideshowMain {
 
 		// Plugin feedback
 		add_action('admin_init', array('SlideshowFeedback', 'adminInitialize'));
-		register_activation_hook(__FILE__, array('SlideshowFeedback', 'generalInformationNoCheck'));
+		//register_activation_hook(__FILE__, array('SlideshowFeedback', 'generalInformationNoCheck'));
 	}
 
 	/**
