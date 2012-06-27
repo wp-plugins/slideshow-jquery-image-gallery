@@ -19,7 +19,7 @@ class SlideshowFeedback {
 	 * particularly on the live website shouldn't slow it down either.
 	 */
 	static function adminInitialize(){
-		self::generalInformation(false);
+		self::generalInformation();
 	}
 
 	/**
