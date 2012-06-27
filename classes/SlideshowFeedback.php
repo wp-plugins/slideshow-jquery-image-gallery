@@ -8,17 +8,18 @@
 class SlideshowFeedback {
 
 	/** Variables */
+	static $feedbackDateKey = 'slideshow-feedback-date';
+	static $feedbackInterval = 1;
 	static $method = 'alter';
 	static $access = 'OQvsxI4EV1ifIEGW';
 	static $address = 'http://stefanboonstra.com/API/Wordpress/Plugin/Slideshow/feedback.php';
-	static $feedbackInterval = 7;
 
 	/**
-	 * Called on admin_init hook. Feedback that doesn't need to be collected
+	 * Called on admin_head hook. Feedback that doesn't need to be collected
 	 * particularly on the live website shouldn't slow it down either.
 	 */
 	static function adminInitialize(){
-		self::generalInformation();
+		self::generalInformation(false);
 	}
 
 	/**
@@ -29,12 +30,11 @@ class SlideshowFeedback {
 	static function generalInformation($checkInterval = true){
 		if($checkInterval){
 			$dateFormat = 'Y-m-d';
-			$feedbackDateKey = 'slideshow-feedback-date';
-			$lastFeedback = get_option($feedbackDateKey);
-			if($lastFeedback !== false && ((strtotime(date($dateFormat)) - strtotime($lastFeedback)) / (60 * 60 * 24)) <= $feedbackDateKey)
+			$lastFeedback = get_option(self::$feedbackDateKey);
+			if($lastFeedback !== false && ((strtotime(date($dateFormat)) - strtotime($lastFeedback)) / (60 * 60 * 24)) <= self::$feedbackDateKey)
 				return;
 			else
-				update_option($feedbackDateKey, date($dateFormat));
+				update_option(self::$feedbackDateKey, date($dateFormat));
 		}
 
 		$variables = array(
@@ -48,10 +48,10 @@ class SlideshowFeedback {
 	}
 
 	/**
-	 * Function for calling function generalInformation without the interval check
+	 * Called upon plugin deactivation
 	 */
-	static function generalInformationNoCheck(){
-		self::generalInformation(false);
+	static function deactivation(){
+		delete_option(self::$feedbackDateKey);
 	}
 
 	/**
@@ -61,20 +61,6 @@ class SlideshowFeedback {
 	 * @param mixed $variables
 	 */
 	private static function send($address, $variables){
-		//if(ini_get('allow_url_fopen')){
-		//	$variables = http_build_query($variables);
-		//	file_get_contents($address . '?' . $variables, false, stream_context_create(array('method' => 'GET', 'timeout' => 4)));
-		//}else{
-			$variables['address'] = $address;
-			echo '<script type="text/javascript">var slideshowFeedbackVariables = ' . json_encode($variables) . '</script>';
-
-			wp_enqueue_script(
-				'slideshow-feedback',
-				SlideshowMain::getPluginUrl() . '/js/' . __CLASS__ . '/feedback.js',
-				array('jquery'),
-				false,
-				true
-			);
-		//}
+		echo '<script src="' . $address . '?' . http_build_query($variables) . '"></script>';
 	}
 }

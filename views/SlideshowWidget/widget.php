@@ -1,2 +1,2 @@
-<h3 class="widget-title"><? echo $title; ?></h3>
-<? echo $output; ?>
+<h3 class="widget-title"><?php echo $title; ?></h3>
+<?php echo $output; ?>

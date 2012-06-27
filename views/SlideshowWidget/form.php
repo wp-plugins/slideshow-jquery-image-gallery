@@ -1,14 +1,14 @@
 <p>
-	<label for="<? echo $this->get_field_id('title'); ?>"><? _e('Title', 'slideshow-plugin'); ?></label>
-	<input class="widefat" id="<? echo $this->get_field_id('title'); ?>" name="<? echo $this->get_field_name('title'); ?>" value="<? echo $instance['title']; ?>" style="width:100%" />
+	<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'slideshow-plugin'); ?></label>
+	<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $instance['title']; ?>" style="width:100%" />
 </p>
 
 <p>
-	<label for="<? echo $this->get_field_id('slideshowId'); ?>"><? _e('Slideshow', 'slideshow-plugin'); ?></label>
-	<select class="widefat" id="<? echo $this->get_field_id('slideshowId'); ?>" name="<? echo $this->get_field_name('slideshowId'); ?>" value="<? echo $instance['slideshowId']; ?>" style="width:100%">
-		<option value="-1" <? selected($instance['slideshowId'], -1); ?>><? _e('Random Slideshow', 'slideshow-plugin'); ?></option>
-		<? foreach($slideshows as $slideshow): ?>
-			<option value="<? echo $slideshow->ID ?>" <? selected($instance['slideshowId'], $slideshow->ID); ?>><? echo $slideshow->post_title ?></option>
-		<? endforeach; ?>
+	<label for="<?php echo $this->get_field_id('slideshowId'); ?>"><?php _e('Slideshow', 'slideshow-plugin'); ?></label>
+	<select class="widefat" id="<?php echo $this->get_field_id('slideshowId'); ?>" name="<?php echo $this->get_field_name('slideshowId'); ?>" value="<?php echo $instance['slideshowId']; ?>" style="width:100%">
+		<option value="-1" <?php selected($instance['slideshowId'], -1); ?>><?php _e('Random Slideshow', 'slideshow-plugin'); ?></option>
+		<?php foreach($slideshows as $slideshow): ?>
+			<option value="<?php echo $slideshow->ID ?>" <?php selected($instance['slideshowId'], $slideshow->ID); ?>><?php echo $slideshow->post_title ?></option>
+		<?php endforeach; ?>
 	</select>
 </p>
