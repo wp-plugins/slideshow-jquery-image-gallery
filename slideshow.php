@@ -3,7 +3,7 @@
  Plugin Name: Slideshow
  Plugin URI: http://stefanboonstra.com
  Description: This plugin offers a slideshow that is easily deployable in your website. Images can be assigned through the media page. Options are customizable for every single slideshow on your website.
- Version: 1.3.3
+ Version: 1.3.4
  Requires at least: 3.0
  Author: StefanBoonstra
  Author URI: http://stefanboonstra.com
@@ -16,7 +16,7 @@
  * base path/url returning method.
  *
  * @author Stefan Boonstra
- * @version 23-06-12
+ * @version 29-06-12
  */
 class SlideshowMain {
 	// == 1.4.0 ==
@@ -25,11 +25,14 @@ class SlideshowMain {
 	// TODO Add 'switch off endless loop' button
 	// TODO Add functionality to put slides in a different order
 	// TODO Add textual slides
-	// TODO Keep descriptionbox from becoming too damn big.
+	// TODO Keep descriptionbox from becoming too dang big.
 	// TODO Fix css so that the theme's css doesn't screw it up
 
+	// == 2.0.0 ==
+	// TODO Revision of the entire script, giving the user the option to align multiple images next to eachother.
+
 	/** Variables */
-	static $version = '1.3.3';
+	static $version = '1.3.4';
 
 	/**
 	 * Bootstraps the application by assigning the right functions to
