@@ -3,7 +3,7 @@
  * and controlling the slideshow.
  *
  * @author Stefan Boonstra
- * @version 25-05-12
+ * @version 29-06-12
  */
 var Slideshow = {
 	
@@ -42,10 +42,14 @@ var Slideshow = {
 		slideShow.getSettings();
 
 		// Set height and width
-		jQuery(slideShow.slideshowContainer + ' ' + slideShow.sliderBox).css({
+		jQuery(slideShow.slideshowContainer).css({
 			'height': slideShow.height,
 			'width': slideShow.width
 		});
+        jQuery(slideShow.sliderBox).css({
+            'height': slideShow.height,
+            'width': slideShow.width
+        });
 
 		// Empty slideshow
 		jQuery(slideShow.sliderBox).empty();
