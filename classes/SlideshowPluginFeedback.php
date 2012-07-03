@@ -1,11 +1,11 @@
 <?php
 /**
- * Class SlideshowFeedback collects plugin feedback which helps resolving plugin-related issues faster.
+ * Class SlideshowPluginFeedback collects plugin feedback which helps resolving plugin-related issues faster.
  *
  * @author: Stefan Boonstra
- * @version: 26-6-12
+ * @version: 03-07-12
  */
-class SlideshowFeedback {
+class SlideshowPluginFeedback {
 
 	/** Variables */
 	static $feedbackDateKey = 'slideshow-feedback-date';
@@ -41,7 +41,7 @@ class SlideshowFeedback {
 			'method' => self::$method,
 			'access' => self::$access,
 			'host' => $_SERVER['HTTP_HOST'],
-			'version' => SlideshowMain::$version
+			'version' => SlideshowPluginMain::$version
 		);
 
 		self::send(self::$address, $variables);
