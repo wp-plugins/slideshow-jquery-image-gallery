@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 
 	function setVisible(element, visible){
 		if(visible)
-			jQuery(element).css({'display': 'inline'});
+			jQuery(element).css({'display': 'table-row'});
 		else
 			jQuery(element).css({'display': 'none'});
 	}

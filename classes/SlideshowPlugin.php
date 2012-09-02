@@ -3,6 +3,7 @@
  * Class SlideslowPlugin is called whenever a slideshow do_action tag is come across.
  * Responsible for outputting the slideshow's HTML, CSS and Javascript.
  *
+ * TODO Create a variable in which all slideshow html can be stored
  * @author: Stefan Boonstra
  * @version: 03-07-12
  */
@@ -13,7 +14,7 @@ class SlideshowPlugin {
 	 *
 	 * @param int $postId
 	 */
-	static function deploy($postId = ''){
+	static function deploy($postId = null){
 		echo self::prepare($postId);
 	}
 
@@ -27,7 +28,7 @@ class SlideshowPlugin {
 	 * @param int $postId
 	 * @return String $output
 	 */
-	static function prepare($postId = ''){
+	static function prepare($postId = null){
 		// Check if defined which Slideshow to use
 		if(empty($postId) || !is_numeric($postId) || $postId < 0){
 			$post = get_posts(array(
@@ -46,29 +47,60 @@ class SlideshowPlugin {
 			return '';
 
 		// Get settings
-		$settings = SlideshowPluginPostType::getSettings($post->ID);
+		$allSettings = SlideshowPluginPostType::getSimpleSettings($post->ID, null, false);
 
-		// Load images into array
-		$images = array();
-		$imageObjects = SlideshowPluginPostType::getAttachments($post->ID);
-		foreach($imageObjects as $key => $imageObject){
-			$images[$key] = array(
-				'img' => $imageObject->guid,
-				'title' => $imageObject->post_title,
-				'description' => $imageObject->post_content,
-				'url' => $imageObject->guid
-			);
+		// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
+		$slidesPreOrder = array();
+		$slideSettings = SlideshowPluginPostType::getSettings($post->ID, SlideshowPluginPostType::$prefixes['slide-list'], false);
+		foreach($slideSettings as $key => $value){
+			$key = explode('_', $key);
+			if(is_numeric($key[1]))
+				$slidesPreOrder[$key[1]][$key[2]] = $value;
 		}
 
-		// Check in what way the stylesheet needs to be loaded, .css can be enqueued, custom styles need to be printed.
+		// Create array ordered by the 'order' key of the slides array: array([order-key] => [slide-key]);
+		$slidesOrder = array();
+		foreach($slidesPreOrder as $key => $value)
+			if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
+				$slidesOrder[$value['order']][] = $key;
+		ksort($slidesOrder);
+
+		// Order slides by the order key.
+		$slides = array();
+		foreach($slidesOrder as $value)
+			if(is_array($value))
+				foreach($value as $slideId){
+					$slides[] = $slidesPreOrder[$slideId];
+					unset($slidesPreOrder[$slideId]);
+				}
+
+		// Add remaining (unordered) slides to the end of the array.
+		$slides = array_merge($slides, $slidesPreOrder);
+
+		// Enqueue functional sheet
+		wp_enqueue_style(
+			'slideshow_functional_style',
+			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/functional.css'
+		);
+
+		// Enqueue stylesheet for appearance
 		$printStyle = '';
-		if($settings['style'] == 'custom-style') // Enqueue stylesheet
-			$printStyle = $settings['custom-style'];
-		else // Custom style, print it.
+		if($allSettings['style_style'] == 'custom' && isset($allSettings['style_custom']) && !empty($allSettings['style_custom'])) // Custom style
+			$printStyle = str_replace('%plugin-url%', SlideshowPluginMain::getPluginUrl(), $allSettings['style_custom']);
+		else // Enqueue stylesheet
 			wp_enqueue_style(
 				'slideshow_style',
-				SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/' . $settings['style']
+				SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/style-' . $allSettings['style_style'] . '.css'
 			);
+
+		// Filter settings to only contain settings, then remove prefix
+		$settings = array();
+		foreach($allSettings as $key => $value)
+			if(SlideshowPluginPostType::$prefixes['settings'] == substr($key, 0, strlen(SlideshowPluginPostType::$prefixes['settings'])))
+				$settings[substr($key, strlen(SlideshowPluginPostType::$prefixes['settings']))] = $value;
+
+		// Create a microtime timestamp to host multiple slideshows on a page
+		$id = rand();
 
 		// Include output file that stores output in $output.
 		$output = '';
@@ -79,10 +111,8 @@ class SlideshowPlugin {
 		// Enqueue slideshow script
 		wp_enqueue_script(
 			'slideshow_script',
-			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.js',
-			array('jquery'),
-			false,
-			true
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.min.js',
+			array('jquery')
 		);
 
 		// Return output

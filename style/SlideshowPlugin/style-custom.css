@@ -1,6 +1,4 @@
-.slideshow_container {
-	background: #000;
-}
+.slideshow_container { }
 
 .slideshow_container .slideshow { }
 
@@ -25,39 +23,42 @@
 }
 
 .slideshow_container .controlPanel {
-	width: 20px;
-	height: 20px;
+	width: 21px;
+	height: 21px;
+	background: #000;
+	border-radius: 2px;
+	-moz-border-radius: 10px;
 }
 
 .slideshow_container .controlPanel ul { }
 
 .slideshow_container .controlPanel ul li {
 	margin: 3px;
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 }
 
 .slideshow_container .controlPanel ul li:hover { }
 
 .slideshow_container .play {
-	background: url('../../images/SlideshowPlugin/dark-controlpanel.png') 0 0 no-repeat;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-controlpanel.png') 0 0 no-repeat;
 }
 
 .slideshow_container .pause {
-	background: url('../../images/SlideshowPlugin/dark-controlpanel.png') -20px 0 no-repeat;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-controlpanel.png') -15px 0 no-repeat;
 }
 
 .slideshow_container .button {
-	margin-top: -50px;
-	height: 100px;
-	width: 24px;
-	background: url('../../images/SlideshowPlugin/dark-arrows.png') no-repeat;
+	margin-top: -20px;
+	height: 40px;
+	width: 19px;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-arrows.png') no-repeat;
 }
 
 .slideshow_container .previous { }
 
 .slideshow_container .next {
-	background-position: -24px 0;
+	background-position: -19px 0;
 }
 
 .slideshow_container a {

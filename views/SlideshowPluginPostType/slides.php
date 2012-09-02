@@ -1,45 +1,144 @@
-<p><?php echo $uploadButton; ?></p>
+<p>
+	<?php echo SlideshowPluginSlideInserter::getImageSlideInsertButton(); ?>
+	<?php echo SlideshowPluginSlideInserter::getTextSlideInsertButton(); ?>
+</p>
 
-<?php if(count($attachments) <= 0): ?>
-	<p><?php _e('Add slides to this slideshow by using the button above or attaching images from the media page.', 'slideshow-plugin'); ?></p>
-
-<?php else: ?>
-	<table class="wp-list-table widefat fixed media" cellspacing="0">
-		<tbody id="the-list">
-
-			<?php foreach($attachments as $attachment):?>
-				<?php $editUrl = admin_url() . '/media.php?attachment_id=' . $attachment->ID . '&amp;action=edit'; ?>
-				<?php $image = wp_get_attachment_image_src($attachment->ID); ?>
-				<?php if(!$image[3]) $image[0] = $noPreviewIcon; ?>
-
-				<tr id="post-<?php echo $attachment->ID; ?>" class="alternate author-self status-inherit" valign="top">
-
-					<td class="column-icon media-icon">
-						<a href="<?php echo $editUrl; ?>" title="Edit &#34;<?php echo $attachment->post_title; ?>&#34;">
-							<img
-								width="80"
-								height="60"
-								src="<?php echo $image[0]; ?>"
-								class="attachment-80x60"
-								alt="<?php echo $attachment->post_title; ?>"
-								title="<?php echo $attachment->post_title; ?>"
-							/>
-						</a>
-					</td>
-
-					<td class="title column-title">
-						<strong>
-							<a href="<?php echo $editUrl; ?>" title="Edit &#34;<?php echo $attachment->post_title; ?>&#34;"><?php echo $attachment->post_title; ?></a>
-						</strong>
-
-						<p>
-							<?php echo $attachment->post_content; ?>
-						</p>
-					</td>
-				</tr>
-
-			<?php endforeach; ?>
-
-		</tbody>
-	</table>
+<?php if(count($slides) <= 0): ?>
+	<p><?php _e('Add slides to this slideshow by using one of the buttons above.', 'slideshow-plugin'); ?></p>
 <?php endif; ?>
+
+<style type="text/css">
+	.sortable li {
+		cursor: pointer;
+	}
+</style>
+<script type="text/javascript">
+	var slideshowHighestSlideId = <?php echo $highestSlideId; ?>
+</script>
+
+<ul class="sortable-slides-list">
+	<?php foreach($slides as $key => $slide):
+		// General values
+		$id = $url = $order = '';
+		if(isset($slide['id']))
+			$id = $slide['id'];
+		if(isset($slide['url']))
+			$url = $slide['url'];
+		if(isset($slide['order']))
+			$order = $slide['order'];
+			?>
+
+		<li class="widefat sortable-slides-list-item">
+			<?php if($slide['type'] == 'text'):
+
+				// Type specific values
+				$title = $description = $color = '';
+				if(isset($slide['title']))
+					$title = $slide['title'];
+				if(isset($slide['description']))
+					$description = $slide['description'];
+				if(isset($slide['color']))
+					$color = $slide['color'];
+				?>
+
+				<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
+				<input type="text" name="slide_<?php echo $id; ?>_description" value="<?php echo $description; ?>" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
+				<input type="text" name="slide_<?php echo $id; ?>_color" value="<?php echo $color; ?>" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+				<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+
+				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="text" />
+				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
+
+			<?php elseif($slide['type'] == 'video'): ?>
+
+				<p><?php _e('An error occurred while loading this slide, and it will not be present in the slideshow', 'slideshow-plugin'); ?></p>
+
+			<?php elseif($slide['type'] == 'attachment'):
+
+				// The attachment should always be there
+				$attachment = get_post($slide['postId']);
+				if(!isset($attachment))
+					continue;
+
+				$editUrl = admin_url() . '/media.php?attachment_id=' . $attachment->ID . '&amp;action=edit';
+				$image = wp_get_attachment_image_src($attachment->ID);
+				if(!$image[3]) $image[0] = $noPreviewIcon; ?>
+
+				<p style="float: left; padding: 0 5px;">
+					<a href="<?php echo $editUrl; ?>" title="<?php _e('Edit', 'slideshow-plugin'); ?> &#34;<?php echo $attachment->post_title; ?>&#34;">
+						<img width="80" height="60" src="<?php echo $image[0]; ?>" class="attachment-80x60" alt="<?php echo $attachment->post_title; ?>" title="<?php echo $attachment->post_title; ?>" />
+					</a>
+				</p>
+
+				<p style="float: left; padding: 0 5px;">
+					<strong>
+						<a href="<?php echo $editUrl; ?>" title="<?php _e('Edit', 'slideshow-plugin'); ?> &#34;<?php echo $attachment->post_title; ?>&#34;"><?php echo $attachment->post_title; ?></a>
+					</strong><br />
+					<?php if(strlen($attachment->post_content) > 30) echo substr($attachment->post_content, 0, 20) . '...'; else echo $attachment->post_content; ?>
+				</p>
+
+				<p style="clear: both"></p>
+
+				<p style="padding: 0 5px;">
+					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+				</p>
+
+				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="attachment" />
+				<input type="hidden" name="slide_<?php echo $id; ?>_postId" value="<?php echo $attachment->ID; ?>" />
+				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
+
+			<?php else: ?>
+
+				<p><?php _e('An error occurred while loading this slide, and it will not be present in the slideshow', 'slideshow-plugin'); ?></p>
+
+			<?php endif; ?>
+			<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-slide">
+				<?php _e('Delete slide', 'slideshow-plugin'); ?>
+				<span style="display: none;" class="<?php echo $id; ?>"></span>
+			</p>
+		</li>
+	<?php endforeach; ?>
+</ul>
+
+<div class="text-slide-template" style="display: none;">
+	<li class="widefat sortable-slides-list-item">
+		<input type="text" class="title" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
+		<input type="text" class="description" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
+		<input type="text" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+		<input type="text" class="url" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+
+		<input type="hidden" class="type" value="text" />
+		<input type="hidden" class="slide_order" />
+
+		<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-new-slide">
+			<?php _e('Delete slide', 'slideshow-plugin'); ?>
+		</p>
+	</li>
+</div>
+
+<div class="image-slide-template" style="display: none;">
+	<li class="widefat sortable-slides-list-item">
+		<p style="float: left; padding: 0 5px;">
+			<img width="80" height="60" src="" class="attachment attachment-80x60" alt="" title="" />
+		</p>
+
+		<p style="float: left; padding: 0 5px;">
+			<strong class="title"></strong><br />
+			<span class="description"></span>
+		</p>
+
+		<p style="clear: both"></p>
+
+		<p style="padding: 0 5px;">
+			<input type="text" class="url" value="" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+		</p>
+
+		<input type="hidden" class="type" value="attachment" />
+		<input type="hidden" class="postId" value="" />
+		<input type="hidden" value="" class="slide_order" />
+
+		<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-new-slide">
+			<?php _e('Delete slide', 'slideshow-plugin'); ?>
+		</p>
+	</li>
+</div>

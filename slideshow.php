@@ -1,9 +1,9 @@
 <?php
 /*
  Plugin Name: Slideshow
- Plugin URI: http://stefanboonstra.com
- Description: This plugin offers a slideshow that is easily deployable in your website. Images can be assigned through the media page. Options are customizable for every single slideshow on your website.
- Version: 1.3.5
+ Plugin URI: http://wordpress.org/extend/plugins/slideshow-jquery-image-gallery/
+ Description: This plugin offers a slideshow that is easily deployable in your website. Add any image that has already been uploaded to add to your slideshow. Options and styles are customizable for every single slideshow on your website.
+ Version: 2.0.0
  Requires at least: 3.0
  Author: StefanBoonstra
  Author URI: http://stefanboonstra.com
@@ -21,7 +21,7 @@
 class SlideshowPluginMain {
 
 	/** Variables */
-	static $version = '1.3.5';
+	static $version = '2.0.0';
 
 	/**
 	 * Bootstraps the application by assigning the right functions to
@@ -33,7 +33,10 @@ class SlideshowPluginMain {
 		// Initialize localization on init
 		add_action('init', array(__CLASS__, 'localize'));
 
-		// Deploy slide show on do_action('slideshow_deploy'); hook.
+		// For ajax requests
+		SlideshowPluginAjax::init();
+
+		// Deploy slideshow on do_action('slideshow_deploy'); hook.
 		add_action('slideshow_deploy', array('SlideshowPlugin', 'deploy'));
 
 		// Add shortcode

@@ -1,10 +1,10 @@
 === Slideshow ===
 
 Contributors: stefanboonstra
-Tags: slideshow, slider, slide, images, image, photo, gallery, galleries
+Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.3.5
+Stable tag: 2.0.0
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -14,13 +14,16 @@ Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
 
 Slideshow provides an easy way to integrate a slideshow for any Wordpress installation.
 
-Any sized image can be loaded into the slideshow using the upload button you're already familiar with from uploading
-images to your posts. Once uploaded, the images are shown in your slideshow straight away!
+Any image can be loaded into the slideshow by picking it from the Wordpress media page, even image you already uploaded
+can be inserted into your slideshow right away!
 
 Fancy doing something crazy? You can create and use as many slideshows as you'd like, with
 different images, settings and styles for each one of them.
 
- - Upload as many images as you like.
+ - Create as many slideshows with as many slides as you like
+ - Image slides
+ - Text slides
+ - Video slides (Coming in version 2.1.0)
  - Place it anywhere on your website.
  - Customize it to taste.
  - Show that visitor who's boss.
@@ -30,36 +33,73 @@ different images, settings and styles for each one of them.
  - English
  - Dutch
 
+
 == Installation ==
 
 1. Install Slideshow either via the WordPress.org plugin directory, or by uploading the files to your server.
 
 2. After activating Slideshow, you can create a new slideshow.
 
-3. Upload images to your newly created slideshow with the upload button in the slides list.
+3. Click on 'Insert Image Slide' to insert an image slide, a popup will appear where you can search for the desired
+image. Insert the image by clicking 'Insert'
 
-4. Use the shortcode or code snippet visible in your slideshow admin panel to deploy your slideshow anywhere on your website.
-You can also use the widget to show any of your slideshows in your sidebar.
+4. Use the shortcode or code snippet visible in your slideshow admin panel to deploy your slideshow anywhere on your website,
+or use the widget to show any of your slideshows in the sidebar of your website.
 
 5. Feel like a sir.
 
 
+== Frequently Asked Questions ==
+
+= How do I add image slides? =
+
+You can choose from images that have already been uploaded to your Wordpress website by clicking on the
+'Insert Image Slide' button in the slides list. A screen will pop up and here you are able to search your image files
+by name for image you want to use. If you want to add new images to the slideshow, you need to upload them to the
+Wordpress media page.
+
+= The slideshow does not show up / The slideshow looks like it's not styled =
+
+Most times the slideshow is called after the </head> tag, which means the scripts need to load in the footer of
+the website. A theme that has no '<?php wp_footer(); ?>' call in it's footer will not be able to load the slideshow's
+scripts.
+
+= I chose the 'Custom' style option for my slideshow, but the slideshow is not styled anymore =
+
+Since the slideshow is most often called after the </head> tag, the slideshow can't print it's styles in the head of
+the website and has to output it on the page. A strict doctype does not allow stylesheets in the body and thus the
+slideshow is not styled.
+
+
 == Screenshots ==
 
-1. Create a new slideshow. A shortcode and a code snippet of how to call it is already visible.
+1. Here's what some default slideshows can look like. Sit back grab a beer, enjoy.
 
-2. Attach images to the slideshow with the upload button in the slides list.
+2. Create a new slideshow. A shortcode and a code snippet of how to call it is already visible.
 
-3. The Wordpress media uploader will pop up and you can start uploading images to the slideshow.
+3. Click the 'Insert Image Slide' button in the Slides List to search and pick images from the Wordpress media page.
 
-4. The attached images are now visible in your newly created slideshow.
+4. If you haven't uploaded any images yet, you can do so on the Wordpress media page.
 
-5. Using the shortcode or code snippet the slideshow shows you, you can enjoy your slides in style.
+5. The images you selected are directly visible in your Slides List, don't forget to save!
 
 6. Not satisfied with the handling or styling of the slideshow? Customize!
 
 
 == Changelog ==
+
+= 2.0.0 =
+*   Complete sideshow script revision to support new features.
+*   The script now supports two kinds of animations: 'Slide' and 'Fade'.
+*   Multiple images can be shown in one slide, instead of one.
+*   Text slides are available.
+*   Descriptions are more cooperative, they don't overlap the entire image anymore. (Instead they hide or have a user-defined fixed height)
+*   Multiple slideshows can now be shown on one page.
+*   Play and pause buttons are now available, as is the option not to auto-play and/or loop the slideshow.
+*   Stylesheets no longer partially depend on the website's stylesheet, except for the fonts.
+*   The script and its functional stylesheet are now compressed to save loading time.
+*   Added jQuery sortables script to sort slides
+*   Images you've already uploaded and attached to other posts can now be loaded into the slideshow, saving disk space (and time).
 
 = 1.3.5 =
 *   Fixed: Namespace complications found with the Slideshow widget, renamed all classes.

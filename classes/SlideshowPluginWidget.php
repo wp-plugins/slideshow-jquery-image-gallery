@@ -82,6 +82,7 @@ class SlideshowPluginWidget extends WP_Widget {
 	 *
 	 * @param mixed array $newInstance
 	 * @param mixed array $instance
+	 * @return mixed array $instance
 	 */
 	function update($newInstance, $instance){
 		// Update title

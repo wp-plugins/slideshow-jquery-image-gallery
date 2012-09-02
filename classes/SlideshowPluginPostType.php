@@ -9,25 +9,15 @@
 class SlideshowPluginPostType {
 
 	/** Variables */
-	private static $adminIcon = 'images/adminIcon.png';
 	static $postType = 'slideshow';
-	static $settings = null;
 	static $settingsMetaKey = 'settings';
-	static $defaultSettings = array(
-		'slideSpeed' => 1,
-		'descriptionSpeed' => 0.3,
-		'intervalSpeed' => 5,
-		'width' => 0,
-		'height' => 200,
-		'stretch' => 'false',
-		'controllable' => 'true',
-		'urlsActive' => 'false',
-		'showText' => 'true'
+	static $prefixes = array(
+		'slide-list' => 'slide_',
+		'style' => 'style_',
+		'settings' => 'setting_',
 	);
-	static $defaultStyleSettings = array(
-		'style' => 'style-dark.css',
-		'custom-style' => ''
-	);
+	static $settings = null;
+	static $inputFields = null;
 
 	/**
 	 * Initialize Slideshow post type.
@@ -66,10 +56,17 @@ class SlideshowPluginPostType {
 				'has_archive' => true,
 				'hierarchical' => false,
 				'menu_position' => null,
-				'menu_icon' => SlideshowPluginMain::getPluginUrl() . '/' . self::$adminIcon,
+				'menu_icon' => SlideshowPluginMain::getPluginUrl() . '/images/' . __CLASS__ . '/adminIcon.png',
 				'supports' => array('title'),
 				'register_meta_box_cb' => array(__CLASS__, 'registerMetaBoxes')
 			)
+		);
+
+		// Enqueue associating script
+		wp_enqueue_script(
+			'post-type-handler',
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/post-type-handler.js',
+			array('jquery')
 		);
 	}
 
@@ -112,6 +109,17 @@ class SlideshowPluginPostType {
 			'normal',
 			'low'
 		);
+
+		// Add support plugin message on edit slideshow
+		if(isset($_GET['action']) && strtolower($_GET['action']) == strtolower('edit'))
+			add_action('admin_notices', array(__CLASS__,  'supportPluginMessage'));
+	}
+
+	/**
+	 * Shows the support plugin message
+	 */
+	static function supportPluginMessage(){
+		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/support-plugin.php');
 	}
 
 	/**
@@ -132,14 +140,55 @@ class SlideshowPluginPostType {
 	static function slidesMetaBox(){
 		global $post;
 
-		// Media upload button
-		$uploadButton = SlideshowPluginUpload::getUploadButton();
+		// Stores highest slide id.
+		$highestSlideId = -1;
 
-		// Get slideshow attachments
-		$attachments = self::getAttachments($post->ID);
+		// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
+		$slidesPreOrder = array();
+		$settings = self::getSettings($post->ID, self::$prefixes['slide-list']);
+		foreach($settings as $key => $value){
+			$key = explode('_', $key);
+			if(is_numeric($key[1]))
+				$slidesPreOrder[$key[1]][$key[2]] = $value;
+		}
+
+		// Save slide keys from the $slidePreOrder array in the array itself for later use
+		foreach($slidesPreOrder as $key => $value){
+			$slidesPreOrder[$key]['id'] = $key;
+
+			// Save highest slide id
+			if($key > $highestSlideId)
+				$highestSlideId = $key;
+		}
+
+		// Create array ordered by the 'order' key of the slides array: array([order-key] => [slide-key]);
+		$slidesOrder = array();
+		foreach($slidesPreOrder as $key => $value)
+			if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
+				$slidesOrder[$value['order']][] = $key;
+		ksort($slidesOrder);
+
+		// Order slides by the order key.
+		$slides = array();
+		foreach($slidesOrder as $value)
+			if(is_array($value))
+				foreach($value as $slideId){
+					$slides[] = $slidesPreOrder[$slideId];
+					unset($slidesPreOrder[$slideId]);
+				}
+
+		// Add remaining (unordered) slides to the end of the array.
+		$slides = array_merge($slides, $slidesPreOrder);
 
 		// Set url from which a substitute icon can be fetched
-		$noPreviewIcon = SlideshowPluginMain::getPluginUrl() . '/images/no-img.png';
+		$noPreviewIcon = SlideshowPluginMain::getPluginUrl() . '/images/' . __CLASS__ . '/no-img.png';
+
+		// Enqueue scripts required for sorting the slides list
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('jquery-ui-sortable');
+
+		// Enqueue JSColor
+		wp_enqueue_script('jscolor-colorpicker', SlideshowPluginMain::getPluginUrl() . '/js/SlideshowPluginPostType/jscolor/jscolor.js');
 
 		// Include slides preview file
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/slides.php');
@@ -152,46 +201,17 @@ class SlideshowPluginPostType {
 		global $post;
 
 		// Get settings
-		$defaultSettings = self::$defaultStyleSettings;
-		$settings = self::getSettings($post->ID);
-
-		// Get styles from style folder
-		$styles = array();
-		$cssExtension = '.css';
-		if($handle = opendir(SlideshowPluginMain::getPluginPath() . '/style/SlideshowPlugin/'))
-			while(($file = readdir($handle)) !== false)
-				if(strlen($file) >= strlen($cssExtension) && substr($file, strlen($file) - strlen($cssExtension)) === $cssExtension)
-					// Converts the css file's name (style-mystyle.css) and converts it to a user readable name by
-					// cutting the style- prefix off, replacing hyphens with spaces and getting rid of the .css.
-					// Then it capitalizes every word and saves it to the $styles array under the original $file name.
-					$styles[$file] = ucwords(str_replace(
-						'-',
-						' ',
-						preg_replace(
-							'/style-/',
-							'',
-							substr(
-								$file,
-								0,
-								'-' . strlen($cssExtension)),
-							1
-					)));
+		$settings = self::getSettings($post->ID, self::$prefixes['style']);
 
 		// Fill custom style with default css if empty
-		if(empty($settings['custom-style'])){
+		if(isset($settings['style_custom']) && empty($settings['style_custom'][1])){
 			ob_start();
-			include(SlideshowPluginMain::getPluginPath() . '/style/SlideshowPlugin/style-dark.css');
-			$settings['custom-style'] = ob_get_clean();
+			include(SlideshowPluginMain::getPluginPath() . '/style/SlideshowPlugin/style-custom.css');
+			$settings['style_custom'][1] = ob_get_clean();
 		}
 
-		// Enqueue associating script
-		wp_enqueue_script(
-			'style-settings',
-			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/style-settings.js',
-			array('jquery'),
-			false,
-			true
-		);
+		// Build fields
+		$inputFields = self::getInputFields($settings, false);
 
 		// Include style settings file
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/style-settings.php');
@@ -204,8 +224,8 @@ class SlideshowPluginPostType {
 		global $post;
 
 		// Get settings
-		$defaultSettings = self::$defaultSettings;
-		$settings = self::getSettings($post->ID);
+		$settings = self::getSettings($post->ID, self::$prefixes['settings']);
+		$inputFields = self::getInputFields($post->ID);
 
 		// Include
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/settings.php');
@@ -224,39 +244,77 @@ class SlideshowPluginPostType {
 			defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
 			return $postId;
 
-		// Get old settings
-		$oldSettings = get_post_meta($postId, self::$settingsMetaKey, true);
-		if(!is_array($oldSettings))
-			$oldSettings = array();
+		// Get defaults
+		$defaultData = self::getDefaultData(false);
 
-		// Filter post results, otherwise we'd save all post variables like post_id and ping_status.
-		$settings = array();
-		$defaultSettings = array_merge(
-			self::$defaultSettings,
-			self::$defaultStyleSettings);
+		// Get old data
+		$oldData = get_post_meta($postId, self::$settingsMetaKey, true);
+		if(!is_array(($oldData)))
+			$oldData = array();
+
+		// Filter new data from $_POST
+		$newData = array();
 		foreach($_POST as $key => $value)
-			if(isset($defaultSettings[$key]))
-				$settings[$key] = $value;
+			foreach(self::$prefixes as $prefix)
+				if($prefix == substr($key, 0, strlen($prefix)))
+					$newData[$key] = $value;
 
 		// Save settings
 		update_post_meta(
 			$postId,
 			self::$settingsMetaKey,
 			array_merge(
-				self::$defaultSettings,
-				self::$defaultStyleSettings,
-				$oldSettings,
-				$settings
+				$defaultData,
+				$oldData,
+				$newData
 		));
+
+		return $postId;
 	}
 
 	/**
-	 * Gets settings for the slideshow with the settings meta key
+	 * Get simplified settings. This means there won't be an array full of
+	 * field information and data. There will simply be a key => value pair
+	 * with the retrieved settings or, if that value is empty, the default setting
 	 *
+	 * @param int $postId
+	 * @param string $prefix (optional, defaults to null)
+	 * @param bool $cacheEnabled (optional, defaults to true)
+	 * @return mixed $simpleSettings
+	 */
+	static function getSimpleSettings($postId, $prefix = null, $cacheEnabled = true){
+		$settings = self::getSettings($postId, $prefix, $cacheEnabled);
+
+		$simpleSettings = array();
+		foreach($settings as $key => $value){
+			if(!is_array($value))
+				continue;
+
+			if(empty($value[1]) && !is_numeric($value[1]))
+				$simpleSettings[$key] = $value[2];
+			else $simpleSettings[$key] = $value[1];
+		}
+
+		return $simpleSettings;
+	}
+
+	/**
+	 * Gets settings for the slideshow with the parsed post id.
+	 * When only the data with a particular prefix needs to be returned, pass the prefix as $prefix
+	 *
+	 * @param int $postId
+	 * @param string $prefix (optional, defaults to null)
+	 * @param bool $cacheEnabled (optional, defaults to true)
 	 * @return mixed $settings
 	 */
-	static function getSettings($postId){
-		if(!isset(self::$settings)){
+	static function getSettings($postId, $prefix = null, $cacheEnabled = true){
+		if(!is_numeric($postId) || empty($postId))
+			return array();
+
+		if(!isset(self::$settings) || !$cacheEnabled){
+			// Get default data
+			$data = self::getDefaultData();
+
 			// Get settings
 			$currentSettings = get_post_meta(
 				$postId,
@@ -264,19 +322,85 @@ class SlideshowPluginPostType {
 				true
 			);
 
-			if(empty($currentSettings))
-				$currentSettings = array();
+			// Fill data with settings
+			foreach($data as $key => $value)
+				if(isset($currentSettings[$key])){
+					$data[$key][1] = $currentSettings[$key];
+					unset($currentSettings[$key]);
+				}
 
-			// Merge settings
-			self::$settings = $settings = array_merge(
-				self::$defaultSettings,
-				self::$defaultStyleSettings,
-				$currentSettings
-			);
-		}else
+			// Load settings that are not there by default into data (slides in particular)
+			foreach($currentSettings as $key => $value)
+				if(!isset($data[$key]))
+					$data[$key] = $value;
+
+			$settings = $data;
+			if($cacheEnabled)
+				self::$settings = $data;
+		}else{
 			$settings = self::$settings;
+		}
+
+		if(isset($prefix))
+			foreach($settings as $key => $value)
+				if($prefix != substr($key, 0, strlen($prefix)))
+					unset($settings[$key]);
 
 		return $settings;
+	}
+
+	/**
+	 * Gets defdault data. If only default data (without field information) is needed, set fullDefinition to false.
+	 *
+	 * @param boolean $fullDefinition (optional, defaults to true)
+	 * @return mixed $defaultData
+	 */
+	private static function getDefaultData($fullDefinition = true){
+		$data = array(
+			'style_style' => 'light',
+			'style_custom' => '',
+			'setting_animation' => 'slide',
+			'setting_slideSpeed' => '1',
+			'setting_descriptionSpeed' => '0.4',
+			'setting_intervalSpeed' => '5',
+			'setting_play' => 'true',
+			'setting_loop' => 'true',
+			'setting_slidesPerView' => '1',
+			'setting_width' => '0',
+			'setting_height' => '200',
+			'setting_descriptionHeight' => '50',
+			'setting_stretchImages' => 'false',
+			'setting_controllable' => 'true',
+			'setting_controlPanel' => 'false',
+			'setting_showDescription' => 'true',
+			'setting_hideDescription' => 'true',
+		);
+
+		if($fullDefinition){
+			$yes = __('Yes', 'slideshow-plugin');
+			$no = __('No', 'slideshow-plugin');
+			$data = array( // $data : array([prefix_settingName] => array([inputType], [value], [default], [description], array([options]), array([dependsOn], [onValue])))
+				'style_style' => array('select', '', $data['style_style'], __('The style used for this slideshow', 'slideshow-plugin'), array('light' => __('Light', 'slideshow-plugin'), 'dark' => __('Dark', 'slideshow-plugin'), 'custom' => __('Custom', 'slideshow-plugin'))),
+				'style_custom' => array('textarea', '', $data['style_custom'], __('Custom style editor (Does not work with a Strict Doctype)', 'slideshow-plugin'), null, array('style_style', 'custom')),
+				'setting_animation' => array('select', '', $data['setting_animation'], __('Animation used for transition between slides', 'slideshow-plugin'), array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin'))),
+				'setting_slideSpeed' => array('text', '', $data['setting_slideSpeed'], __('Number of seconds the slide takes to slide in', 'slideshow-plugin')),
+				'setting_descriptionSpeed' => array('text', '', $data['setting_descriptionSpeed'], __('Number of seconds the description takes to slide in', 'slideshow-plugin')),
+				'setting_intervalSpeed' => array('text', '', $data['setting_intervalSpeed'], __('Seconds between changing slides', 'slideshow-plugin')),
+				'setting_play' => array('radio', '', $data['setting_play'], __('Automatically slide to the next slide', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_loop' => array('radio', '', $data['setting_loop'], __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_slidesPerView' => array('text', '', $data['setting_slidesPerView'], __('Number of slides to fit into one slide', 'slideshow-plugin')),
+				'setting_width' => array('text', '', $data['setting_width'], __('Width of the slideshow, set to parent&#39;s width on 0', 'slideshow-plugin')),
+				'setting_height' => array('text', '', $data['setting_height'], __('Height of the slideshow', 'slideshow-plugin')),
+				'setting_descriptionHeight' => array('text', '', $data['setting_descriptionHeight'], __('Height of the description boxes', 'slideshow-plugin')),
+				'setting_stretchImages' => array('radio', '', $data['setting_stretchImages'], __('Fit image into slide (stretching it)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_controllable' => array('radio', '', $data['setting_controllable'], __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_controlPanel' => array('radio', '', $data['setting_controlPanel'], __('Show control panel (play and pause button)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_showDescription' => array('radio', '', $data['setting_showDescription'], __('Show title and description', 'slideshow-plugin'), array('true' => $yes, 'false' => $no)),
+				'setting_hideDescription' => array('radio', '', $data['setting_hideDescription'], __('Hide description box, it will pop up when a mouse hovers over the slide', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), array('setting_showDescription', 'true'))
+			);
+		}
+
+		return $data;
 	}
 
 	/**
@@ -295,5 +419,79 @@ class SlideshowPluginPostType {
 			'post_status' => null,
 			'post_parent' => $postId
 		));
+	}
+
+	/**
+	 * Gets all input fields based on the list of obtained settings
+	 *
+	 * @param mixed|int $settings
+	 * @param bool $cacheEnabled (optional, defaults to true)
+	 * @return mixed $inputFields
+	 */
+	private static function getInputFields($settings, $cacheEnabled = true){
+		if(is_numeric($settings))
+			$settings = self::getSettings($settings);
+		elseif(empty($settings))
+			return array();
+
+		if(!isset(self::$inputFields) || !$cacheEnabled){
+			$inputFields = array();
+			foreach($settings as $key => $value){
+				if(!is_array($value))
+					continue;
+
+				$inputField = '';
+				$displayValue = (empty($value[1]) && !is_numeric($value[1]) ? $value[2] : $value[1]);
+				$class = ((isset($value[5]))? 'depends-on-field-value ' . $value[5][0] . ' ' . $value[5][1] . ' ': '') . $key;
+				switch($value[0]){
+					case 'text':
+						$inputField .= '<input
+							type="text"
+							name="' . $key . '"
+							class="' . $class . '"
+							value="' . $displayValue . '"
+						/>';
+						break;
+					case 'textarea':
+						$inputField .= '<textarea
+							name="' . $key . '"
+							class="' . $class . '"
+							rows="20"
+							cols="60"
+						>' . $displayValue . '</textarea>';
+						break;
+					case 'select':
+						$inputField .= '<select name="' . $key . '" class="' . $class . '">';
+						foreach($value[4] as $optionKey => $optionValue)
+							$inputField .= '<option value="' . $optionKey . '" ' . selected($displayValue, $optionKey, false) . '>
+								' . $optionValue . '
+							</option>';
+						$inputField .= '</select>';
+						break;
+					case 'radio':
+						foreach($value[4] as $radioKey => $radioValue)
+							$inputField .= '<label><input
+								type="radio"
+								name="' . $key . '"
+								class="' . $class . '"
+								value="' . $radioKey . '" ' .
+								checked($displayValue, $radioKey, false) .
+							' />' . $radioValue . '</label><br />';
+						break;
+					default:
+						$inputField = null;
+						break;
+				};
+
+				$inputFields[$key] = $inputField;
+			}
+
+			if($cacheEnabled)
+				self::$inputFields = $inputFields;
+		}else{
+			$inputFields = self::$inputFields;
+		}
+
+		return $inputFields;
 	}
 }
