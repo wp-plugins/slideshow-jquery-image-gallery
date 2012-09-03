@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -87,6 +87,10 @@ slideshow is not styled.
 
 
 == Changelog ==
+
+= 2.0.1 =
+*   IMPORTANT: This update is only for those people who want their old slides from version 1.x.x back.
+*   IMPORTANT: If you are satisfied with version 2.0.0, please ignore this update as it might fiddle with the settings you just set.
 
 = 2.0.0 =
 *   Complete sideshow script revision to support new features.

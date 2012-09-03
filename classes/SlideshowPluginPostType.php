@@ -355,7 +355,7 @@ class SlideshowPluginPostType {
 	 * @param boolean $fullDefinition (optional, defaults to true)
 	 * @return mixed $defaultData
 	 */
-	private static function getDefaultData($fullDefinition = true){
+	static function getDefaultData($fullDefinition = true){
 		$data = array(
 			'style_style' => 'light',
 			'style_custom' => '',
