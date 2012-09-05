@@ -58,6 +58,12 @@ You can choose from images that have already been uploaded to your Wordpress web
 by name for image you want to use. If you want to add new images to the slideshow, you need to upload them to the
 Wordpress media page.
 
+= Images are not showing up (but the rest of the slideshow is) =
+
+Often when images are not shown by the slideshow, there's a javascript error somewhere on the page and this error has
+caused javascript to break. For the slideshow to work again, this error needs to be fixed. Nobody likes an 'errory'
+website anyways.
+
 = The slideshow does not show up / The slideshow looks like it's not styled =
 
 Most times the slideshow is called after the </head> tag, which means the scripts need to load in the footer of
