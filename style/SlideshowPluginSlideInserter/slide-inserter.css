@@ -15,7 +15,7 @@
 #slideshow-slide-inserter-popup {
 	background: #fff;
 	display: none;
-	position: fixed;
+	position: absolute;
 	padding: 20px;
 	line-height: 23px;
 	z-index: 10001;
@@ -37,6 +37,12 @@
 
 #slideshow-slide-inserter-popup #close:hover {
 	cursor: pointer;
+}
+
+#slideshow-slide-inserter-popup #search-results {
+	height: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .sortable-slides-list-item {

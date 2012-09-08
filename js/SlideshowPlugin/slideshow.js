@@ -6,7 +6,8 @@ jQuery.fn.slideshow_script = function(){
         $nextButton = $container.find('.next'),
         $previousButton = $container.find('.previous'),
         $slideshow = $container.find('.slideshow'),
-        $slides = $slideshow.find('.slide');
+        $slides = $slideshow.find('.slide'),
+	    $views = new Array();
 
     /** Settings */
     var $settings = jQuery.parseJSON($container.find('.settings').text());
@@ -58,7 +59,9 @@ jQuery.fn.slideshow_script = function(){
 
             // If the user want the images stretched, stretch it!
             if($settings['stretchImages'])
-                jQuery(slide).find('img').css({ width: jQuery(slide).width(), height: jQuery(slide).height() });
+                jQuery(slide).find('img').attr({ width: jQuery(slide).width(), height: jQuery(slide).height() });
+            else
+                jQuery(slide).find('img').css('width', 'auto');
 
             // Hide descriptionbox if wanted.
             var description = jQuery(slide).find('.description');
@@ -68,7 +71,7 @@ jQuery.fn.slideshow_script = function(){
 	            else
 					description.css({ height: $settings['descriptionHeight'] });
 
-                description.css({ display: 'inline' });
+                description.css({ display: 'block' });
             }
 
             // Count in what position of the view this slide is in.
@@ -95,7 +98,7 @@ jQuery.fn.slideshow_script = function(){
 
         // Enable buttons
         if($settings['controllable']){
-            var style = { display: 'inline' };
+            var style = { display: 'block' };
             $nextButton.css(style);
             $previousButton.css(style);
             $buttonsActive = true;
@@ -105,19 +108,43 @@ jQuery.fn.slideshow_script = function(){
     /**
      * Jump to view of slides
      *
+     * If parameter relative is set, calculate number of views forwards of
+     * backwards from current slide.
+     *
      * @param int viewId
+     * @param boolean relative (optional, defaults to false)
      */
-    function gotoView(viewId){
-        if(!viewId || viewId * $settings['slidesPerView'] > $slides.length)
-            viewId = 0;
+    function gotoView(viewId, relative){
+		// If view is relative, calculate viewId
+	    if(relative)
+	        viewId = $currentViewId + viewId;
 
+	    // Calculate loop
+	    if(viewId * $settings['slidesPerView'] >= $slides.length){ // When viewId is bigger than the end view and loop is enabled, return to first view
+		    if($settings['loop']){
+		        viewId = 0;
+	        } else {
+		        viewId = Math.floor(($slides.length - 1) / $settings['slidesPerView']);
+			    return;
+			}
+	    } else if(viewId < 0){ // When viewId is less than zero and loop is enabled, go to last view
+		    if($settings['loop']){
+		        viewId = Math.floor(($slides.length - 1) / $settings['slidesPerView']);
+		    } else {
+			    viewId = 0;
+			    return;
+		    }
+	    }
+	    $currentViewId = viewId;
+
+	    // Get distance the slideshow needs to be shifted in order to show the requested view
         var position = 0;
         var slidePosition = $slideshow.find('.slide_' + (viewId * $settings['slidesPerView'])).position();
         if(slidePosition)
             var position = '-=' + (slidePosition.left - Math.abs($slideshow.position().left));
 
-        $buttonsActive = false;
-
+	    // Execute animation
+	    $buttonsActive = false;
 	    if($settings['animation'] == 'fade'){
 		    $slideshow.fadeOut(parseInt($settings['slideSpeed'] * 1000) / 2);
 		    setTimeout(function(){
@@ -130,41 +157,8 @@ jQuery.fn.slideshow_script = function(){
 		    }, parseInt($settings['slideSpeed'] * 1000));
 	    }
 
+	    // Disable buttons for as long as the animation is set for
         setTimeout(function(){ $buttonsActive = true; }, parseInt($settings['slideSpeed'] * 1000));
-    }
-
-    /**
-     * Makes use of function gotoView(viewId) to jump to the next view
-     */
-    function nextView(){
-        $currentViewId++;
-        if($currentViewId * $settings['slidesPerView'] > $slides.length){
-	        if(!$settings['loop']){
-		        $currentViewId--;
-	            return;
-	        }
-
-            $currentViewId = 0;
-        }
-
-        gotoView($currentViewId);
-    }
-
-    /**
-     * Makes use of function gotoView(viewId) to jump to the previous view
-     */
-    function previousView(){
-        $currentViewId--;
-        if($currentViewId < 0){
-	        if(!$settings['loop']){
-		        $currentViewId++;
-	            return;
-	        }
-
-            $currentViewId = Math.floor($slides.length / $settings['slidesPerView']);
-        }
-
-        gotoView($currentViewId);
     }
 
     /**
@@ -173,7 +167,7 @@ jQuery.fn.slideshow_script = function(){
     $nextButton.click(function(){
         if($buttonsActive){
 	        resetInterval();
-            nextView();
+	        gotoView(1, true);
         }
     });
 
@@ -183,7 +177,7 @@ jQuery.fn.slideshow_script = function(){
     $previousButton.click(function(){
         if($buttonsActive){
 	        resetInterval();
-            previousView();
+	        gotoView(-1, true);
         }
     });
 
@@ -195,7 +189,10 @@ jQuery.fn.slideshow_script = function(){
     });
 
     /**
-     * Toggles play
+     * Toggles play, if adaptButton is true only the button image (class)
+     * will be adapted to the setting it's in at the moment.
+     *
+     * @param boolean $adaptButton (optional, defaults to false)
      */
     function togglePlay(adaptButton){
 	    if(!adaptButton){
@@ -249,6 +246,6 @@ jQuery.fn.slideshow_script = function(){
         clearInterval($interval);
 
         if($settings['play'])
-            $interval = setInterval(function(){ nextView(); }, $settings['intervalSpeed'] * 1000);
+            $interval = setInterval(function(){ gotoView(1, true); }, $settings['intervalSpeed'] * 1000);
     }
 };

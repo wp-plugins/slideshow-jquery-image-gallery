@@ -70,17 +70,30 @@ class SlideshowPluginSlideInserter {
 	 * and prints the results from the search query
 	 */
 	static function printSearchResults(){
+		// Numberposts and offset
+		$numberPosts = 10;
+		$offset = 0;
+		if(isset($_POST['offset']))
+			$offset = $_POST['offset'];
+
 		// Get attachments with a title alike the search string, needs to be filtered
 		add_filter('posts_where', array(__CLASS__, 'printSearchResultsWhereFilter'));
 		$attachments = get_posts(array(
-			'numberposts' => 5,
-			'offset' => 0,
+			'numberposts' => $numberPosts + 1,
+			'offset' => $offset,
 			'orderby' => 'post_title',
 			'order' => 'ASC',
 			'post_type' => 'attachment',
 			'suppress_filters' => false
 		));
 		remove_filter('posts_where', array(__CLASS__, 'printSearchResultsWhereFilter'));
+
+		// Check if there are enough attachments to print a 'Load more images' button
+		$loadMoreResults = false;
+		if(count($attachments) > $numberPosts){
+			array_pop($attachments);
+			$loadMoreResults = true;
+		}
 
 		// Print results to the screen
 		if(count($attachments) > 0){
@@ -104,6 +117,15 @@ class SlideshowPluginSlideInserter {
 							class="insert-attachment button-secondary"
 							value="' . __('Insert', 'slideshow-plugin') . '"
 						/>
+					</td>
+				</tr>';
+			}
+			if($loadMoreResults){
+				echo '<tr>
+					<td colspan="3" style="text-align: center;">
+						<button class="button-secondary load-more-results ' . ($offset + $numberPosts) . '" >
+							' . __('Load more results', 'slideshow-plugin') . '
+						</button>
 					</td>
 				</tr>';
 			}

@@ -20,15 +20,17 @@ can be inserted into your slideshow right away!
 Fancy doing something crazy? You can create and use as many slideshows as you'd like, with
 different images, settings and styles for each one of them.
 
+= Features =
+
  - Create as many slideshows with as many slides as you like
  - Image slides
  - Text slides
  - Video slides (Coming in version 2.1.0)
  - Place it anywhere on your website.
  - Customize it to taste.
- - Show that visitor who's boss.
+ - Shows that visitor who's boss.
 
-= Currently supported languages =
+= Languages =
 
  - English
  - Dutch

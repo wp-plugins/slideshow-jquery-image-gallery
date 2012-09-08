@@ -120,24 +120,31 @@ jQuery(document).ready(function(){
 	/**
 	 * Sends an ajax post request with the search query and print
 	 * retrieved html to the results table.
+	 *
+	 * If offset is set, append data to data that is already there
+	 *
+	 * @param int offset (optional, defaults to 0)
 	 */
-	function slideshowSlideInserterGetSearchResults(){
-		jQuery('#slideshow-slide-inserter-popup #results').html('');
+	function slideshowSlideInserterGetSearchResults(offset){
+		if(!offset){
+			offset = 0;
+			jQuery('#slideshow-slide-inserter-popup #results').html('');
+		}
+
 		jQuery.post(
 			ajaxurl,
 			{
 				action: 'slideshow_slide_inserter_search_query',
-				search: jQuery('#slideshow-slide-inserter-popup #search').attr('value')
+				search: jQuery('#slideshow-slide-inserter-popup #search').attr('value'),
+				offset: offset
 			},
 			function(response){
 				// Fill table
-				jQuery('#slideshow-slide-inserter-popup #results').html(response);
+				jQuery('#slideshow-slide-inserter-popup #results').append(response);
 
 				// Apply insert to slideshow script
 				jQuery('#slideshow-slide-inserter-popup #results .insert-attachment').click(function(){
-					slideshowSlideInserterClosePopup();
-
-					var tr = jQuery(this).parent().parent();
+					var tr = jQuery(this).closest('tr');
 					SlideshowSlideInserterInsertImageSlide(
 						jQuery(this).attr('id'),
 						jQuery(tr).find('.title').text(),
@@ -145,6 +152,20 @@ jQuery(document).ready(function(){
 						jQuery(tr).find('.image img').attr('src')
 					);
 				});
+
+				// Load more results on click of the 'Load more results' button
+				if(jQuery('.load-more-results')){
+					jQuery('.load-more-results').click(function(){
+						// Get offset
+						var previousOffset = jQuery(this).attr('class').split(' ')[2];
+
+						// Load ajax results
+						slideshowSlideInserterGetSearchResults(previousOffset);
+
+						// Remove button row
+						jQuery(this).closest('tr').remove();
+					});
+				}
 			}
 		);
 	}

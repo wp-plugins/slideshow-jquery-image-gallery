@@ -6,6 +6,9 @@
 		<?php submit_button(__('Search', 'slideshow-plugin'), 'primary', 'search-submit', false); ?>
 		<i><?php _e('Search images by title'); ?></i>
 	</div>
+	<div style="clear: both;"></div>
 
-	<table id="results" class="widefat" style="height: 400px; width: 600px;"></table>
+	<div id="search-results">
+		<table id="results" class="widefat" style="height: 400px; width: 600px;"></table>
+	</div>
 </div>
