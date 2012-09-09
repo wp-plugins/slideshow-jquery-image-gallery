@@ -1,13 +1,13 @@
 jQuery.fn.slideshow_script = function(){
     /** Element variables */
     var $container = jQuery(this),
+	    $overflow = $container.find('.slideshow_overflow'),
         $controlPanel = $container.find('.controlPanel'),
         $togglePlayButton = $controlPanel.find('.togglePlay'),
         $nextButton = $container.find('.next'),
         $previousButton = $container.find('.previous'),
         $slideshow = $container.find('.slideshow'),
-        $slides = $slideshow.find('.slide'),
-	    $views = new Array();
+        $slides = $slideshow.find('.slide');
 
     /** Settings */
     var $settings = jQuery.parseJSON($container.find('.settings').text());
@@ -19,8 +19,10 @@ jQuery.fn.slideshow_script = function(){
     });
 
     /** Set container width to parent width if 0 */
-    if($container.width() <= 0)
-        $container.css({ width: $container.parent().width() });
+    if($container.width() <= 0){
+        $container.css('width', $container.parent().width());
+	    $overflow.css('width', $container.parent().width());
+    }
 
     /** Misc */
     var	$numberSlidesVisible = 3,
@@ -36,7 +38,7 @@ jQuery.fn.slideshow_script = function(){
      */
     function init(){
         var slidePosition = 0;
-        var totalWidth = 0;
+        var totalWidth = 1;
 
         // Prepare slides with their descriptions
         jQuery.each($slides, function(key, slide){
@@ -56,6 +58,9 @@ jQuery.fn.slideshow_script = function(){
             var thisSlideWidth = $slideWidth - (jQuery(slide).outerWidth(true) - jQuery(slide).width());
             jQuery(slide).css({ width: thisSlideWidth });
 	        totalWidth += jQuery(slide).outerWidth(true);
+
+	        console.log(jQuery(slide).outerWidth(true));
+	        console.log(' - ' + totalWidth);
 
             // If the user want the images stretched, stretch it!
             if($settings['stretchImages'])
@@ -140,8 +145,9 @@ jQuery.fn.slideshow_script = function(){
 	    // Get distance the slideshow needs to be shifted in order to show the requested view
         var position = 0;
         var slidePosition = $slideshow.find('.slide_' + (viewId * $settings['slidesPerView'])).position();
+
         if(slidePosition)
-            var position = '-=' + (slidePosition.left - Math.abs($slideshow.position().left));
+            position = '-=' + (slidePosition.left - Math.abs($slideshow.position().left));
 
 	    // Execute animation
 	    $buttonsActive = false;
