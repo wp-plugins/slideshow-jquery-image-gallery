@@ -1,18 +1,22 @@
 jQuery(document).ready(function(){
-	// Loop through fields that depend on another fields value for showing, register change event
+	/**
+	 * Loop through fields that depend on another field's value for showing, register change event
+	 */
 	jQuery('.depends-on-field-value').each(function(key, value){
 		var attributes = jQuery(this).attr('class').split(' ');
 
-		// Check if field should already be shown
+		// Check if field should be shown
 		var element = jQuery(this).closest('tr');
-		if(jQuery('.' + attributes[1]).val() == attributes[2])
+		if((jQuery('input[name="' + attributes[1] + '"]').val() == attributes[2] && jQuery('input[name="' + attributes[1] + '"]').prop('checked')) ||
+			jQuery('select[name="' + attributes[1] + '"]').val() == attributes[2])
 			setElementVisibility(element, true);
 		else
 			setElementVisibility(element, false);
 
 		// On change, set field's visibility
-		jQuery('.' + attributes[1]).change(attributes, function(){
+		jQuery('input[name="' + attributes[1] + '"], select[name="' + attributes[1] + '"]').change(attributes, function(){
 			var element = jQuery('.' + attributes[3]).closest('tr');
+
 			if(jQuery(this).val() == attributes[2])
 				setElementVisibility(element, true);
 			else

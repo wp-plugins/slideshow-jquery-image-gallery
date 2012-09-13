@@ -6,9 +6,11 @@
 				<?php foreach($slides as $slide): ?>
 
 					<?php
-					$url = '';
+					$url = $target = '';
 					if(isset($slide['url']))
 						$url = $slide['url'];
+					if(isset($slide['urlTarget']))
+						$target = $slide['urlTarget'];
 					?>
 
 					<?php if($slide['type'] == 'text'): ?>
@@ -24,10 +26,23 @@
 						?>
 
 						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?>>
-							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?>>
+							<a <?php if(!empty($url)) echo 'href="' . $url . '"';?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<h2><?php echo $title; ?></h2>
 								<p><?php echo $description; ?></p>
 							</a>
+						</div>
+
+					<?php elseif($slide['type'] == 'video'): ?>
+
+						<?php
+							$videoId = '';
+							if(isset($slide['videoId']))
+								$videoId = $slide['videoId'];
+						?>
+
+						<div class="slide slide_<?php echo $i; ?>">
+							<div class="videoId" style="display: none;"><?php echo $videoId; ?></div>
+							<div id="youtube-player-<?php echo $videoId; ?>"></div>
 						</div>
 
 					<?php elseif($slide['type'] == 'attachment'): ?>
@@ -51,7 +66,7 @@
 									<p><?php echo $attachment->post_content; ?></p>
 								</a>
 							</div>
-							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?>>
+							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
 									src="<?php echo $attachment->guid; ?>"
 									alt="<?php echo $attachment->post_title; ?>"
@@ -75,8 +90,21 @@
 
 	<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>
 
+	<div style="
+		position: absolute !important;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+		">
+		<?php echo SlideshowPluginMain::$version; ?>
+		<a href="http://www.stefanboonstra.com/">Slideshow Stefan Boonstra</a>
+	</div>
+
 	<script type="text/javascript">
-		jQuery(window).load(function(){
+		jQuery(document).ready(function(){
+		//jQuery(window).load(function(){
 			jQuery('.slideshow_id_<?php echo $id; ?>').slideshow_script();
 		});
 	</script>

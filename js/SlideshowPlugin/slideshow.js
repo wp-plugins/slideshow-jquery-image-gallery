@@ -54,23 +54,23 @@ jQuery.fn.slideshow_script = function(){
                     'margin-right': 0
                 });
 
-            // Adapt the width of the slides to their margin and padding, so nothing will fall off-screen
-            var thisSlideWidth = $slideWidth - (jQuery(slide).outerWidth(true) - jQuery(slide).width());
-            jQuery(slide).css({ width: thisSlideWidth });
+            // Fit slide in X and Y directions, keeping their outer borders in mind
+            var slideWidth = $slideWidth - (jQuery(slide).outerWidth(true) - jQuery(slide).width());
+            jQuery(slide).css({ width: slideWidth });
 	        totalWidth += jQuery(slide).outerWidth(true);
 
-	        console.log(jQuery(slide).outerWidth(true));
-	        console.log(' - ' + totalWidth);
-
             // If the user want the images stretched, stretch it!
-            if($settings['stretchImages'])
-                jQuery(slide).find('img').attr({ width: jQuery(slide).width(), height: jQuery(slide).height() });
-            else
-                jQuery(slide).find('img').css('width', 'auto');
+	        var image = jQuery(slide).find('img');
+	        if(image.attr('src') != undefined){
+	            if($settings['stretchImages'])
+	                image.attr({ width: jQuery(slide).width(), height: jQuery(slide).height() });
+	            else
+	               image.css('width', 'auto');
+	        }
 
             // Hide descriptionbox if wanted.
             var description = jQuery(slide).find('.description');
-            if($settings['showDescription']){
+            if($settings['showDescription'] && description.attr('class') != undefined){
                 if($settings['hideDescription'])
                     description.css({ marginBottom: '-' + description.outerHeight(true) + 'px' });
 	            else
@@ -78,6 +78,23 @@ jQuery.fn.slideshow_script = function(){
 
                 description.css({ display: 'block' });
             }
+
+			// If slide needs to show a video component
+	        var videoId = jQuery(slide).find('.videoId').text();
+	        if(videoId){
+		        // Load the video as SWF Object
+		        swfobject.embedSWF(
+			        'http://www.youtube.com/v/' + videoId + '?version=3&enablejsapi=1&playerapiid=player',
+			        'youtube-player-' + videoId,
+			        jQuery(slide).width(),
+			        jQuery(slide).height(),
+			        '9',
+			        null,
+			        null,
+			        {allowScriptAccess: 'always'},
+			        {id: 'youtube-player-' + videoId}
+		        );
+	        }
 
             // Count in what position of the view this slide is in.
             slidePosition++;

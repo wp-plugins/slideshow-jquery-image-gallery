@@ -108,6 +108,12 @@ class SlideshowPlugin {
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/slideshow.php');
 		$output .= ob_get_clean();
 
+		// Enqueue flash object creation script
+		wp_enqueue_script(
+			'swfobject',
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . 'swfobject.js'
+		);
+
 		// Enqueue slideshow script
 		wp_enqueue_script(
 			'slideshow_script',

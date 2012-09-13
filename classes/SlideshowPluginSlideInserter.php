@@ -47,6 +47,23 @@ class SlideshowPluginSlideInserter {
 	}
 
 	/**
+	 * Returns the html for showing the video insert button.
+	 * Enqueues scripts unless $enqueueFiles is set to false.
+	 *
+	 * @param boolean $enqueueFiles
+	 * @return String $button
+	 */
+	static function getVideoSlideInsertButton($enqueueFiles = true){
+		if($enqueueFiles)
+			self::enqueueFiles();
+
+		// Return button html
+		ob_start();
+		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/insert-video-button.php');
+		return ob_get_clean();
+	}
+
+	/**
 	 * This function is registered in the SlideshowPluginAjax class
 	 * and deletes slides with a particular $_POST['slideId']
 	 */
