@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 03-07-12
+ * @version: 15-09-12
  */
 class SlideshowPluginPostType {
 
@@ -381,7 +381,7 @@ class SlideshowPluginPostType {
 			$no = __('No', 'slideshow-plugin');
 			$data = array( // $data : array([prefix_settingName] => array([inputType], [value], [default], [description], array([options]), array([dependsOn], [onValue])))
 				'style_style' => array('select', '', $data['style_style'], __('The style used for this slideshow', 'slideshow-plugin'), array('light' => __('Light', 'slideshow-plugin'), 'dark' => __('Dark', 'slideshow-plugin'), 'custom' => __('Custom', 'slideshow-plugin'))),
-				'style_custom' => array('textarea', '', $data['style_custom'], __('Custom style editor (Does not work with a Strict Doctype)', 'slideshow-plugin'), null, array('style_style', 'custom')),
+				'style_custom' => array('textarea', '', $data['style_custom'], __('Custom style editor', 'slideshow-plugin'), null, array('style_style', 'custom')),
 				'setting_animation' => array('select', '', $data['setting_animation'], __('Animation used for transition between slides', 'slideshow-plugin'), array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
 				'setting_slideSpeed' => array('text', '', $data['setting_slideSpeed'], __('Number of seconds the slide takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
 				'setting_descriptionSpeed' => array('text', '', $data['setting_descriptionSpeed'], __('Number of seconds the description takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),

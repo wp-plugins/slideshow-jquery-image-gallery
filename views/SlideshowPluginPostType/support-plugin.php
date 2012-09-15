@@ -1,9 +1,9 @@
 <div class="updated" style="background: #f7f7f7; border-color: #dfdfdf;">
 	<div style="float: left; width: 50%;">
-		<h3><?php _e('Has the Slideshow plugin helped you?', 'slideshow-plugin'); ?> <span><small><i><?php _e('Help it back!', 'slideshow-plugin'); ?></i></small></span></h3>
+		<h3><?php _e('Help to keep this plugin free!', 'slideshow-plugin'); ?></h3>
 
 		<p>
-			<?php _e('If this plugin has filled you with happiness, please support the upkeep of the plugin by rating it on Wordpress, posting a suggestion for improvement on the support forum, or making a donation.', 'slideshow-plugin'); ?>
+			<?php _e('In order to keep you provided with the newest features, forum support, and bug-fixes, a lot of motivation is required. Therefore I\'m kindly asking you to consider making a small donation to the plugin or rating it as 5-stars on Wordpress.org. Thank you in advance!', 'slideshow-plugin'); ?>
 		</p>
 	</div>
 

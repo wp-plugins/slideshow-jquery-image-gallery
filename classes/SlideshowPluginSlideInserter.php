@@ -5,7 +5,7 @@
  * TODO This class will probanbly need to be renamed to SlideshowPluginSlideHandler to explain more functionality
  * TODO than just inserting slides. (Show and delete functionality should be applied here as well)
  * @author Stefan Boonstra
- * @version 24-08-2012
+ * @version 15-09-2012
  */
 class SlideshowPluginSlideInserter {
 

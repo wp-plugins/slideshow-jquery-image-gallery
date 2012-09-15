@@ -5,7 +5,7 @@
  *
  * TODO Create a variable in which all slideshow html can be stored
  * @author: Stefan Boonstra
- * @version: 03-07-12
+ * @version: 15-09-12
  */
 class SlideshowPlugin {
 

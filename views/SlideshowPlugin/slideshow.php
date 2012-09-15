@@ -38,11 +38,13 @@
 							$videoId = '';
 							if(isset($slide['videoId']))
 								$videoId = $slide['videoId'];
+
+							$elementVideoId = 'youtube-player-' . rand() . '-' . $videoId;
 						?>
 
 						<div class="slide slide_<?php echo $i; ?>">
-							<div class="videoId" style="display: none;"><?php echo $videoId; ?></div>
-							<div id="youtube-player-<?php echo $videoId; ?>"></div>
+							<div class="videoId" style="display: none;"><?php echo $videoId; ?> <?php echo $elementVideoId; ?></div>
+							<div id="<?php echo $elementVideoId; ?>"></div>
 						</div>
 
 					<?php elseif($slide['type'] == 'attachment'): ?>
@@ -61,7 +63,7 @@
 
 						<div class="slide slide_<?php echo $i; ?>">
 							<div class="description transparent">
-								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?>>
+								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 									<h2><?php echo $attachment->post_title; ?></h2>
 									<p><?php echo $attachment->post_content; ?></p>
 								</a>

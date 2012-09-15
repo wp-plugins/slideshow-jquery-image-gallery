@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -14,8 +14,8 @@ Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
 
 Slideshow provides an easy way to integrate a slideshow for any Wordpress installation.
 
-Any image can be loaded into the slideshow by picking it from the Wordpress media page, even image you already uploaded
-can be inserted into your slideshow right away!
+Any image can be loaded into the slideshow by picking it from the Wordpress media page, even images you've already
+uploaded can be inserted into your slideshow right away!
 
 Fancy doing something crazy? You can create and use as many slideshows as you'd like, with
 different images, settings and styles for each one of them.
@@ -25,10 +25,12 @@ different images, settings and styles for each one of them.
  - Create as many slideshows with as many slides as you like
  - Image slides
  - Text slides
- - Video slides (Coming in version 2.1.0)
- - Place it anywhere on your website.
- - Customize it to taste.
- - Shows that visitor who's boss.
+ - Video slides
+ - Place it anywhere on your website
+ - Run multiple slideshows on the same page
+ - Change animations and handling
+ - Customize to taste
+ - Shows that visitor who's boss
 
 = Languages =
 
@@ -104,8 +106,6 @@ slideshow is not styled.
 *   Images are now centered in their slides by default.
 *   Script is now activated on document ready, not window load.
 *   Hid slides in another element so that buttons could overflow the slideshow container.
-*
-*
 *   Fixed: Hide-away settings were influenced by their own settings fields.
 *   Fixed: Stretching was not always handled correctly.
 *   Fixed: Script counter made the first view show twice.
