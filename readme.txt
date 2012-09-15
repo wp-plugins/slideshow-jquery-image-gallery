@@ -98,6 +98,9 @@ slideshow is not styled.
 
 == Changelog ==
 
+= 2.2.0 =
+*   Slides can now be randomized
+
 = 2.1.0 =
 *   Added Youtube video slides.
 *   Slide URLs can now be chosen to open in a new window.

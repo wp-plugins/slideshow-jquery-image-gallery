@@ -373,13 +373,14 @@ class SlideshowPluginPostType {
 			'setting_controllable' => 'true',
 			'setting_controlPanel' => 'false',
 			'setting_showDescription' => 'true',
-			'setting_hideDescription' => 'true'
+			'setting_hideDescription' => 'true',
+			'setting_random' => 'false'
 		);
 
 		if($fullDefinition){
 			$yes = __('Yes', 'slideshow-plugin');
 			$no = __('No', 'slideshow-plugin');
-			$data = array( // $data : array([prefix_settingName] => array([inputType], [value], [default], [description], array([options]), array([dependsOn], [onValue])))
+			$data = array( // $data : array([prefix_settingName] => array([inputType], [value], [default], [description], array([options]), array([dependsOn], [onValue]), 'group' => [groupName]))
 				'style_style' => array('select', '', $data['style_style'], __('The style used for this slideshow', 'slideshow-plugin'), array('light' => __('Light', 'slideshow-plugin'), 'dark' => __('Dark', 'slideshow-plugin'), 'custom' => __('Custom', 'slideshow-plugin'))),
 				'style_custom' => array('textarea', '', $data['style_custom'], __('Custom style editor', 'slideshow-plugin'), null, array('style_style', 'custom')),
 				'setting_animation' => array('select', '', $data['setting_animation'], __('Animation used for transition between slides', 'slideshow-plugin'), array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
@@ -397,6 +398,7 @@ class SlideshowPluginPostType {
 				'setting_loop' => array('radio', '', $data['setting_loop'], __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_controllable' => array('radio', '', $data['setting_controllable'], __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_controlPanel' => array('radio', '', $data['setting_controlPanel'], __('Show control panel (play and pause button)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'setting_random' => array('radio', '', $data['setting_random'], __('Randomize slides', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
 			);
 		}
 

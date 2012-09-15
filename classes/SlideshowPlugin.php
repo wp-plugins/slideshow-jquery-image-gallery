@@ -77,6 +77,10 @@ class SlideshowPlugin {
 		// Add remaining (unordered) slides to the end of the array.
 		$slides = array_merge($slides, $slidesPreOrder);
 
+		// Randomize if setting is true.
+		if(isset($allSettings['setting_random']) && $allSettings['setting_random'] == 'true')
+			shuffle($slides);
+
 		// Enqueue functional sheet
 		wp_enqueue_style(
 			'slideshow_functional_style',
