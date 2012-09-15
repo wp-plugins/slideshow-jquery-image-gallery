@@ -5,7 +5,7 @@
  *
  * TODO Create a variable in which all slideshow html can be stored
  * @author: Stefan Boonstra
- * @version: 03-07-12
+ * @version: 15-09-12
  */
 class SlideshowPlugin {
 
@@ -107,6 +107,12 @@ class SlideshowPlugin {
 		ob_start();
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/slideshow.php');
 		$output .= ob_get_clean();
+
+		// Enqueue flash object creation script
+		wp_enqueue_script(
+			'swfobject',
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . 'swfobject.js'
+		);
 
 		// Enqueue slideshow script
 		wp_enqueue_script(

@@ -5,7 +5,7 @@
  * TODO This class will probanbly need to be renamed to SlideshowPluginSlideHandler to explain more functionality
  * TODO than just inserting slides. (Show and delete functionality should be applied here as well)
  * @author Stefan Boonstra
- * @version 24-08-2012
+ * @version 15-09-2012
  */
 class SlideshowPluginSlideInserter {
 
@@ -43,6 +43,23 @@ class SlideshowPluginSlideInserter {
 		// Return button html
 		ob_start();
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/insert-text-button.php');
+		return ob_get_clean();
+	}
+
+	/**
+	 * Returns the html for showing the video insert button.
+	 * Enqueues scripts unless $enqueueFiles is set to false.
+	 *
+	 * @param boolean $enqueueFiles
+	 * @return String $button
+	 */
+	static function getVideoSlideInsertButton($enqueueFiles = true){
+		if($enqueueFiles)
+			self::enqueueFiles();
+
+		// Return button html
+		ob_start();
+		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/insert-video-button.php');
 		return ob_get_clean();
 	}
 

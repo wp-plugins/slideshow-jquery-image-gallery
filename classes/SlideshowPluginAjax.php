@@ -5,7 +5,7 @@
  * exceedingly large.
  *
  * @author: Stefan Boonstra
- * @version: 25-08-12
+ * @version: 19-05-12
  */
 class SlideshowPluginAjax {
 
