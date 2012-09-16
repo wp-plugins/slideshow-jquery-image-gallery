@@ -1,71 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/readme.txt" line="77" mnemonic="8" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="0dab0d1c-0dcb-4210-a5f6-95a93f8333cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginFeedback" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginPostType" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginUpload" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPlugin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/SlideshowPlugin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginPostType" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginUpload" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginWidget" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPlugin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPlugin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPluginFeedback.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPluginPostType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPluginShortcode.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPluginUpload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/SlideshowPluginWidget.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginFeedback/feedback.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginPostType/style-settings.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPluginUpload/upload-button.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/SlideshowPlugin/slideshow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/SlideshowPlugin/style-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/style/SlideshowPlugin/style-transparent.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginPostType/information.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginPostType/settings.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginPostType/slides.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginPostType/style-settings.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginUpload/upload-button.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginWidget/form.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPluginWidget/widget.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/SlideshowPlugin/slideshow.php" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\Slideshow.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\SlideshowFeedback.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\SlideshowPostType.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\SlideshowShortcode.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\SlideshowUpload.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\classes\SlideshowWidget.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowFeedback\feedback.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowPostType\style-settings.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowUpload\upload-button.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\Slideshow\slideshow.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\style\Slideshow\style-dark.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\style\Slideshow\style-transparent.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowPostType\information.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowPostType\settings.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowPostType\slides.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowPostType\style-settings.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowUpload\upload-button.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowWidget\form.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowWidget\widget.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\Slideshow\slideshow.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowFeedback" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowPostType" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowUpload" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\Slideshow" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\style\Slideshow" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowPostType" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowUpload" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\SlideshowWidget" afterPath="" />
-      <change type="DELETED" beforePath="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\views\Slideshow" afterPath="" />
+    <list default="true" readonly="true" id="0dab0d1c-0dcb-4210-a5f6-95a93f8333cd" name="Default" comment="" />
+    <list id="6f5b02dc-cecf-4c7e-bc44-388dfbdcee10" name="private" comment="private">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slideshow.php" afterPath="$PROJECT_DIR$/slideshow.php" />
     </list>
     <ignored path="slideshow-jquery-image-gallery.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="0dab0d1c-0dcb-4210-a5f6-95a93f8333cd" time="1347795790287" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,13 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="slideshow.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/slideshow.php">
+      <file leaf-file-name="readme.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="396" selection-end="396" vertical-scroll-proportion="0.21469575">
-              <folding>
-                <element signature="e#6#395#0" expanded="true" />
-              </folding>
+            <state line="104" column="110" selection-start="3968" selection-end="3968" vertical-scroll-proportion="0.3708381">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,15 +48,24 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/readme.txt" />
         <option value="$PROJECT_DIR$/views/SlideshowPostType/slides.php" />
         <option value="$PROJECT_DIR$/classes/SlideshowFeedback.php" />
-        <option value="$PROJECT_DIR$/slideshow.php" />
         <option value="$PROJECT_DIR$/TODO.txt" />
+        <option value="$PROJECT_DIR$/classes/SlideshowPlugin.php" />
+        <option value="$PROJECT_DIR$/classes/SlideshowPluginPostType.php" />
+        <option value="$PROJECT_DIR$/slideshow.php" />
+        <option value="$PROJECT_DIR$/style/SlideshowPlugin/functional.css" />
+        <option value="$PROJECT_DIR$/views/SlideshowPlugin/slideshow.php" />
+        <option value="$PROJECT_DIR$/private/TODO.txt" />
+        <option value="$PROJECT_DIR$/readme.txt" />
       </list>
     </option>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="C:\xampp\htdocs\wordpress\testenvironment" />
+    </include_path>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -146,16 +98,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -176,10 +118,32 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="reference.webide.settings.project.settings.php" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery" />
+      <recent name="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\private" />
+      <recent name="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\js\SlideshowPlugin" />
+      <recent name="C:\xampp\htdocs\wordpress\testenvironment\wp-content\plugins\slideshow-jquery-image-gallery\PS" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -192,6 +156,13 @@
       <method>
         <option name="PhingTarget" enabled="false" />
       </method>
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
     </configuration>
     <list size="0" />
   </component>
@@ -236,6 +207,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0dab0d1c-0dcb-4210-a5f6-95a93f8333cd" name="Default" comment="" />
+      <changelist id="6f5b02dc-cecf-4c7e-bc44-388dfbdcee10" name="private" comment="These files should not be committed." />
       <created>1340469988351</created>
       <updated>1340469988351</updated>
     </task>
@@ -259,22 +231,82 @@
       <created>1340955005102</created>
       <updated>1340955005102</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed: Namespace complications found with the Slideshow widget, renamed all classes.">
+      <created>1341328078126</created>
+      <updated>1341328078126</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Preparing 2.0.0 for tagging">
+      <created>1346696706113</created>
+      <updated>1346696706113</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Bugfix 2.0.1. Users that are satisfied with version 2.0.0 as it is, should wait for a  later version to come out. This release is just for the people who want their old v1.x.x slides back.">
+      <created>1346698846110</created>
+      <updated>1346698846110</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Resized images saving download size.">
+      <created>1346699272113</created>
+      <updated>1346699272113</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Missing file added">
+      <created>1346700272110</created>
+      <updated>1346700272110</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changed version number">
+      <created>1346700373111</created>
+      <updated>1346700373111</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added un-minified slideshow.js">
+      <created>1346706629111</created>
+      <updated>1346706629111</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Now using minified script.">
+      <created>1346707085111</created>
+      <updated>1346707085111</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added FAQ entry.">
+      <created>1346881800173</created>
+      <updated>1346881800173</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Stretching bug solved.&#10;All slides now are automatically centered when not stretched.&#10;First image now showing only once instead of twice in a row, counter calculation bug.&#10;More than vife slides can now be shown in the 'Add Image Slide' search popup.">
+      <created>1347143116111</created>
+      <updated>1347143116111</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Only the slideshow element's overflow now is hidden, meaning buttons and other elements can be positioned outside of the slideshow.">
+      <created>1347182552156</created>
+      <updated>1347182552156</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added video slides and links can now open in new windows.">
+      <created>1347524810118</created>
+      <updated>1347524810118</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Release of version 2.1.0">
+      <created>1347720448177</created>
+      <updated>1347720448177</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Slides can now be randomized">
+      <created>1347724217111</created>
+      <updated>1347724217111</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly.">
+      <created>1347795822177</created>
+      <updated>1347795822177</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.49786323" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17254274" sideWeight="0.6707589" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2013889" sideWeight="0.32700893" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20405982" sideWeight="0.6651786" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49839744" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -292,8 +324,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <value>
         <are-packages-shown value="false" />
@@ -324,7 +356,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed: Namespace complications found with the Slideshow widget, renamed all classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -342,6 +374,21 @@
     <MESSAGE value="Extended compatibility to servers that do not support use of the short php opening tag." />
     <MESSAGE value="Fixed: Custom width of the slideshow will no longer cause buttons to fall off-screeen." />
     <MESSAGE value="Fixed: Namespace complications found with the Slideshow widget, renamed all classes." />
+    <MESSAGE value="Preparing 2.0.0 for tagging" />
+    <MESSAGE value="Bugfix 2.0.1. Users that are satisfied with version 2.0.0 as it is, should wait for a  later version to come out. This release is just for the people who want their old v1.x.x slides back." />
+    <MESSAGE value="Resized images saving download size." />
+    <MESSAGE value="Missing file added" />
+    <MESSAGE value="Changed version number" />
+    <MESSAGE value="Added un-minified slideshow.js" />
+    <MESSAGE value="Now using minified script." />
+    <MESSAGE value="Added FAQ entry." />
+    <MESSAGE value="Stretching bug solved.&#10;All slides now are automatically centered when not stretched.&#10;First image now showing only once instead of twice in a row, counter calculation bug.&#10;More than vife slides can now be shown in the 'Add Image Slide' search popup." />
+    <MESSAGE value="Only the slideshow element's overflow now is hidden, meaning buttons and other elements can be positioned outside of the slideshow." />
+    <MESSAGE value="Added video slides and links can now open in new windows." />
+    <MESSAGE value="Release of version 2.1.0" />
+    <MESSAGE value="Delete project data" />
+    <MESSAGE value="Slides can now be randomized" />
+    <MESSAGE value="Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -352,26 +399,62 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TODO.txt">
+    <entry file="file://$PROJECT_DIR$/js/SlideshowPluginPostType/style-settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="592" selection-end="592" vertical-scroll-proportion="0.19517796">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshot-1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/SlideshowPluginPostType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="164" column="22" selection-start="4609" selection-end="4609" vertical-scroll-proportion="0.55128205" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/SlideshowPlugin/slideshow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/SlideshowPlugin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="21" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.0826636" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/TODO.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="172" selection-start="464" selection-end="464" vertical-scroll-proportion="0.15614237" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/SlideshowPlugin/functional.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="558" selection-end="558" vertical-scroll-proportion="0.23880596" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/SlideshowPlugin/slideshow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="1959" selection-end="1959" vertical-scroll-proportion="0.48918268" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/private/js/slideshow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/slideshow.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="15" selection-start="368" selection-end="368" vertical-scroll-proportion="0.019813519">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2216" selection-end="2216" vertical-scroll-proportion="0.4684271">
+        <state line="104" column="110" selection-start="3968" selection-end="3968" vertical-scroll-proportion="0.3708381">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/slideshow.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="396" selection-end="396" vertical-scroll-proportion="0.21469575">
-          <folding>
-            <element signature="e#6#395#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

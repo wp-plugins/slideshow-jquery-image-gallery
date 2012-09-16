@@ -4,7 +4,7 @@
  * anywhere on a website.
  *
  * @author: Stefan Boonstra
- * @version: 03-07-12
+ * @version: 15-09-12
  */
 class SlideshowPluginUpload {
 
