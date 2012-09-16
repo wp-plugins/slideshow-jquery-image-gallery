@@ -12,7 +12,7 @@
 		<tr>
 			<td colspan="3"></td>
 		</tr>
-		<?endif; ?>
+		<?php endif; ?>
 		<tr
 			<?php echo !empty($value['group'])? 'class="group-' . strtolower(str_replace(' ', '-', $value['group'])) . '"': ''; ?>
 			<?php echo !empty($value[5])? 'style="display:none;"': ''; ?>

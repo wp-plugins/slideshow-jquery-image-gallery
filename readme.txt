@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -98,8 +98,11 @@ slideshow is not styled.
 
 == Changelog ==
 
-= 2.2.0 =
-*   Slides can now be randomized
+= 2.2.0 Pre-release =
+*   Slides can now be randomized.
+
+= 2.1.1 =
+*   Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly.
 
 = 2.1.0 =
 *   Added Youtube video slides.
