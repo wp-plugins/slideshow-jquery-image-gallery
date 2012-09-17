@@ -149,7 +149,7 @@ class SlideshowPluginSlideInserter {
 		} else {
 			echo '<tr>
 				<td colspan="3" style="text-align: center;">
-					<a href="' . admin_url() . 'media-new.php">
+					<a href="' . admin_url() . 'media-new.php" target="_blank">
 						' . __('No images were found, click here to upload some.', 'slideshow-plugin') . '
 					</a>
 				</td>

@@ -72,7 +72,7 @@ jQuery(document).ready(function(){
 	});
 
 	/**
-	 * Insert text slide into the sortable list when the Insert Text Slide button is clicked
+	 * Insert video slide into the sortable list when the Insert Video Slide button is clicked
 	 */
 	jQuery('#slideshow-insert-video-slide').click(function(){
 		slideshowSlideInserterInsertVideoSlide();

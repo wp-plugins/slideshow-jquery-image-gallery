@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -100,6 +100,10 @@ slideshow is not styled.
 
 = 2.2.0 Pre-release =
 *   Slides can now be randomized.
+
+= 2.1.2 =
+*   Wordpress media uploader link in image inserter pop-up now opens in a new window.
+*   Fixed: Image inserter pop-up CSS no longer pushes the 'insert' buttons off-screen.
 
 = 2.1.1 =
 *   Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly.
