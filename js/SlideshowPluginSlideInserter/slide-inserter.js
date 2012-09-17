@@ -8,7 +8,7 @@ jQuery(document).ready(function(){
 		stop: function(event, ui){
 			slideshowSlideInserterIndexSlidesOrder();
 		},
-		cancel: 'input, p'
+		cancel: 'input, select, p'
 	});
 
 	// Make the black background stretch all the way down the document
@@ -25,20 +25,6 @@ jQuery(document).ready(function(){
 
 	// Preload attachments
 	slideshowSlideInserterGetSearchResults();
-
-	/**
-	 * Open popup by click on button
-	 */
-	jQuery('#slideshow-insert-image-slide').click(function(){
-		jQuery('#slideshow-slide-inserter-popup, #slideshow-slide-inserter-popup-background').css({ display: 'block' });
-	});
-
-	/**
-	 * Insert text slide into the sortable list when the Insert Text Slide button is clicked
-	 */
-	jQuery('#slideshow-insert-text-slide').click(function(){
-		SlideshowSlideInserterInsertTextSlide();
-	});
 
 	/**
 	 * Close popup when clicked on cross
@@ -69,6 +55,27 @@ jQuery(document).ready(function(){
 			event.preventDefault();
 			slideshowSlideInserterGetSearchResults();
 		}
+	});
+
+	/**
+	 * Open popup by click on button
+	 */
+	jQuery('#slideshow-insert-image-slide').click(function(){
+		jQuery('#slideshow-slide-inserter-popup, #slideshow-slide-inserter-popup-background').css({ display: 'block' });
+	});
+
+	/**
+	 * Insert text slide into the sortable list when the Insert Text Slide button is clicked
+	 */
+	jQuery('#slideshow-insert-text-slide').click(function(){
+		slideshowSlideInserterInsertTextSlide();
+	});
+
+	/**
+	 * Insert video slide into the sortable list when the Insert Video Slide button is clicked
+	 */
+	jQuery('#slideshow-insert-video-slide').click(function(){
+		slideshowSlideInserterInsertVideoSlide();
 	});
 
 	/**
@@ -123,7 +130,7 @@ jQuery(document).ready(function(){
 	 *
 	 * If offset is set, append data to data that is already there
 	 *
-	 * @param int offset (optional, defaults to 0)
+	 * @param offset (optional, defaults to 0)
 	 */
 	function slideshowSlideInserterGetSearchResults(offset){
 		if(!offset){
@@ -145,7 +152,7 @@ jQuery(document).ready(function(){
 				// Apply insert to slideshow script
 				jQuery('#slideshow-slide-inserter-popup #results .insert-attachment').click(function(){
 					var tr = jQuery(this).closest('tr');
-					SlideshowSlideInserterInsertImageSlide(
+					slideshowSlideInserterInsertImageSlide(
 						jQuery(this).attr('id'),
 						jQuery(tr).find('.title').text(),
 						jQuery(tr).find('.description').text(),
@@ -173,12 +180,12 @@ jQuery(document).ready(function(){
 	/**
 	 * Inserts image slide into the slides list
 	 *
-	 * @param int id
-	 * @param string title
-	 * @param string description
-	 * @param string src
+	 * @param id
+	 * @param title
+	 * @param description
+	 * @param src
 	 */
-	function SlideshowSlideInserterInsertImageSlide(id, title, description, src){
+	function slideshowSlideInserterInsertImageSlide(id, title, description, src){
 		if(slideshowHighestSlideId == 'undefined')
 			return;
 
@@ -211,15 +218,14 @@ jQuery(document).ready(function(){
 		// Put slide in the sortables list.
 		jQuery('.sortable-slides-list').prepend(imageSlide);
 
-		jQuery.each(jQuery('.sortable-slides-list').find('li'), function(key, value){
-			jQuery(value).find('.slide_order').attr('value', key + 1);
-		});
+		// Reindex
+		slideshowSlideInserterIndexSlidesOrder();
 	}
 
 	/**
 	 * Inserts text slide into the slides list
 	 */
-	function SlideshowSlideInserterInsertTextSlide(){
+	function slideshowSlideInserterInsertTextSlide(){
 		if(slideshowHighestSlideId == 'undefined')
 			return;
 
@@ -246,10 +252,39 @@ jQuery(document).ready(function(){
 		// Put slide in the sortables list.
 		jQuery('.sortable-slides-list').prepend(textSlide);
 
-		// Renumbers slide orders
-		jQuery.each(jQuery('.sortable-slides-list').find('li'), function(key, value){
-			jQuery(value).find('.slide_order').attr('value', key + 1);
+		// Reindex slide orders
+		slideshowSlideInserterIndexSlidesOrder();
+	}
+
+	/**
+	 * Inserts video slide into the slides list
+	 */
+	function slideshowSlideInserterInsertVideoSlide(){
+		if(slideshowHighestSlideId == 'undefined')
+			return;
+
+		slideshowHighestSlideId++;
+		var videoSlide = jQuery('.video-slide-template').find('li').clone();
+
+		// Set names to be saved to the database
+		videoSlide.find('.videoId').attr('name', 'slide_' + slideshowHighestSlideId + '_videoId');
+		videoSlide.find('.type').attr('name', 'slide_' + slideshowHighestSlideId + '_type');
+		videoSlide.find('.slide_order').attr('name', 'slide_' + slideshowHighestSlideId + '_order');
+
+		// Register delete link (only needs to delete from DOM)
+		videoSlide.find('.slideshow-delete-new-slide').click(function(){
+			var deleteSlide = confirm('Are you sure you want to delete this slide?');
+			if(!deleteSlide)
+				return;
+
+			jQuery(this).closest('li').remove();
 		});
+
+		// Put slide in the sortables list.
+		jQuery('.sortable-slides-list').prepend(videoSlide);
+
+		// Reindex slide orders
+		slideshowSlideInserterIndexSlidesOrder();
 	}
 
 	/**

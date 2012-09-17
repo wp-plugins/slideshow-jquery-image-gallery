@@ -2,9 +2,9 @@
 
 Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
-Requires at least: 3.0
+Requires at least: 3.3
 Tested up to: 3.4.1
-Stable tag: 2.0.1
+Stable tag: 2.1.2
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -14,8 +14,8 @@ Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
 
 Slideshow provides an easy way to integrate a slideshow for any Wordpress installation.
 
-Any image can be loaded into the slideshow by picking it from the Wordpress media page, even image you already uploaded
-can be inserted into your slideshow right away!
+Any image can be loaded into the slideshow by picking it from the Wordpress media page, even images you've already
+uploaded can be inserted into your slideshow right away!
 
 Fancy doing something crazy? You can create and use as many slideshows as you'd like, with
 different images, settings and styles for each one of them.
@@ -25,10 +25,12 @@ different images, settings and styles for each one of them.
  - Create as many slideshows with as many slides as you like
  - Image slides
  - Text slides
- - Video slides (Coming in version 2.1.0)
- - Place it anywhere on your website.
- - Customize it to taste.
- - Shows that visitor who's boss.
+ - Video slides
+ - Place it anywhere on your website
+ - Run multiple slideshows on the same page
+ - Change animations and handling
+ - Customize to taste
+ - Shows that visitor who's boss
 
 = Languages =
 
@@ -60,15 +62,15 @@ You can choose from images that have already been uploaded to your Wordpress web
 by name for image you want to use. If you want to add new images to the slideshow, you need to upload them to the
 Wordpress media page.
 
-= Images are not showing up (but the rest of the slideshow is) =
+= The slideshow does not show up (but it's html tags are in the source code) =
 
 Often when images are not shown by the slideshow, there's a javascript error somewhere on the page and this error has
-caused javascript to break. For the slideshow to work again, this error needs to be fixed. Nobody likes an 'errory'
-website anyways.
+caused javascript to break. For the slideshow to work again, this error needs to be fixed. Check if any errors were
+thrown by opening Google Chrome or Firefox (with Firebug installed) and press the 'F12' key. Errors show in the console tab.
 
 = The slideshow does not show up / The slideshow looks like it's not styled =
 
-Most times the slideshow is called after the </head> tag, which means the scripts need to load in the footer of
+Most times the slideshow is called after the '</head>' tag, which means the scripts need to load in the footer of
 the website. A theme that has no '<?php wp_footer(); ?>' call in it's footer will not be able to load the slideshow's
 scripts.
 
@@ -96,9 +98,30 @@ slideshow is not styled.
 
 == Changelog ==
 
+= 2.2.0 Pre-release =
+*   Slides can now be randomized.
+
+= 2.1.2 =
+*   Wordpress media uploader link in image inserter pop-up now opens in a new window.
+*   Fixed: Image inserter pop-up CSS no longer pushes the 'insert' buttons off-screen.
+
+= 2.1.1 =
+*   Fixed: Settings meta-box threw an unexpected 'T_ENDFOREACH' since a shorthand PHP tag was used improperly.
+
+= 2.1.0 =
+*   Added Youtube video slides.
+*   Slide URLs can now be chosen to open in a new window.
+*   Added headers above settings, giving the user mover oversight.
+*   Endless scrolling is now available in the image inserter pop up.
+*   Images are now centered in their slides by default.
+*   Script is now activated on document ready, not window load.
+*   Hid slides in another element so that buttons could overflow the slideshow container.
+*   Fixed: Hide-away settings were influenced by their own settings fields.
+*   Fixed: Stretching was not always handled correctly.
+*   Fixed: Script counter made the first view show twice.
+
 = 2.0.1 =
-*   IMPORTANT: This update is only for those people who want their old slides from version 1.x.x back.
-*   IMPORTANT: If you are satisfied with version 2.0.0, please ignore this update as it might fiddle with the settings you just set.
+*   Fixed: Version 1.x.x slides disappeared after updating to version 2.0.0. An automatic converter has been added.
 
 = 2.0.0 =
 *   Complete sideshow script revision to support new features.

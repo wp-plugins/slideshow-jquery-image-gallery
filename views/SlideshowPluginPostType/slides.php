@@ -1,6 +1,8 @@
-<p>
+<p style="text-align: center;">
+	<i>Insert:</i><br/>
 	<?php echo SlideshowPluginSlideInserter::getImageSlideInsertButton(); ?>
 	<?php echo SlideshowPluginSlideInserter::getTextSlideInsertButton(); ?>
+	<?php echo SlideshowPluginSlideInserter::getVideoSlideInsertButton(); ?>
 </p>
 
 <?php if(count($slides) <= 0): ?>
@@ -41,17 +43,41 @@
 					$color = $slide['color'];
 				?>
 
+				<p style="padding: 0 5px;">
 				<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
 				<input type="text" name="slide_<?php echo $id; ?>_description" value="<?php echo $description; ?>" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
 				<input type="text" name="slide_<?php echo $id; ?>_color" value="<?php echo $color; ?>" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
-				<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+				</p>
+
+				<p style="float: left; padding: 0 5px;">
+					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
+					<select name="slide_<?php echo $id; ?>_urlTarget">
+						<option value="_self" <?php selected('_self', $slide['urlTarget']); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
+						<option value="_blank" <?php selected('_blank', $slide['urlTarget']); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
+					</select>
+				</p>
+				<p style="float: left; line-height: 50px;">
+					<i><?php _e('URL', 'slideshow-plugin'); ?></i>
+				</p>
+				<p style="clear: both;"></p>
 
 				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="text" />
 				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
 
-			<?php elseif($slide['type'] == 'video'): ?>
+			<?php elseif($slide['type'] == 'video'):
 
-				<p><?php _e('An error occurred while loading this slide, and it will not be present in the slideshow', 'slideshow-plugin'); ?></p>
+				// Type specific values
+				$videoId = '';
+				if(isset($slide['videoId']))
+					$videoId = $slide['videoId'];
+				?>
+
+				<p style="padding: 0 5px;">
+					<input type="text" name="slide_<?php echo $id; ?>_videoId" value="<?php echo $videoId; ?>" /><i><?php _e('Youtube Video ID', 'slideshow-plugin'); ?></i>
+				</p>
+
+				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="video" />
+				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
 
 			<?php elseif($slide['type'] == 'attachment'):
 
@@ -76,12 +102,19 @@
 					</strong><br />
 					<?php if(strlen($attachment->post_content) > 30) echo substr($attachment->post_content, 0, 20) . '...'; else echo $attachment->post_content; ?>
 				</p>
-
 				<p style="clear: both"></p>
 
-				<p style="padding: 0 5px;">
-					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+				<p style="float: left; padding: 0 5px;">
+					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
+					<select name="slide_<?php echo $id; ?>_urlTarget">
+						<option value="_self" <?php selected('_self', $slide['urlTarget']); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
+						<option value="_blank" <?php selected('_blank', $slide['urlTarget']); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
+					</select>
 				</p>
+				<p style="float: left; line-height: 50px;">
+					<i><?php _e('URL', 'slideshow-plugin'); ?></i>
+				</p>
+				<p style="clear: both;"></p>
 
 				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="attachment" />
 				<input type="hidden" name="slide_<?php echo $id; ?>_postId" value="<?php echo $attachment->ID; ?>" />
@@ -89,7 +122,9 @@
 
 			<?php else: ?>
 
-				<p><?php _e('An error occurred while loading this slide, and it will not be present in the slideshow', 'slideshow-plugin'); ?></p>
+				<p style="padding: 0 5px;">
+					<?php _e('An error occurred while loading this slide, and it will not be present in the slideshow', 'slideshow-plugin'); ?>
+				</p>
 
 			<?php endif; ?>
 			<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-slide">
@@ -102,12 +137,40 @@
 
 <div class="text-slide-template" style="display: none;">
 	<li class="widefat sortable-slides-list-item">
-		<input type="text" class="title" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
-		<input type="text" class="description" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
-		<input type="text" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
-		<input type="text" class="url" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+		<p style="padding: 0 5px;">
+			<input type="text" class="title" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
+			<input type="text" class="description" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
+			<input type="text" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+		</p>
+
+		<p style="float: left; padding: 0 5px;">
+			<input type="text" class="url" value="" /><br />
+			<select class="urlTarget">
+				<option value="_self"><?php _e('Same window', 'slideshow-plugin'); ?></option>
+				<option value="_blank"><?php _e('New window', 'slideshow-plugin'); ?></option>
+			</select>
+		</p>
+		<p style="float: left; line-height: 50px;">
+			<i><?php _e('URL', 'slideshow-plugin'); ?></i>
+		</p>
+		<p style="clear: both"></p>
 
 		<input type="hidden" class="type" value="text" />
+		<input type="hidden" class="slide_order" />
+
+		<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-new-slide">
+			<?php _e('Delete slide', 'slideshow-plugin'); ?>
+		</p>
+	</li>
+</div>
+
+<div class="video-slide-template" style="display: none;">
+	<li class="widefat sortable-slides-list-item">
+		<p style="padding: 0 5px;">
+			<input type="text" class="videoId" /><i><?php _e('Youtube Video ID', 'slideshow-plugin'); ?></i>
+		</p>
+
+		<input type="hidden" class="type" value="video" />
 		<input type="hidden" class="slide_order" />
 
 		<p style="padding: 0 5px; color: red; cursor: pointer;" class="slideshow-delete-new-slide">
@@ -126,12 +189,19 @@
 			<strong class="title"></strong><br />
 			<span class="description"></span>
 		</p>
-
 		<p style="clear: both"></p>
 
-		<p style="padding: 0 5px;">
-			<input type="text" class="url" value="" /><i><?php _e('URL', 'slideshow-plugin'); ?></i>
+		<p style="float: left; padding: 0 5px;">
+			<input type="text" class="url" value="" /><br />
+			<select class="urlTarget">
+				<option value="_self"><?php _e('Same window', 'slideshow-plugin'); ?></option>
+				<option value="_blank"><?php _e('New window', 'slideshow-plugin'); ?></option>
+			</select>
 		</p>
+		<p style="float: left; line-height: 50px;"
+			<i><?php _e('URL', 'slideshow-plugin'); ?></i>
+		</p>
+		<p style="clear: both"></p>
 
 		<input type="hidden" class="type" value="attachment" />
 		<input type="hidden" class="postId" value="" />

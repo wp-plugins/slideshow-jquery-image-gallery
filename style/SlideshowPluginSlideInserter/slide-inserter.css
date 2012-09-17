@@ -42,7 +42,6 @@
 #slideshow-slide-inserter-popup #search-results {
 	height: 400px;
 	overflow-y: scroll;
-	overflow-x: hidden;
 }
 
 .sortable-slides-list-item {

@@ -3,7 +3,7 @@
  * Class SlideshowPluginWidget allows showing one of your slideshows in your widget area.
  *
  * @author: Stefan Boonstra
- * @version: 03-07-12
+ * @version: 15-09-12
  */
 class SlideshowPluginWidget extends WP_Widget {
 

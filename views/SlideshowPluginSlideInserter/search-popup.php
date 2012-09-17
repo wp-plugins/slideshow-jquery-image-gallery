@@ -9,6 +9,6 @@
 	<div style="clear: both;"></div>
 
 	<div id="search-results">
-		<table id="results" class="widefat" style="height: 400px; width: 600px;"></table>
+		<table id="results" class="widefat"></table>
 	</div>
 </div>
