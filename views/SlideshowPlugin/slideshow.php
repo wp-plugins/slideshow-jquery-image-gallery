@@ -42,7 +42,7 @@
 							$elementVideoId = 'youtube-player-' . rand() . '-' . $videoId;
 						?>
 
-						<div class="slide slide_<?php echo $i; ?>">
+						<div class="slide slide_<?php echo $i; ?> slide_video">
 							<div class="videoId" style="display: none;"><?php echo $videoId; ?> <?php echo $elementVideoId; ?></div>
 							<div id="<?php echo $elementVideoId; ?>"></div>
 						</div>
@@ -57,8 +57,11 @@
 							continue;
 
 						$attachment = get_post($postId);
-						if(!isset($attachment))
+						if(empty($attachment))
 							continue;
+
+						$image = wp_get_attachment_image_src($attachment->ID, 'full');
+						if(!is_array($image) || !$image) continue;
 						?>
 
 						<div class="slide slide_<?php echo $i; ?>">
@@ -70,7 +73,7 @@
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
-									src="<?php echo $attachment->guid; ?>"
+									src="<?php echo $image[0]; ?>"
 									alt="<?php echo $attachment->post_title; ?>"
 								/>
 							</a>
@@ -84,7 +87,7 @@
 	</div>
 
 	<div class="controllers">
-		<div class="controlPanel transparent"><ul><li class="togglePlay play"></li></li></ul></div>
+		<div class="controlPanel transparent"><ul><li class="togglePlay play"></li></ul></div>
 
 		<div class="button previous transparent"></div>
 		<div class="button next transparent"></div>
@@ -100,8 +103,11 @@
 		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 		clip: rect(1px, 1px, 1px, 1px);
 		">
-		<?php echo SlideshowPluginMain::$version; ?>
 		<a href="http://www.stefanboonstra.com/">Slideshow Stefan Boonstra</a>
+	</div>
+
+	<div style="display: none;">
+		<?php echo SlideshowPluginMain::$version; ?>
 	</div>
 
 	<script type="text/javascript">
