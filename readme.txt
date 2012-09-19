@@ -101,6 +101,9 @@ slideshow is not styled.
 = 2.2.0 Pre-release =
 *   Slides can now be randomized.
 
+= 2.1.5 =
+*   Testing: Trying to get raw HTML data into Wordpress posts and pages, without Wordpress intervening.
+
 = 2.1.4 =
 *   Fixed: Slideshows in posts are now longer broken by Wordpress inserted 'em' tags.
 *   Fixed: Image borders no longer fall off-slide.

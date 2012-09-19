@@ -95,14 +95,7 @@
 
 	<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>
 
-	<div style="
-		position: absolute !important;
-		height: 1px;
-		width: 1px;
-		overflow: hidden;
-		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-		clip: rect(1px, 1px, 1px, 1px);
-		">
+	<div class="manufacturer">
 		<a href="http://www.stefanboonstra.com/">Slideshow Stefan Boonstra</a>
 	</div>
 
@@ -112,7 +105,6 @@
 
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
-		//jQuery(window).load(function(){
 			jQuery('.slideshow_id_<?php echo $id; ?>').slideshow_script();
 		});
 	</script>
