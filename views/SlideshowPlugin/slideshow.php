@@ -61,7 +61,15 @@
 							continue;
 
 						$image = wp_get_attachment_image_src($attachment->ID, 'full');
-						if(!is_array($image) || !$image) continue;
+						$imageSrc = '';
+						if(!is_array($image) || !$image){
+							if(!empty($attachment->guid))
+								$imageSrc = $attachment->guid;
+							else
+								continue;
+						}else{
+							$imageSrc = $image[0];
+						}
 						?>
 
 						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
@@ -73,7 +81,7 @@
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
-									src="<?php echo $image[0]; ?>"
+									src="<?php echo $imageSrc; ?>"
 									alt="<?php echo $attachment->post_title; ?>"
 								/>
 							</a>
@@ -100,6 +108,9 @@
 	</div>
 
 	<div style="display: none;">
+		<?php echo $post->ID; ?>
+		<?php echo count($slides); ?>
+		<?php var_dump($slides); ?>
 		<?php echo SlideshowPluginMain::$version; ?>
 	</div>
 

@@ -99,6 +99,9 @@ slideshow may not be styled.
 = 2.2.0 Pre-release =
 *   Slides can now be randomized.
 
+= 2.1.6 beta =
+*   Undefined bug testing on slides not being output to the page.
+
 = 2.1.5 =
 *   Fixed: Wordpress intervened with the HTML output by the shortcode, this caused scripts to break.
 *   Fixed: Slideshow width isn't affected by width-less elements anymore, instead it seeks the first div's width.
