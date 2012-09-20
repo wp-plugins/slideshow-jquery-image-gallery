@@ -25,7 +25,7 @@
 								$color = $slide['color'];
 						?>
 
-						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?>>
+						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?> style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"';?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<h2><?php echo $title; ?></h2>
 								<p><?php echo $description; ?></p>
@@ -42,7 +42,7 @@
 							$elementVideoId = 'youtube-player-' . rand() . '-' . $videoId;
 						?>
 
-						<div class="slide slide_<?php echo $i; ?> slide_video">
+						<div class="slide slide_<?php echo $i; ?> slide_video" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 							<div class="videoId" style="display: none;"><?php echo $videoId; ?> <?php echo $elementVideoId; ?></div>
 							<div id="<?php echo $elementVideoId; ?>"></div>
 						</div>
@@ -64,7 +64,7 @@
 						if(!is_array($image) || !$image) continue;
 						?>
 
-						<div class="slide slide_<?php echo $i; ?>">
+						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 							<div class="description transparent">
 								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 									<h2><?php echo $attachment->post_title; ?></h2>

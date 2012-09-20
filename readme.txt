@@ -4,7 +4,7 @@ Contributors: stefanboonstra
 Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -102,7 +102,8 @@ slideshow is not styled.
 *   Slides can now be randomized.
 
 = 2.1.5 =
-*   Testing: Trying to get raw HTML data into Wordpress posts and pages, without Wordpress intervening.
+*   Fixed: Wordpress intervened with the HTML output by the shortcode, this caused scripts to break.
+*   Fixed: Slideshow width isn't affected by width-less elements anymore, instead it seeks the first div's width.
 
 = 2.1.4 =
 *   Fixed: Slideshows in posts are now longer broken by Wordpress inserted 'em' tags.
