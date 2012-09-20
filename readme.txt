@@ -62,23 +62,21 @@ You can choose from images that have already been uploaded to your Wordpress web
 by name for image you want to use. If you want to add new images to the slideshow, you need to upload them to the
 Wordpress media page.
 
-= The slideshow does not show up (but it's html tags are in the source code) =
-
-Often when images are not shown by the slideshow, there's a javascript error somewhere on the page and this error has
-caused javascript to break. For the slideshow to work again, this error needs to be fixed. Check if any errors were
-thrown by opening Google Chrome or Firefox (with Firebug installed) and press the 'F12' key. Errors show in the console tab.
-
 = The slideshow does not show up / The slideshow looks like it's not styled =
 
-Most times the slideshow is called after the '</head>' tag, which means the scripts need to load in the footer of
-the website. A theme that has no '<?php wp_footer(); ?>' call in it's footer will not be able to load the slideshow's
+- The slideshow is mostly called after the `</head>` tag, which means the scripts and stylesheet need to load in the footer
+of the website. A theme that has no `<?php wp_footer(); ?>` call in it's footer will not be able to load the slideshow's
 scripts.
+
+- Often when the slideshow isn't showing, there's a javascript error somewhere on the page and this error has caused
+javascript to break. For the slideshow to work again, this error needs to be fixed. Check if any errors were thrown by
+opening Google Chrome or Firefox (with Firebug installed) and press the 'F12' key. Errors show in the console tab.
 
 = I chose the 'Custom' style option for my slideshow, but the slideshow is not styled anymore =
 
 Since the slideshow is most often called after the </head> tag, the slideshow can't print it's styles in the head of
 the website and has to output it on the page. A strict doctype does not allow stylesheets in the body and thus the
-slideshow is not styled.
+slideshow may not be styled.
 
 
 == Screenshots ==
