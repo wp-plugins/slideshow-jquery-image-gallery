@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-15 17:46+0100\n"
-"PO-Revision-Date: 2012-09-15 17:47+0100\n"
+"POT-Creation-Date: 2012-09-22 19:22+0100\n"
+"PO-Revision-Date: 2012-09-22 19:24+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Stefan Boonstra <wordpress@stefanboonstra.com>\n"
 "MIME-Version: 1.0\n"
@@ -89,9 +89,8 @@ msgid "Custom"
 msgstr "Aangepast"
 
 #: classes/SlideshowPluginPostType.php:385
-#, fuzzy
 msgid "Custom style editor"
-msgstr "Aangepaste Stijl Bewerker"
+msgstr "Aangepaste stijl bewerker"
 
 #: classes/SlideshowPluginPostType.php:386
 msgid "Animation used for transition between slides"
@@ -220,6 +219,11 @@ msgstr "Om deze slideshow op je website te gebruiken voeg je of dit stukje short
 #: views/SlideshowPluginPostType/information.php:3
 msgid "Or add this piece of code to where ever in your website you want to place the slideshow"
 msgstr "Of je voegt dit stuk code toe aan je broncode op de plaats waar je wilt dat de slideshow te zien is"
+
+#: views/SlideshowPluginPostType/information.php:5
+#, php-format
+msgid "Or go to the %swidgets page%s and show the slideshow as a widget."
+msgstr "Ook kan je naar de %swidget pagina%s toegaan, om de slideshow te tonen als widget."
 
 #: views/SlideshowPluginPostType/settings.php:8
 msgid "settings"
