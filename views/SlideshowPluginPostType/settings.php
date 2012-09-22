@@ -1,6 +1,8 @@
 <table>
 	<?php $groups = array(); ?>
 	<?php foreach($settings as $key => $value): ?>
+		<?php if(!isset($value) || !is_array($value)) continue; ?>
+
 		<?php if(!empty($value['group']) && !isset($groups[$value['group']])): $groups[$value['group']] = true; ?>
 		<tr>
 			<td colspan="3" style="border-bottom: 1px solid #dfdfdf; text-align: center;">

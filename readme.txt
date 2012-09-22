@@ -98,6 +98,7 @@ slideshow may not be styled.
 
 = 2.2.0 Pre-release =
 *   Slides can now be randomized.
+*   Multiple slideshows can now be shown with each its separate styling.
 
 = 2.1.5 =
 *   Fixed: Wordpress intervened with the HTML output by the shortcode, this caused scripts to break.

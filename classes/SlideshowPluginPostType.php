@@ -374,7 +374,8 @@ class SlideshowPluginPostType {
 			'setting_controlPanel' => 'false',
 			'setting_showDescription' => 'true',
 			'setting_hideDescription' => 'true',
-			'setting_random' => 'false'
+			'setting_random' => 'false',
+			//'setting_cssInHeader' => 'false'
 		);
 
 		if($fullDefinition){
@@ -398,7 +399,8 @@ class SlideshowPluginPostType {
 				'setting_loop' => array('radio', '', $data['setting_loop'], __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_controllable' => array('radio', '', $data['setting_controllable'], __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_controlPanel' => array('radio', '', $data['setting_controlPanel'], __('Show control panel (play and pause button)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-				'setting_random' => array('radio', '', $data['setting_random'], __('Randomize slides', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
+				'setting_random' => array('radio', '', $data['setting_random'], __('Randomize slides', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
+				//'setting_cssInHeader' => array('radio', '', $data['setting_cssInHeader'], __('Load all CSS in the \'&lt;head&gt;\' area', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
 			);
 		}
 

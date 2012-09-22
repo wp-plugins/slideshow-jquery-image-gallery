@@ -1,4 +1,4 @@
-<div class="slideshow_container slideshow_id_<?php echo $id; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+<div class="slideshow_container slideshow_container_<?php echo $randomId; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 		<div class="slideshow">
 			<?php if(count($slides) > 0): ?>
@@ -116,13 +116,13 @@
 
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
-			jQuery('.slideshow_id_<?php echo $id; ?>').slideshow_script();
+			jQuery('.slideshow_container_<?php echo $randomId; ?>').slideshow_script();
 		});
 	</script>
 
-	<?php if(!empty($printStyle)): ?>
+	<?php if(!empty($style)): ?>
 	<style type="text/css">
-			<?php echo $printStyle; ?>
+			<?php echo $style; ?>
 	</style>
 	<?php endif; ?>
 </div>

@@ -3,7 +3,7 @@
  * Class SlideslowPlugin is called whenever a slideshow do_action tag is come across.
  * Responsible for outputting the slideshow's HTML, CSS and Javascript.
  *
- * TODO Create a variable in which all slideshow html can be stored
+ * TODO Create a variable in which all slideshow html can be stored <- Rethink this, slideshow containers have random ids.
  * @author: Stefan Boonstra
  * @version: 15-09-12
  */
@@ -87,24 +87,31 @@ class SlideshowPlugin {
 			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/functional.css'
 		);
 
-		// Enqueue stylesheet for appearance
-		$printStyle = '';
-		if($allSettings['style_style'] == 'custom' && isset($allSettings['style_custom']) && !empty($allSettings['style_custom'])) // Custom style
-			$printStyle = str_replace('%plugin-url%', SlideshowPluginMain::getPluginUrl(), $allSettings['style_custom']);
-		else // Enqueue stylesheet
-			wp_enqueue_style(
-				'slideshow_style',
-				SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/style-' . $allSettings['style_style'] . '.css'
-			);
+		// Create a microtime timestamp to host multiple slideshows with different styles and settings on the same page
+		$randomId = rand();
+
+		// Get stylesheet for printing
+		$style = '';
+		if($allSettings['style_style'] == 'custom' && isset($allSettings['style_custom']) && !empty($allSettings['style_custom'])){ // Custom style
+			$style = str_replace('%plugin-url%', SlideshowPluginMain::getPluginUrl(), $allSettings['style_custom']);
+		}else{ // Set style
+			$filePath = SlideshowPluginMain::getPluginPath() . '/style/' . __CLASS__ . '/style-' . $allSettings['style_style'] . '.css';
+			if(file_exists(SlideshowPluginMain::getPluginPath() . '/style/' . __CLASS__ . '/style-' . $allSettings['style_style'] . '.css')){
+				ob_start();
+				include($filePath);
+				$style = str_replace('%plugin-url%', SlideshowPluginMain::getPluginUrl(), ob_get_clean());
+			}
+		}
+
+		// Append the random ID to the slideshow container in the stylesheet, to identify multiple slideshows
+		if(!empty($style))
+			$style = str_replace('.slideshow_container', '.slideshow_container_' . $randomId, $style);
 
 		// Filter settings to only contain settings, then remove prefix
 		$settings = array();
 		foreach($allSettings as $key => $value)
 			if(SlideshowPluginPostType::$prefixes['settings'] == substr($key, 0, strlen(SlideshowPluginPostType::$prefixes['settings'])))
 				$settings[substr($key, strlen(SlideshowPluginPostType::$prefixes['settings']))] = $value;
-
-		// Create a microtime timestamp to host multiple slideshows on a page
-		$id = rand();
 
 		// Include output file that stores output in $output.
 		$output = '';

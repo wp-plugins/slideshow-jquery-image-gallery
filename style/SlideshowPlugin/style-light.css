@@ -41,18 +41,18 @@
 .slideshow_container .controlPanel ul li:hover { }
 
 .slideshow_container .play {
-	background: url('../../images/SlideshowPlugin/light-controlpanel.png') 0 0 no-repeat;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-controlpanel.png') 0 0 no-repeat;
 }
 
 .slideshow_container .pause {
-	background: url('../../images/SlideshowPlugin/light-controlpanel.png') -15px 0 no-repeat;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-controlpanel.png') -15px 0 no-repeat;
 }
 
 .slideshow_container .button {
 	margin-top: -20px;
 	height: 40px;
 	width: 19px;
-	background: url('../../images/SlideshowPlugin/light-arrows.png') no-repeat;
+	background: url('%plugin-url%/images/SlideshowPlugin/light-arrows.png') no-repeat;
 }
 
 .slideshow_container .previous { }
