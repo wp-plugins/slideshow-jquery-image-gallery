@@ -108,9 +108,6 @@
 	</div>
 
 	<div style="display: none;">
-		<?php echo $post->ID; ?>
-		<?php echo count($slides); ?>
-		<?php var_dump($slides); ?>
 		<?php echo SlideshowPluginMain::$version; ?>
 	</div>
 
