@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 23-09-12
+ * @version: 24-09-12
  */
 class SlideshowPluginPostType {
 

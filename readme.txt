@@ -1,10 +1,10 @@
 === Slideshow ===
 
 Contributors: stefanboonstra
-Tags: slideshow, slider, slide, show, images, image, photo, gallery, galleries, jquery, javascript,
+Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -99,10 +99,14 @@ slideshow may not be styled.
 = 2.2.0 Pre-release =
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
+*   Users can now search insertable images by post id.
+
+= 2.1.7 =
+*   Fixed: Slideshow in some cases unable to show next slide in fade animation.
 
 = 2.1.6 =
 *   Slideshow widgets are loaded using theme sidebar settings, making the widget more dynamic.
-*   Fixed slideshow widget title can now be set to an empty value.
+*   Fixed: Slideshow widget title can now be set to an empty value.
 
 = 2.1.5 =
 *   Fixed: Wordpress intervened with the HTML output by the shortcode, this caused scripts to break.

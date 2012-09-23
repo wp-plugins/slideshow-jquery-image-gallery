@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-22 19:22+0100\n"
-"PO-Revision-Date: 2012-09-22 19:24+0100\n"
+"POT-Creation-Date: 2012-09-24 00:27+0100\n"
+"PO-Revision-Date: 2012-09-24 00:27+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Stefan Boonstra <wordpress@stefanboonstra.com>\n"
 "MIME-Version: 1.0\n"
@@ -64,131 +64,131 @@ msgstr "Slideshow Stijl"
 msgid "Slideshow Settings"
 msgstr "Slideshow Instellingen"
 
-#: classes/SlideshowPluginPostType.php:381
+#: classes/SlideshowPluginPostType.php:382
 msgid "Yes"
 msgstr "Ja"
 
-#: classes/SlideshowPluginPostType.php:382
+#: classes/SlideshowPluginPostType.php:383
 msgid "No"
 msgstr "Nee"
 
-#: classes/SlideshowPluginPostType.php:384
+#: classes/SlideshowPluginPostType.php:385
 msgid "The style used for this slideshow"
 msgstr "De stijl te gebruiken voor deze slideshow"
 
-#: classes/SlideshowPluginPostType.php:384
+#: classes/SlideshowPluginPostType.php:385
 msgid "Light"
 msgstr "Licht"
 
-#: classes/SlideshowPluginPostType.php:384
+#: classes/SlideshowPluginPostType.php:385
 msgid "Dark"
 msgstr "Donker"
 
-#: classes/SlideshowPluginPostType.php:384
+#: classes/SlideshowPluginPostType.php:385
 msgid "Custom"
 msgstr "Aangepast"
 
-#: classes/SlideshowPluginPostType.php:385
+#: classes/SlideshowPluginPostType.php:386
 msgid "Custom style editor"
 msgstr "Aangepaste stijl bewerker"
 
-#: classes/SlideshowPluginPostType.php:386
+#: classes/SlideshowPluginPostType.php:387
 msgid "Animation used for transition between slides"
 msgstr "Animatie tussen het wisselen van de slides"
 
-#: classes/SlideshowPluginPostType.php:386
+#: classes/SlideshowPluginPostType.php:387
 msgid "Slide"
 msgstr "Slide"
 
-#: classes/SlideshowPluginPostType.php:386
+#: classes/SlideshowPluginPostType.php:387
 msgid "Fade"
 msgstr "Fade"
 
-#: classes/SlideshowPluginPostType.php:386
 #: classes/SlideshowPluginPostType.php:387
 #: classes/SlideshowPluginPostType.php:388
 #: classes/SlideshowPluginPostType.php:389
+#: classes/SlideshowPluginPostType.php:390
 msgid "Animation"
 msgstr "Animatie"
 
-#: classes/SlideshowPluginPostType.php:387
+#: classes/SlideshowPluginPostType.php:388
 msgid "Number of seconds the slide takes to slide in"
 msgstr "Aantal seconden dat de animatie van het inschuiven van de volgende slide duurt"
 
-#: classes/SlideshowPluginPostType.php:388
+#: classes/SlideshowPluginPostType.php:389
 msgid "Number of seconds the description takes to slide in"
 msgstr "Aantal seconden dat het inschuiven van de beschrijving duurt"
 
-#: classes/SlideshowPluginPostType.php:389
+#: classes/SlideshowPluginPostType.php:390
 msgid "Seconds between changing slides"
 msgstr "Seconden tussen het wisselen van de slides"
 
-#: classes/SlideshowPluginPostType.php:390
+#: classes/SlideshowPluginPostType.php:391
 msgid "Number of slides to fit into one slide"
 msgstr "Aantal slides om in een slide te plaatsen"
 
-#: classes/SlideshowPluginPostType.php:390
 #: classes/SlideshowPluginPostType.php:391
 #: classes/SlideshowPluginPostType.php:392
 #: classes/SlideshowPluginPostType.php:393
 #: classes/SlideshowPluginPostType.php:394
 #: classes/SlideshowPluginPostType.php:395
 #: classes/SlideshowPluginPostType.php:396
+#: classes/SlideshowPluginPostType.php:397
 msgid "Display"
 msgstr "Weergave"
 
-#: classes/SlideshowPluginPostType.php:391
+#: classes/SlideshowPluginPostType.php:392
 msgid "Width of the slideshow, set to parent&#39;s width on 0"
 msgstr "Breedte van de slideshow, past zich aan op bovenliggende element wanneer 0"
 
-#: classes/SlideshowPluginPostType.php:392
+#: classes/SlideshowPluginPostType.php:393
 msgid "Height of the slideshow"
 msgstr "Hoogte van de slideshow"
 
-#: classes/SlideshowPluginPostType.php:393
+#: classes/SlideshowPluginPostType.php:394
 msgid "Height of the description boxes"
 msgstr "Hoogte van de beschrijvingen"
 
-#: classes/SlideshowPluginPostType.php:394
+#: classes/SlideshowPluginPostType.php:395
 msgid "Fit image into slide (stretching it)"
 msgstr "Pas afbeelding in de slideshow (oprekken)"
 
-#: classes/SlideshowPluginPostType.php:395
+#: classes/SlideshowPluginPostType.php:396
 msgid "Show title and description"
 msgstr "Toon titel en beschrijving"
 
-#: classes/SlideshowPluginPostType.php:396
+#: classes/SlideshowPluginPostType.php:397
 msgid "Hide description box, it will pop up when a mouse hovers over the slide"
 msgstr "Verbeg beschrijving, toon de slide alleen wanneer de muisaanwijzer boven de slide is"
 
-#: classes/SlideshowPluginPostType.php:397
+#: classes/SlideshowPluginPostType.php:398
 msgid "Automatically slide to the next slide"
 msgstr "Automatisch naar de volgende slide gaan"
 
-#: classes/SlideshowPluginPostType.php:397
 #: classes/SlideshowPluginPostType.php:398
 #: classes/SlideshowPluginPostType.php:399
 #: classes/SlideshowPluginPostType.php:400
+#: classes/SlideshowPluginPostType.php:401
 msgid "Control"
 msgstr "Controle"
 
-#: classes/SlideshowPluginPostType.php:398
+#: classes/SlideshowPluginPostType.php:399
 msgid "Return to the beginning of the slideshow after last slide"
 msgstr "Keer terug naar het begin van de slideshow na de laatste slide."
 
-#: classes/SlideshowPluginPostType.php:399
+#: classes/SlideshowPluginPostType.php:400
 msgid "Activate buttons (so the user can scroll through the slides)"
 msgstr "Knoppen activeren (zodat de gebruiker door de slides kan scrollen)"
 
-#: classes/SlideshowPluginPostType.php:400
+#: classes/SlideshowPluginPostType.php:401
 msgid "Show control panel (play and pause button)"
 msgstr "Toon controlepaneel (speel en pause knop)"
 
-#: classes/SlideshowPluginPostType.php:401
+#: classes/SlideshowPluginPostType.php:402
 msgid "Randomize slides"
 msgstr "Toon slides in willekeurige volgorde"
 
-#: classes/SlideshowPluginPostType.php:401
+#: classes/SlideshowPluginPostType.php:402
 msgid "Miscellaneous"
 msgstr "Overige"
 
@@ -225,11 +225,11 @@ msgstr "Of je voegt dit stuk code toe aan je broncode op de plaats waar je wilt 
 msgid "Or go to the %swidgets page%s and show the slideshow as a widget."
 msgstr "Ook kan je naar de %swidget pagina%s toegaan, om de slideshow te tonen als widget."
 
-#: views/SlideshowPluginPostType/settings.php:8
+#: views/SlideshowPluginPostType/settings.php:10
 msgid "settings"
 msgstr "instellingen"
 
-#: views/SlideshowPluginPostType/settings.php:22
+#: views/SlideshowPluginPostType/settings.php:24
 #: views/SlideshowPluginPostType/style-settings.php:6
 msgid "Default"
 msgstr "Standaard"
@@ -328,8 +328,8 @@ msgid "Search"
 msgstr "Zoek"
 
 #: views/SlideshowPluginSlideInserter/search-popup.php:7
-msgid "Search images by title"
-msgstr "Zoek plaatjes op titel"
+msgid "Search images by title or ID"
+msgstr "Zoek afbeeldingen op titel of ID"
 
 #: views/SlideshowPluginUpload/upload-button.php:1
 msgid "Upload/Manage Images"

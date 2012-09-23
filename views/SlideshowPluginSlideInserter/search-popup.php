@@ -4,7 +4,7 @@
 	<div>
 		<input type="text" id="search" />
 		<?php submit_button(__('Search', 'slideshow-plugin'), 'primary', 'search-submit', false); ?>
-		<i><?php _e('Search images by title'); ?></i>
+		<i><?php _e('Search images by title or ID'); ?></i>
 	</div>
 	<div style="clear: both;"></div>
 

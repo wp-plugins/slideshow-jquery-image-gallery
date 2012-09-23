@@ -5,7 +5,7 @@
  * TODO This class will probanbly need to be renamed to SlideshowPluginSlideHandler to explain more functionality
  * TODO than just inserting slides. (Show and delete functionality should be applied here as well)
  * @author Stefan Boonstra
- * @version 15-09-2012
+ * @version 24-09-2012
  */
 class SlideshowPluginSlideInserter {
 
@@ -169,7 +169,11 @@ class SlideshowPluginSlideInserter {
 		global $wpdb;
 
 		if(isset($_POST['search']))
-			$where .= $wpdb->prepare(" AND post_title LIKE '%%%s%%' ", $_POST['search']);
+			$where .= $wpdb->prepare(
+				" AND (post_title LIKE '%%%s%%' OR ID LIKE '%%%s%%') ",
+				$_POST['search'],
+				$_POST['search']
+			);
 
 		return $where;
 	}
