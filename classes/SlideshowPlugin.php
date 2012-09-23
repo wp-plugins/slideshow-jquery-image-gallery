@@ -5,7 +5,7 @@
  *
  * TODO Create a variable in which all slideshow html can be stored <- Rethink this, slideshow containers have random ids.
  * @author: Stefan Boonstra
- * @version: 15-09-12
+ * @version: 22-09-12
  */
 class SlideshowPlugin {
 

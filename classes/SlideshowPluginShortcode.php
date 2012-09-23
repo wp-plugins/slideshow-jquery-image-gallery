@@ -3,7 +3,7 @@
  * Class SlideshowPluginShortcode is called on use of shortcode anywhere on the website.
  *
  * @author: Stefan Boonstra
- * @version: 15-09-12
+ * @version: 21-09-12
  */
 class SlideshowPluginShortcode {
 
