@@ -101,6 +101,9 @@ slideshow may not be styled.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
 
+= 2.1.8 =
+*   Option added to be able to control whether to use a filter, or to directly output on shortcode.
+
 = 2.1.7 =
 *   Fixed: Slideshow in some cases unable to show next slide in fade animation.
 

@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 24-09-12
+ * @version: 25-09-12
  */
 class SlideshowPluginPostType {
 
@@ -375,7 +375,8 @@ class SlideshowPluginPostType {
 			'setting_showDescription' => 'true',
 			'setting_hideDescription' => 'true',
 			'setting_random' => 'false',
-			//'setting_cssInHeader' => 'false'
+			//'setting_cssInHeader' => 'false',
+			'setting_avoidFilter' => 'true'
 		);
 
 		if($fullDefinition){
@@ -400,7 +401,8 @@ class SlideshowPluginPostType {
 				'setting_controllable' => array('radio', '', $data['setting_controllable'], __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_controlPanel' => array('radio', '', $data['setting_controlPanel'], __('Show control panel (play and pause button)', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'setting_random' => array('radio', '', $data['setting_random'], __('Randomize slides', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
-				//'setting_cssInHeader' => array('radio', '', $data['setting_cssInHeader'], __('Load all CSS in the \'&lt;head&gt;\' area', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
+				//'setting_cssInHeader' => array('radio', '', $data['setting_cssInHeader'], __('Load all CSS in the \'&lt;head&gt;\' area', 'slideshow-plugin'), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
+				'setting_avoidFilter' => array('radio', '', $data['setting_avoidFilter'], sprintf(__('Avoid content filter (disable if \'%s\' is shown)', 'slideshow-plugin'), SlideshowPluginShortcode::$bookmark), array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
 			);
 		}
 

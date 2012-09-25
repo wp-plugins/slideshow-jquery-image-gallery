@@ -3,13 +3,13 @@
  * Class SlideshowPluginShortcode is called on use of shortcode anywhere on the website.
  *
  * @author: Stefan Boonstra
- * @version: 21-09-12
+ * @version: 25-09-12
  */
 class SlideshowPluginShortcode {
 
 	/** Variables */
 	static $shortCode = 'slideshow_deploy';
-	private static $bookmark = '!slideshow_deploy!';
+	public static $bookmark = '!slideshow_deploy!';
 	private static $postIds = array();
 
 	/**
@@ -25,15 +25,25 @@ class SlideshowPluginShortcode {
 		if(isset($atts['id']))
 			$postId = $atts['id'];
 
-		// Filter content after all Wordpress HTML parsers are done, then replace bookmarks with raw HTML
-		add_filter('the_content', array(__CLASS__, 'insertSlideshow'), 999);
-		add_filter('the_excerpt', array(__CLASS__, 'insertSlideshow'), 999);
+		$output = '';
+		$settings = SlideshowPluginPostType::getSimpleSettings($postId, null, false);
+		if($settings['setting_avoidFilter'] == 'true'){echo 'lawl';
+			// Filter content after all Wordpress HTML parsers are done, then replace bookmarks with raw HTML
+			add_filter('the_content', array(__CLASS__, 'insertSlideshow'), 999);
+			add_filter('the_excerpt', array(__CLASS__, 'insertSlideshow'), 999);
 
-		// Save post id
-		self::$postIds[] = $postId;
+			// Save post id
+			self::$postIds[] = $postId;
 
-		// Return bookmark
-		return self::$bookmark;
+			// Set output
+			$output = self::$bookmark;
+		}else{
+			// Just output the slideshow, without filtering
+			$output = SlideshowPlugin::prepare($postId);
+		}
+
+		// Return output
+		return $output;
 	}
 
 	/**

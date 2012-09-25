@@ -16,7 +16,7 @@
  * base path/url returning method.
  *
  * @author Stefan Boonstra
- * @version 24-09-12
+ * @version 25-09-12
  */
 class SlideshowPluginMain {
 
