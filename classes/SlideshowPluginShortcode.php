@@ -27,7 +27,7 @@ class SlideshowPluginShortcode {
 
 		$output = '';
 		$settings = SlideshowPluginPostType::getSimpleSettings($postId, null, false);
-		if($settings['setting_avoidFilter'] == 'true'){echo 'lawl';
+		if($settings['setting_avoidFilter'] == 'true'){
 			// Filter content after all Wordpress HTML parsers are done, then replace bookmarks with raw HTML
 			add_filter('the_content', array(__CLASS__, 'insertSlideshow'), 999);
 			add_filter('the_excerpt', array(__CLASS__, 'insertSlideshow'), 999);
