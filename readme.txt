@@ -1,6 +1,7 @@
 === Slideshow ===
 
 Contributors: stefanboonstra
+Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
@@ -36,6 +37,10 @@ different images, settings and styles for each one of them.
 
  - English
  - Dutch
+
+= Project board =
+
+[Slideshow project board - Trello.com](https://trello.com/board/slideshow-plugin-wordpress/506311260cc04591010463c2)
 
 
 == Installation ==
@@ -210,3 +215,4 @@ slideshow may not be styled.
 == Links ==
 
 *	[Stefan Boonstra](http://stefanboonstra.com/)
+*   [Slideshow project board](https://trello.com/board/slideshow-plugin-wordpress/506311260cc04591010463c2)
