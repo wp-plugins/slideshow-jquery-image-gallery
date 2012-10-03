@@ -3,7 +3,7 @@
  * Class SlideshowPluginWidget allows showing one of your slideshows in your widget area.
  *
  * @author: Stefan Boonstra
- * @version: 23-09-12
+ * @version: 04-10-12
  */
 class SlideshowPluginWidget extends WP_Widget {
 
@@ -82,7 +82,8 @@ class SlideshowPluginWidget extends WP_Widget {
 
 		// Get slideshows
 		$slideshows = get_posts(array(
-			'numberposts' => null,
+			'numberposts' => -1,
+			'offset',
 			'post_type' => SlideshowPluginPostType::$postType
 		));
 

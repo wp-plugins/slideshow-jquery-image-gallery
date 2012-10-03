@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.9
+Stable tag: 2.1.10
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -106,6 +106,9 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.10 =
+*   Fixed: Slideshow widget form now is compatible with older versions of PHP, that didn't recognize a null value as a set value.
 
 = 2.1.9 =
 *   Fixed: Not all admin themes support scripts in the admin footer, admin scripts are moved to the header.
