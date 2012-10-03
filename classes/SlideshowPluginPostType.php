@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 25-09-12
+ * @version: 03-10-12
  */
 class SlideshowPluginPostType {
 
@@ -62,12 +62,30 @@ class SlideshowPluginPostType {
 			)
 		);
 
-		// Enqueue associating script
-		wp_enqueue_script(
-			'post-type-handler',
-			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/post-type-handler.js',
-			array('jquery')
-		);
+		// jQuery
+		wp_enqueue_script('jquery');
+
+		// If on the admin page
+		if(is_admin()){
+			// Enqueue associating script
+			wp_enqueue_script(
+				'post-type-handler',
+				SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/post-type-handler.js',
+				array('jquery')
+			);
+
+			// TODO: These scripts have been moved here from the footer. They need to be always printed in the header
+			// TODO: a solution for this needs to be found.
+			// Enqueue scripts required for sorting the slides list
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('jquery-ui-sortable');
+
+			// Enqueue JSColor
+			wp_enqueue_script('jscolor-colorpicker', SlideshowPluginMain::getPluginUrl() . '/js/SlideshowPluginPostType/jscolor/jscolor.js');
+
+			// Enqueue slide insert script and style
+			SlideshowPluginSlideInserter::enqueueFiles();
+		}
 	}
 
 	/**
@@ -182,13 +200,6 @@ class SlideshowPluginPostType {
 
 		// Set url from which a substitute icon can be fetched
 		$noPreviewIcon = SlideshowPluginMain::getPluginUrl() . '/images/' . __CLASS__ . '/no-img.png';
-
-		// Enqueue scripts required for sorting the slides list
-		wp_enqueue_script('jquery');
-		wp_enqueue_script('jquery-ui-sortable');
-
-		// Enqueue JSColor
-		wp_enqueue_script('jscolor-colorpicker', SlideshowPluginMain::getPluginUrl() . '/js/SlideshowPluginPostType/jscolor/jscolor.js');
 
 		// Include slides preview file
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/slides.php');
