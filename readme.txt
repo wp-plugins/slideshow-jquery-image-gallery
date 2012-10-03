@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -40,6 +40,7 @@ different images, settings and styles for each one of them.
 
 = Project board =
 
+Check upcoming features, bug-fixes and development progress that are currently on the Slideshow project board at:
 [Slideshow project board - Trello.com](https://trello.com/board/slideshow-plugin-wordpress/506311260cc04591010463c2)
 
 
@@ -86,13 +87,13 @@ slideshow may not be styled.
 
 == Screenshots ==
 
-1. Here's what some default slideshows can look like. Sit back grab a beer, enjoy.
+1. Here's what some default slideshows can look like. Sit back, grab a beer, enjoy.
 
 2. Create a new slideshow. A shortcode and a code snippet of how to call it is already visible.
 
-3. Click the 'Insert Image Slide' button in the Slides List to search and pick images from the Wordpress media page.
+3. If you haven't uploaded any images yet, you can do so on the Wordpress media page. Don't forget to insert the images into the slideshow after uploading!
 
-4. If you haven't uploaded any images yet, you can do so on the Wordpress media page.
+4. Click the 'Insert Image Slide' button in the Slides List to search and pick images from the Wordpress media page.
 
 5. The images you selected are directly visible in your Slides List, don't forget to save!
 
@@ -105,6 +106,9 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.9 =
+*   Fixed: Not all admin themes support scripts in the admin footer, admin scripts are moved to the header.
 
 = 2.1.8 =
 *   Option added to be able to control whether to use a filter, or to directly output on shortcode.

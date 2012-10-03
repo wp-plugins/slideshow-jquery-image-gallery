@@ -5,9 +5,12 @@
  * TODO This class will probanbly need to be renamed to SlideshowPluginSlideHandler to explain more functionality
  * TODO than just inserting slides. (Show and delete functionality should be applied here as well)
  * @author Stefan Boonstra
- * @version 24-09-2012
+ * @version 03-10-2012
  */
 class SlideshowPluginSlideInserter {
+
+	/** Flag to see if enqueue function has been called */
+	private static $enqueuedFiles;
 
 	/**
 	 * Returns the html for showing the image insert button.
@@ -189,6 +192,10 @@ class SlideshowPluginSlideInserter {
 	 * Enqueues styles and scripts necessary for the media upload button.
 	 */
 	static function enqueueFiles(){
+		// Check if already enqueued
+		if(self::$enqueuedFiles)
+			return;
+
 		// Enqueue style
 		wp_enqueue_style(
 			'slideshow-slide-inserter',
@@ -201,5 +208,8 @@ class SlideshowPluginSlideInserter {
 			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slide-inserter.js',
 			array('jquery')
 		);
+
+		// Set enqueued to true
+		self::$enqueuedFiles = true;
 	}
 }
