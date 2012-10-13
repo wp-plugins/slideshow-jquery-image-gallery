@@ -4,7 +4,7 @@
  * slideshows and their individual settings
  *
  * @author: Stefan Boonstra
- * @version: 03-10-12
+ * @version: 13-10-12
  */
 class SlideshowPluginPostType {
 
@@ -25,6 +25,7 @@ class SlideshowPluginPostType {
 	 */
 	static function initialize(){
 		add_action('init', array(__CLASS__, 'registerSlideshowPostType'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue'));
 		add_action('save_post', array(__CLASS__, 'save'));
 	}
 
@@ -64,28 +65,35 @@ class SlideshowPluginPostType {
 
 		// jQuery
 		wp_enqueue_script('jquery');
+	}
 
-		// If on the admin page
-		if(is_admin()){
-			// Enqueue associating script
-			wp_enqueue_script(
-				'post-type-handler',
-				SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/post-type-handler.js',
-				array('jquery')
-			);
+	/**
+	 * Enqueues scripts and stylesheets for when the admin page
+	 * is a slideshow edit page.
+	 */
+	static function enqueue(){
+		$currentScreen = get_current_screen();
+		if($currentScreen->post_type != self::$postType)
+			return;
 
-			// TODO: These scripts have been moved here from the footer. They need to be always printed in the header
-			// TODO: a solution for this needs to be found.
-			// Enqueue scripts required for sorting the slides list
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('jquery-ui-sortable');
+		// Enqueue associating script
+		wp_enqueue_script(
+			'post-type-handler',
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/post-type-handler.js',
+			array('jquery')
+		);
 
-			// Enqueue JSColor
-			wp_enqueue_script('jscolor-colorpicker', SlideshowPluginMain::getPluginUrl() . '/js/SlideshowPluginPostType/jscolor/jscolor.js');
+		// TODO: These scripts have been moved here from the footer. They need to be always printed in the header
+		// TODO: a solution for this needs to be found.
+		// Enqueue scripts required for sorting the slides list
+		wp_enqueue_script('jquery');
+		wp_enqueue_script('jquery-ui-sortable');
 
-			// Enqueue slide insert script and style
-			SlideshowPluginSlideInserter::enqueueFiles();
-		}
+		// Enqueue JSColor
+		wp_enqueue_script('jscolor-colorpicker', SlideshowPluginMain::getPluginUrl() . '/js/SlideshowPluginPostType/jscolor/jscolor.js');
+
+		// Enqueue slide insert script and style
+		SlideshowPluginSlideInserter::enqueueFiles();
 	}
 
 	/**

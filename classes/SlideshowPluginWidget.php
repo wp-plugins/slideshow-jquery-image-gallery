@@ -83,7 +83,7 @@ class SlideshowPluginWidget extends WP_Widget {
 		// Get slideshows
 		$slideshows = get_posts(array(
 			'numberposts' => -1,
-			'offset',
+			'offset' => 0,
 			'post_type' => SlideshowPluginPostType::$postType
 		));
 
