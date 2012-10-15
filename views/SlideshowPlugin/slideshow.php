@@ -111,12 +111,6 @@
 		<?php echo SlideshowPluginMain::$version; ?>
 	</div>
 
-	<script type="text/javascript">
-		jQuery(document).ready(function(){
-			jQuery('.slideshow_container_<?php echo $randomId; ?>').slideshow_script();
-		});
-	</script>
-
 	<?php if(!empty($style)): ?>
 	<style type="text/css">
 			<?php echo $style; ?>
