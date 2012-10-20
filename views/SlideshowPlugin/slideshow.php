@@ -104,7 +104,7 @@
 	<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>
 
 	<div class="manufacturer">
-		<a href="http://www.stefanboonstra.com/">Slideshow Stefan Boonstra</a>
+		<a href="http://www.stefanboonstra.com/slideshow/">Wordpress Slideshow</a>
 	</div>
 
 	<div style="display: none;">
