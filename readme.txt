@@ -37,6 +37,10 @@ different images, settings and styles for each one of them.
 
  - English
  - Dutch
+ - Russian - Translation by [Oleg Fritz](http://wordpress.org/support/profile/olegfritz)
+
+ - Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
+ thanks in advance!
 
 = Project board =
 
