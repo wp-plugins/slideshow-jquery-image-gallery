@@ -2,7 +2,7 @@
 /**
  * Class SlideshowPluginSlideInserter
  *
- * TODO This class will probanbly need to be renamed to SlideshowPluginSlideHandler to explain more functionality
+ * TODO This class will probably need to be renamed to SlideshowPluginSlideHandler to explain more functionality
  * TODO than just inserting slides. (Show and delete functionality should be applied here as well)
  * @author Stefan Boonstra
  * @version 03-10-2012
@@ -101,8 +101,8 @@ class SlideshowPluginSlideInserter {
 		$attachments = get_posts(array(
 			'numberposts' => $numberPosts + 1,
 			'offset' => $offset,
-			'orderby' => 'post_title',
-			'order' => 'ASC',
+			'orderby' => 'post_date',
+			'order' => 'DESC',
 			'post_type' => 'attachment',
 			'suppress_filters' => false
 		));
@@ -207,6 +207,14 @@ class SlideshowPluginSlideInserter {
 			'slideshow-slide-inserter',
 			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slide-inserter.js',
 			array('jquery')
+		);
+
+		wp_localize_script(
+			'slideshow-slide-inserter',
+			'SlideInserterTranslations',
+			array(
+				'confirmMessage' => __('Are you sure you want to delete this slide?', 'slideshow-plugin')
+			)
 		);
 
 		// Set enqueued to true

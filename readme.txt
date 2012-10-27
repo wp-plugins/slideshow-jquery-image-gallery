@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.12
+Stable tag: 2.1.13
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -110,6 +110,10 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.13 =
+*   Fixed: PHP security issues.
+*   Set order of images gotten in 'Image slide' pop-up to post date, descending.
 
 = 2.1.12 =
 *   Moved slideshow activation to the footer script. Footer jQuery scripts are now supported.

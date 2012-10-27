@@ -1,5 +1,5 @@
 <p style="text-align: center;">
-	<i>Insert:</i><br/>
+	<i><?php _e('Insert', 'slideshow-plugin'); ?>:</i><br/>
 	<?php echo SlideshowPluginSlideInserter::getImageSlideInsertButton(); ?>
 	<?php echo SlideshowPluginSlideInserter::getTextSlideInsertButton(); ?>
 	<?php echo SlideshowPluginSlideInserter::getVideoSlideInsertButton(); ?>
@@ -15,7 +15,7 @@
 	}
 </style>
 <script type="text/javascript">
-	var slideshowHighestSlideId = <?php echo $highestSlideId; ?>
+	var slideshowHighestSlideId = <?php echo htmlentities($highestSlideId); ?>
 </script>
 
 <ul class="sortable-slides-list">
@@ -23,11 +23,11 @@
 		// General values
 		$id = $url = $order = '';
 		if(isset($slide['id']))
-			$id = $slide['id'];
+			$id = htmlentities($slide['id']);
 		if(isset($slide['url']))
-			$url = $slide['url'];
+			$url = htmlentities($slide['url']);
 		if(isset($slide['order']))
-			$order = $slide['order'];
+			$order = htmlentities($slide['order']);
 			?>
 
 		<li class="widefat sortable-slides-list-item">
@@ -36,11 +36,11 @@
 				// Type specific values
 				$title = $description = $color = '';
 				if(isset($slide['title']))
-					$title = $slide['title'];
+					$title = htmlentities($slide['title']);
 				if(isset($slide['description']))
-					$description = $slide['description'];
+					$description = htmlentities($slide['description']);
 				if(isset($slide['color']))
-					$color = $slide['color'];
+					$color = htmlentities($slide['color']);
 				?>
 
 				<p style="padding: 0 5px;">
@@ -69,7 +69,7 @@
 				// Type specific values
 				$videoId = '';
 				if(isset($slide['videoId']))
-					$videoId = $slide['videoId'];
+					$videoId = htmlentities($slide['videoId']);
 				?>
 
 				<p style="padding: 0 5px;">

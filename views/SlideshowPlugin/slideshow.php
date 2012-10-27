@@ -1,5 +1,5 @@
-<div class="slideshow_container slideshow_container_<?php echo $randomId; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
-	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+<div class="slideshow_container slideshow_container_<?php echo htmlentities($randomId); ?>" style="width: <?php echo (is_numeric($settings['width']))? htmlentities($settings['width']) : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
+	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? htmlentities($settings['width']) : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
 		<div class="slideshow">
 			<?php if(count($slides) > 0): ?>
 				<?php $i = 0; ?>
@@ -8,9 +8,9 @@
 					<?php
 					$url = $target = '';
 					if(isset($slide['url']))
-						$url = $slide['url'];
+						$url = htmlentities($slide['url']);
 					if(isset($slide['urlTarget']))
-						$target = $slide['urlTarget'];
+						$target = htmlentities($slide['urlTarget']);
 					?>
 
 					<?php if($slide['type'] == 'text'): ?>
@@ -18,14 +18,14 @@
 						<?php
 							$title = $description = $color = '';
 							if(isset($slide['title']))
-								$title = $slide['title'];
+								$title = htmlentities($slide['title']);
 							if(isset($slide['description']))
-								$description = $slide['description'];
+								$description = htmlentities($slide['description']);
 							if(isset($slide['color']))
-								$color = $slide['color'];
+								$color = htmlentities($slide['color']);
 						?>
 
-						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?> style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?> style="height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"';?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<h2><?php echo $title; ?></h2>
 								<p><?php echo $description; ?></p>
@@ -37,12 +37,12 @@
 						<?php
 							$videoId = '';
 							if(isset($slide['videoId']))
-								$videoId = $slide['videoId'];
+								$videoId = htmlentities($slide['videoId']);
 
 							$elementVideoId = 'youtube-player-' . rand() . '-' . $videoId;
 						?>
 
-						<div class="slide slide_<?php echo $i; ?> slide_video" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+						<div class="slide slide_<?php echo $i; ?> slide_video" style="height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
 							<div class="videoId" style="display: none;"><?php echo $videoId; ?> <?php echo $elementVideoId; ?></div>
 							<div id="<?php echo $elementVideoId; ?>"></div>
 						</div>
@@ -52,7 +52,7 @@
 						<?php
 						$postId = '';
 						if(isset($slide['postId']) && is_numeric($slide['postId']))
-							$postId = $slide['postId'];
+							$postId = htmlentities($slide['postId']);
 						else
 							continue;
 
@@ -64,25 +64,25 @@
 						$imageSrc = '';
 						if(!is_array($image) || !$image){
 							if(!empty($attachment->guid))
-								$imageSrc = $attachment->guid;
+								$imageSrc = htmlentities($attachment->guid);
 							else
 								continue;
 						}else{
-							$imageSrc = $image[0];
+							$imageSrc = htmlentities($image[0]);
 						}
 						?>
 
-						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
 							<div class="description transparent">
 								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
-									<h2><?php echo $attachment->post_title; ?></h2>
-									<p><?php echo $attachment->post_content; ?></p>
+									<h2><?php echo htmlentities($attachment->post_title); ?></h2>
+									<p><?php echo htmlentities($attachment->post_content); ?></p>
 								</a>
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
-									src="<?php echo $imageSrc; ?>"
-									alt="<?php echo $attachment->post_title; ?>"
+									src="<?php echo htmlentities($imageSrc); ?>"
+									alt="<?php echo htmlentities($attachment->post_title); ?>"
 								/>
 							</a>
 						</div>
@@ -113,7 +113,7 @@
 
 	<?php if(!empty($style)): ?>
 	<style type="text/css">
-			<?php echo $style; ?>
+			<?php echo htmlentities($style); ?>
 	</style>
 	<?php endif; ?>
 </div>

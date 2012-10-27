@@ -82,7 +82,11 @@ jQuery(document).ready(function(){
 	 * Ajax deletes a slide from the slides list and from the database
 	 */
 	jQuery('.slideshow-delete-slide').click(function(){
-		var deleteSlide = confirm('Are you sure you want to delete this slide?');
+		var confirmMessage = 'Are you sure you want to delete this slide?';
+		if(typeof SlideInserterTranslations !== undefined)
+			confirmMessage = SlideInserterTranslations.confirmMessage;
+
+		var deleteSlide = confirm(confirmMessage);
 		if(!deleteSlide)
 			return;
 

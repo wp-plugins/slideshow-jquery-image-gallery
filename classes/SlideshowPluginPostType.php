@@ -64,7 +64,7 @@ class SlideshowPluginPostType {
 		);
 
 		// jQuery
-		wp_enqueue_script('jquery');
+		//wp_enqueue_script('jquery');
 	}
 
 	/**
@@ -86,7 +86,7 @@ class SlideshowPluginPostType {
 		// TODO: These scripts have been moved here from the footer. They need to be always printed in the header
 		// TODO: a solution for this needs to be found.
 		// Enqueue scripts required for sorting the slides list
-		wp_enqueue_script('jquery');
+		//wp_enqueue_script('jquery');
 		wp_enqueue_script('jquery-ui-sortable');
 
 		// Enqueue JSColor
