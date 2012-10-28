@@ -9,7 +9,7 @@
 	<tr>
 		<td colspan="3" style="border-bottom: 1px solid #dfdfdf; text-align: center;">
 			<span style="display: inline-block; position: relative; top: 9px; padding: 0 12px; background: #f8f8f8;">
-				<?php echo htmlentities($value['group']); ?> <?php _e('settings', 'slideshow-plugin'); ?>
+				<?php echo $value['group']; ?> <?php _e('settings', 'slideshow-plugin'); ?>
 			</span>
 		</td>
 	</tr>
@@ -18,12 +18,12 @@
 	</tr>
 	<?php endif; ?>
 	<tr
-		<?php echo !empty($value['group'])? 'class="group-' . htmlentities(strtolower(str_replace(' ', '-', $value['group']))) . '"': ''; ?>
+		<?php echo !empty($value['group'])? 'class="group-' . strtolower(str_replace(' ', '-', $value['group'])) . '"': ''; ?>
 		<?php echo !empty($value[5])? 'style="display:none;"': ''; ?>
 	>
-		<td><?php echo htmlentities($value[3]); ?></td>
+		<td><?php echo $value[3]; ?></td>
 		<td><?php echo $inputFields[$key]; ?></td>
-		<td><?php _e('Default', 'slideshow-plugin'); ?>: &#39;<?php echo (isset($value[4]))? htmlentities($value[4][$value[2]]): htmlentities($value[2]); ?>&#39;</td>
+		<td><?php _e('Default', 'slideshow-plugin'); ?>: &#39;<?php echo (isset($value[4]))? $value[4][$value[2]]: $value[2]; ?>&#39;</td>
 	</tr>
 
 	<?php endforeach; ?>

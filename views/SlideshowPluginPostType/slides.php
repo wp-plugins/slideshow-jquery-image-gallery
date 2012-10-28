@@ -15,7 +15,7 @@
 	}
 </style>
 <script type="text/javascript">
-	var slideshowHighestSlideId = <?php echo htmlentities($highestSlideId); ?>
+	var slideshowHighestSlideId = <?php echo $highestSlideId; ?>
 </script>
 
 <ul class="sortable-slides-list">
@@ -23,11 +23,11 @@
 		// General values
 		$id = $url = $order = '';
 		if(isset($slide['id']))
-			$id = htmlentities($slide['id']);
+			$id = $slide['id'];
 		if(isset($slide['url']))
-			$url = htmlentities($slide['url']);
+			$url = $slide['url'];
 		if(isset($slide['order']))
-			$order = htmlentities($slide['order']);
+			$order = $slide['order'];
 			?>
 
 		<li class="widefat sortable-slides-list-item">
@@ -40,7 +40,7 @@
 				if(isset($slide['description']))
 					$description = $slide['description'];
 				if(isset($slide['color']))
-					$color = htmlentities($slide['color']);
+					$color = $slide['color'];
 				?>
 
 				<p style="padding: 0 5px;">
@@ -69,7 +69,7 @@
 				// Type specific values
 				$videoId = '';
 				if(isset($slide['videoId']))
-					$videoId = htmlentities($slide['videoId']);
+					$videoId = $slide['videoId'];
 				?>
 
 				<p style="padding: 0 5px;">
