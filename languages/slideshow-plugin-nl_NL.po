@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-28 00:21+0100\n"
-"PO-Revision-Date: 2012-10-28 00:22+0100\n"
+"POT-Creation-Date: 2012-10-28 11:29+0100\n"
+"PO-Revision-Date: 2012-10-28 11:29+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Stefan Boonstra <wordpress@stefanboonstra.com>\n"
 "MIME-Version: 1.0\n"
@@ -63,6 +63,14 @@ msgstr "Slideshow Stijl"
 #: classes/SlideshowPluginPostType.php:132
 msgid "Slideshow Settings"
 msgstr "Slideshow Instellingen"
+
+#: classes/SlideshowPluginPostType.php:379
+msgid "light"
+msgstr "licht"
+
+#: classes/SlideshowPluginPostType.php:381
+msgid "slide"
+msgstr "slide"
 
 #: classes/SlideshowPluginPostType.php:402
 msgid "Yes"
