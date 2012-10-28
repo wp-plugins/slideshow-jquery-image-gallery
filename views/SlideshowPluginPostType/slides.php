@@ -36,9 +36,9 @@
 				// Type specific values
 				$title = $description = $color = '';
 				if(isset($slide['title']))
-					$title = htmlentities($slide['title']);
+					$title = $slide['title'];
 				if(isset($slide['description']))
-					$description = htmlentities($slide['description']);
+					$description = $slide['description'];
 				if(isset($slide['color']))
 					$color = htmlentities($slide['color']);
 				?>

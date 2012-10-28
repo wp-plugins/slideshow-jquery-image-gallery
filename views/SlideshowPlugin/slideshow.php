@@ -18,9 +18,9 @@
 						<?php
 							$title = $description = $color = '';
 							if(isset($slide['title']))
-								$title = htmlentities($slide['title']);
+								$title = $slide['title'];
 							if(isset($slide['description']))
-								$description = htmlentities($slide['description']);
+								$description = $slide['description'];
 							if(isset($slide['color']))
 								$color = htmlentities($slide['color']);
 						?>
@@ -75,14 +75,14 @@
 						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? htmlentities($settings['height']) : 0; ?>px;">
 							<div class="description transparent">
 								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
-									<h2><?php echo htmlentities($attachment->post_title); ?></h2>
-									<p><?php echo htmlentities($attachment->post_content); ?></p>
+									<h2><?php echo $attachment->post_title; ?></h2>
+									<p><?php echo $attachment->post_content; ?></p>
 								</a>
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
 									src="<?php echo htmlentities($imageSrc); ?>"
-									alt="<?php echo htmlentities($attachment->post_title); ?>"
+									alt="<?php echo $attachment->post_title; ?>"
 								/>
 							</a>
 						</div>
@@ -113,7 +113,7 @@
 
 	<?php if(!empty($style)): ?>
 	<style type="text/css">
-			<?php echo htmlentities($style); ?>
+			<?php echo $style; ?>
 	</style>
 	<?php endif; ?>
 </div>
