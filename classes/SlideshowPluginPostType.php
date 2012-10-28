@@ -376,9 +376,9 @@ class SlideshowPluginPostType {
 	 */
 	static function getDefaultData($fullDefinition = true){
 		$data = array(
-			'style_style' => 'light',
+			'style_style' => __('light', 'slideshow-plugin'),
 			'style_custom' => '',
-			'setting_animation' => 'slide',
+			'setting_animation' => __('slide', 'slideshow=plugin'),
 			'setting_slideSpeed' => '1',
 			'setting_descriptionSpeed' => '0.4',
 			'setting_intervalSpeed' => '5',
