@@ -1,4 +1,4 @@
-<div class="slideshow_container slideshow_container_<?php echo $randomId; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+<div class="slideshow_container slideshow_container_<?php echo htmlspecialchars($randomId); ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 		<div class="slideshow">
 			<?php if(count($slides) > 0): ?>
@@ -8,9 +8,9 @@
 					<?php
 					$url = $target = '';
 					if(isset($slide['url']))
-						$url = $slide['url'];
+						$url = htmlspecialchars($slide['url']);
 					if(isset($slide['urlTarget']))
-						$target = $slide['urlTarget'];
+						$target = htmlspecialchars($slide['urlTarget']);
 					?>
 
 					<?php if($slide['type'] == 'text'): ?>
@@ -18,11 +18,11 @@
 						<?php
 							$title = $description = $color = '';
 							if(isset($slide['title']))
-								$title = $slide['title'];
+								$title = htmlspecialchars($slide['title']);
 							if(isset($slide['description']))
-								$description = $slide['description'];
+								$description = htmlspecialchars($slide['description']);
 							if(isset($slide['color']))
-								$color = $slide['color'];
+								$color = htmlspecialchars($slide['color']);
 						?>
 
 						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?> style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
@@ -37,7 +37,7 @@
 						<?php
 							$videoId = '';
 							if(isset($slide['videoId']))
-								$videoId = $slide['videoId'];
+								$videoId = htmlspecialchars($slide['videoId']);
 
 							$elementVideoId = 'youtube-player-' . rand() . '-' . $videoId;
 						?>
@@ -113,7 +113,7 @@
 
 	<?php if(!empty($style)): ?>
 	<style type="text/css">
-			<?php echo $style; ?>
+			<?php echo htmlspecialchars($style); ?>
 	</style>
 	<?php endif; ?>
 </div>

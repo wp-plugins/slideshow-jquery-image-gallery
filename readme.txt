@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.14
+Stable tag: 2.1.15
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -38,6 +38,7 @@ different images, settings and styles for each one of them.
  - English
  - Dutch
  - Russian (Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
+ - Chinese (Translated by [Kevin Tell](http://www.ivygg.com/);
 
  Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
  thanks in advance!
@@ -110,6 +111,10 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.15 =
+*   Fixed: Security issues.
+*   Added Chinese translation.
 
 = 2.1.14 =
 *   Fixed: Text slide descriptions allow HTML again

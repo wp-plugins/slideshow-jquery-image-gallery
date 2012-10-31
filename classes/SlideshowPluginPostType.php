@@ -276,7 +276,7 @@ class SlideshowPluginPostType {
 		foreach($_POST as $key => $value)
 			foreach(self::$prefixes as $prefix)
 				if($prefix == substr($key, 0, strlen($prefix)))
-					$newData[$key] = $value;
+					$newData[$key] = htmlspecialchars($value);
 
 		// Save settings
 		update_post_meta(
@@ -289,6 +289,19 @@ class SlideshowPluginPostType {
 		));
 
 		return $postId;
+	}
+
+	/**
+	 * Restores some HTML in a string after using the htmlspecialchars() function on it.
+	 * Therefore, to be able to show the allowed HTML tags in a string, use this function.
+	 *
+	 * @param string $string The htmlspecialchars() string
+	 * @return string  $string The exceptionized string.
+	 */
+	static function htmlspecialchars_decodeOnlyAllowed($string){
+
+
+		return $string;
 	}
 
 	/**
