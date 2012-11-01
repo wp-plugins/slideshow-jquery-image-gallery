@@ -38,7 +38,7 @@ different images, settings and styles for each one of them.
  - English
  - Dutch
  - Russian (Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
- - Chinese (Translated by [Kevin Tell](http://www.ivygg.com/);
+ - Chinese (Translated by [Kevin Tell](http://www.ivygg.com/))
 
  Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
  thanks in advance!
