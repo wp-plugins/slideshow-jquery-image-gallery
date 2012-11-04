@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-31 14:01+0100\n"
-"PO-Revision-Date: 2012-10-31 22:25+0100\n"
+"PO-Revision-Date: 2012-11-04 22:07+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Kevin Tell\n"
 "MIME-Version: 1.0\n"
@@ -148,7 +148,7 @@ msgstr "显示"
 
 #: classes/SlideshowPluginPostType.php:412
 msgid "Width of the slideshow, set to parent&#39;s width on 0"
-msgstr "同一幅幻灯片中显示多少图片"
+msgstr "幻灯片宽度，0为继承父元素宽度"
 
 #: classes/SlideshowPluginPostType.php:413
 msgid "Height of the slideshow"
