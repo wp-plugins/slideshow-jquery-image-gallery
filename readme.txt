@@ -112,6 +112,11 @@ slideshow may not be styled.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
 
+= 2.1.17 =
+*   Fixed: Invalid argument being supplied for the foreach loop in SlideshowPluginPostType on line 352
+*   Fixed: Undefined index being thrown by URL target setting on slideshow creation.
+*   Video slide now accepts YouTube URLs as well.
+
 = 2.1.16 =
 *   Security update enabling HTML in slides again, but only allowing it in a very strict format without any scripts.
 *   Added shortcode editor, which provides a more convenient way of inserting slideshows in your posts and pages.

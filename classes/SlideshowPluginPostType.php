@@ -169,36 +169,41 @@ class SlideshowPluginPostType {
 		// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
 		$slidesPreOrder = array();
 		$settings = self::getSettings($post->ID, self::$prefixes['slide-list']);
-		foreach($settings as $key => $value){
-			$key = explode('_', $key);
-			if(is_numeric($key[1]))
-				$slidesPreOrder[$key[1]][$key[2]] = $value;
-		}
+		if(is_array($settings) && count($settings) > 0)
+			foreach($settings as $key => $value){
+				$key = explode('_', $key);
+				if(is_numeric($key[1]))
+					$slidesPreOrder[$key[1]][$key[2]] = $value;
+			}
 
 		// Save slide keys from the $slidePreOrder array in the array itself for later use
-		foreach($slidesPreOrder as $key => $value){
-			$slidesPreOrder[$key]['id'] = $key;
+		if(count($slidesPreOrder) > 0)
+			foreach($slidesPreOrder as $key => $value){
+				$slidesPreOrder[$key]['id'] = $key;
 
-			// Save highest slide id
-			if($key > $highestSlideId)
-				$highestSlideId = $key;
-		}
+				// Save highest slide id
+				if($key > $highestSlideId)
+					$highestSlideId = $key;
+			}
 
 		// Create array ordered by the 'order' key of the slides array: array([order-key] => [slide-key]);
 		$slidesOrder = array();
-		foreach($slidesPreOrder as $key => $value)
-			if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
-				$slidesOrder[$value['order']][] = $key;
+		if(count($slidesPreOrder) > 0){
+			foreach($slidesPreOrder as $key => $value)
+				if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
+					$slidesOrder[$value['order']][] = $key;
+		}
 		ksort($slidesOrder);
 
 		// Order slides by the order key.
 		$slides = array();
-		foreach($slidesOrder as $value)
-			if(is_array($value))
-				foreach($value as $slideId){
-					$slides[] = $slidesPreOrder[$slideId];
-					unset($slidesPreOrder[$slideId]);
-				}
+		if(count($slidesOrder) > 0)
+			foreach($slidesOrder as $value)
+				if(is_array($value))
+					foreach($value as $slideId){
+						$slides[] = $slidesPreOrder[$slideId];
+						unset($slidesPreOrder[$slideId]);
+					}
 
 		// Add remaining (unordered) slides to the end of the array.
 		$slides = array_merge($slides, $slidesPreOrder);
@@ -270,10 +275,12 @@ class SlideshowPluginPostType {
 
 		// Filter new data from $_POST
 		$newData = array();
-		foreach($_POST as $key => $value)
-			foreach(self::$prefixes as $prefix)
-				if($prefix == substr($key, 0, strlen($prefix)))
-					$newData[$key] = htmlspecialchars($value);
+		if(is_array($_POST) && count($_POST) > 0)
+			foreach($_POST as $key => $value)
+				if(is_array(self::$prefixes) && count(self::$prefixes) > 0)
+					foreach(self::$prefixes as $prefix)
+						if($prefix == substr($key, 0, strlen($prefix)))
+							$newData[$key] = htmlspecialchars($value);
 
 		// Save settings
 		update_post_meta(
@@ -315,14 +322,15 @@ class SlideshowPluginPostType {
 		$settings = self::getSettings($postId, $prefix, $cacheEnabled);
 
 		$simpleSettings = array();
-		foreach($settings as $key => $value){
-			if(!is_array($value))
-				continue;
+		if(is_array($settings) && count($settings) > 0)
+			foreach($settings as $key => $value){
+				if(!is_array($value))
+					continue;
 
-			if(empty($value[1]) && !is_numeric($value[1]))
-				$simpleSettings[$key] = $value[2];
-			else $simpleSettings[$key] = $value[1];
-		}
+				if(empty($value[1]) && !is_numeric($value[1]))
+					$simpleSettings[$key] = $value[2];
+				else $simpleSettings[$key] = $value[1];
+			}
 
 		return $simpleSettings;
 	}
@@ -352,16 +360,18 @@ class SlideshowPluginPostType {
 			);
 
 			// Fill data with settings
-			foreach($data as $key => $value)
-				if(isset($currentSettings[$key])){
-					$data[$key][1] = $currentSettings[$key];
-					unset($currentSettings[$key]);
-				}
+			if(is_array($data) && count($data) > 0)
+				foreach($data as $key => $value)
+					if(isset($currentSettings[$key])){
+						$data[$key][1] = $currentSettings[$key];
+						unset($currentSettings[$key]);
+					}
 
 			// Load settings that are not there by default into data (slides in particular)
-			foreach($currentSettings as $key => $value)
-				if(!isset($data[$key]))
-					$data[$key] = $value;
+			if(is_array($currentSettings) && count($currentSettings) > 0)
+				foreach($currentSettings as $key => $value)
+					if(!isset($data[$key]))
+						$data[$key] = $value;
 
 			$settings = $data;
 			if($cacheEnabled)
@@ -371,9 +381,10 @@ class SlideshowPluginPostType {
 		}
 
 		if(isset($prefix))
-			foreach($settings as $key => $value)
-				if($prefix != substr($key, 0, strlen($prefix)))
-					unset($settings[$key]);
+			if(is_array($settings) && count($settings) > 0)
+				foreach($settings as $key => $value)
+					if($prefix != substr($key, 0, strlen($prefix)))
+						unset($settings[$key]);
 
 		return $settings;
 	}
@@ -471,54 +482,62 @@ class SlideshowPluginPostType {
 
 		if(!isset(self::$inputFields) || !$cacheEnabled){
 			$inputFields = array();
-			foreach($settings as $key => $value){
-				if(!is_array($value))
-					continue;
+			if(is_array($settings) && count($settings) > 0){
+				foreach($settings as $key => $value){
+					if(!is_array($value))
+						continue;
 
-				$inputField = '';
-				$displayValue = (empty($value[1]) && !is_numeric($value[1]) ? $value[2] : $value[1]);
-				$class = ((isset($value[5]))? 'depends-on-field-value ' . $value[5][0] . ' ' . $value[5][1] . ' ': '') . $key;
-				switch($value[0]){
-					case 'text':
-						$inputField .= '<input
-							type="text"
-							name="' . $key . '"
-							class="' . $class . '"
-							value="' . $displayValue . '"
-						/>';
-						break;
-					case 'textarea':
-						$inputField .= '<textarea
-							name="' . $key . '"
-							class="' . $class . '"
-							rows="20"
-							cols="60"
-						>' . $displayValue . '</textarea>';
-						break;
-					case 'select':
-						$inputField .= '<select name="' . $key . '" class="' . $class . '">';
-						foreach($value[4] as $optionKey => $optionValue)
-							$inputField .= '<option value="' . $optionKey . '" ' . selected($displayValue, $optionKey, false) . '>
-								' . $optionValue . '
-							</option>';
-						$inputField .= '</select>';
-						break;
-					case 'radio':
-						foreach($value[4] as $radioKey => $radioValue)
-							$inputField .= '<label><input
-								type="radio"
+					$inputField = '';
+					$displayValue = (empty($value[1]) && !is_numeric($value[1]) ? $value[2] : $value[1]);
+					$class = ((isset($value[5]))? 'depends-on-field-value ' . $value[5][0] . ' ' . $value[5][1] . ' ': '') . $key;
+					switch($value[0]){
+						case 'text':
+							$inputField .= '<input
+								type="text"
 								name="' . $key . '"
 								class="' . $class . '"
-								value="' . $radioKey . '" ' .
-								checked($displayValue, $radioKey, false) .
-							' />' . $radioValue . '</label><br />';
-						break;
-					default:
-						$inputField = null;
-						break;
-				};
+								value="' . $displayValue . '"
+							/>';
+							break;
+						case 'textarea':
+							$inputField .= '<textarea
+								name="' . $key . '"
+								class="' . $class . '"
+								rows="20"
+								cols="60"
+							>' . $displayValue . '</textarea>';
+							break;
+						case 'select':
+							$inputField .= '<select name="' . $key . '" class="' . $class . '">';
+							if(is_array($value[4]) && count($value[4]) > 0){
+								foreach($value[4] as $optionKey => $optionValue){
+									$inputField .= '<option value="' . $optionKey . '" ' . selected($displayValue, $optionKey, false) . '>
+										' . $optionValue . '
+									</option>';
+								}
+							}
+							$inputField .= '</select>';
+							break;
+						case 'radio':
+							if(is_array($value[4]) && count($value[4]) > 0){
+								foreach($value[4] as $radioKey => $radioValue){
+									$inputField .= '<label><input
+										type="radio"
+										name="' . $key . '"
+										class="' . $class . '"
+										value="' . $radioKey . '" ' .
+										checked($displayValue, $radioKey, false) .
+										' />' . $radioValue . '</label><br />';
+								}
+							}
+							break;
+						default:
+							$inputField = null;
+							break;
+					};
 
-				$inputFields[$key] = $inputField;
+					$inputFields[$key] = $inputField;
+				}
 			}
 
 			if($cacheEnabled)

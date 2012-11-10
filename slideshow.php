@@ -21,7 +21,7 @@
 class SlideshowPluginMain {
 
 	/** Variables */
-	static $version = '2.1.16';
+	static $version = '2.1.17d';
 
 	/**
 	 * Bootstraps the application by assigning the right functions to
@@ -68,60 +68,65 @@ class SlideshowPluginMain {
 		));
 
 		// Loop through posts
-		foreach($posts as $post){
+		if(is_array($posts) && count($posts) > 0){
+			foreach($posts as $post){
 
-			// Stores highest slide id.
-			$highestSlideId = -1;
+				// Stores highest slide id.
+				$highestSlideId = -1;
 
-			// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
-			$slidesPreOrder = array();
-			$settings = SlideshowPluginPostType::getSettings($post->ID, SlideshowPluginPostType::$prefixes['slide-list'], true);
-			foreach($settings as $key => $value){
-				$key = explode('_', $key);
-				if(is_numeric($key[1]))
-					$slidesPreOrder[$key[1]][$key[2]] = $value;
-			}
+				// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
+				$slidesPreOrder = array();
+				$settings = SlideshowPluginPostType::getSettings($post->ID, SlideshowPluginPostType::$prefixes['slide-list'], true);
+				if(is_array($settings) && count($settings) > 0)
+					foreach($settings as $key => $value){
+						$key = explode('_', $key);
+						if(is_numeric($key[1]))
+							$slidesPreOrder[$key[1]][$key[2]] = $value;
+					}
 
-			// Save slide keys from the $slidePreOrder array in the array itself for later use
-			foreach($slidesPreOrder as $key => $value){
-				// Save highest slide id
-				if($key > $highestSlideId)
-					$highestSlideId = $key;
-			}
+				// Save slide keys from the $slidePreOrder array in the array itself for later use
+				if(count($slidesPreOrder) > 0)
+					foreach($slidesPreOrder as $key => $value){
+						// Save highest slide id
+						if($key > $highestSlideId)
+							$highestSlideId = $key;
+					}
 
-			// Get defaults
-			$defaultData = SlideshowPluginPostType::getDefaultData(false);
+				// Get defaults
+				$defaultData = SlideshowPluginPostType::getDefaultData(false);
 
-			// Get old data
-			$oldData = get_post_meta($post->ID, SlideshowPluginPostType::$settingsMetaKey, true);
-			if(!is_array(($oldData)))
-				$oldData = array();
+				// Get old data
+				$oldData = get_post_meta($post->ID, SlideshowPluginPostType::$settingsMetaKey, true);
+				if(!is_array(($oldData)))
+					$oldData = array();
 
-			// Get attachments
-			$attachments = get_posts(array(
-				'numberposts' => -1,
-				'offset' => 0,
-				'post_type' => 'attachment',
-				'post_parent' => $post->ID
-			));
-
-			// Get data from attachments
-			$newData = array();
-			foreach($attachments as $attachment){
-				$highestSlideId++;
-				$newData['slide_' . $highestSlideId . '_postId'] = $attachment->ID;
-				$newData['slide_' . $highestSlideId . '_type'] = 'attachment';
-			}
-
-			// Save settings
-			update_post_meta(
-				$post->ID,
-				SlideshowPluginPostType::$settingsMetaKey,
-				array_merge(
-					$defaultData,
-					$oldData,
-					$newData
+				// Get attachments
+				$attachments = get_posts(array(
+					'numberposts' => -1,
+					'offset' => 0,
+					'post_type' => 'attachment',
+					'post_parent' => $post->ID
 				));
+
+				// Get data from attachments
+				$newData = array();
+				if(is_array($attachments) && count($attachments) > 0)
+					foreach($attachments as $attachment){
+						$highestSlideId++;
+						$newData['slide_' . $highestSlideId . '_postId'] = $attachment->ID;
+						$newData['slide_' . $highestSlideId . '_type'] = 'attachment';
+					}
+
+				// Save settings
+				update_post_meta(
+					$post->ID,
+					SlideshowPluginPostType::$settingsMetaKey,
+					array_merge(
+						$defaultData,
+						$oldData,
+						$newData
+					));
+			}
 		}
 
 		update_option('slideshow-plugin-updated-from-v1-x-x-to-v2-0-1', 'updated');

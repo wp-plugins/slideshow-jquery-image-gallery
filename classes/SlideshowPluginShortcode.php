@@ -81,12 +81,13 @@ class SlideshowPluginShortcode {
 	 */
 	static function insertSlideshow($content){
 		// Loop through post ids
-		foreach(self::$postIds as $postId){
-			$updatedContent = preg_replace("/" . self::$bookmark . "/", SlideshowPlugin::prepare($postId), $content, 1);
+		if(is_array(self::$postIds) && count(self::$postIds) > 0)
+			foreach(self::$postIds as $postId){
+				$updatedContent = preg_replace("/" . self::$bookmark . "/", SlideshowPlugin::prepare($postId), $content, 1);
 
-			if(is_string($updatedContent))
-				$content = $updatedContent;
-		}
+				if(is_string($updatedContent))
+					$content = $updatedContent;
+			}
 
 		// Reset postIds, so a shortcode in a next post can be used
 		self::$postIds = array();

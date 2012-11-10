@@ -67,27 +67,31 @@ class SlideshowPlugin {
 		// Get stored slide settings and convert them to array([slide-key] => array([setting-name] => [value]));
 		$slidesPreOrder = array();
 		$slideSettings = SlideshowPluginPostType::getSettings($post->ID, SlideshowPluginPostType::$prefixes['slide-list'], false);
-		foreach($slideSettings as $key => $value){
-			$key = explode('_', $key);
-			if(is_numeric($key[1]))
-				$slidesPreOrder[$key[1]][$key[2]] = $value;
-		}
+		if(is_array($slideSettings) && count($slideSettings) > 0)
+			foreach($slideSettings as $key => $value){
+				$key = explode('_', $key);
+				if(is_numeric($key[1]))
+					$slidesPreOrder[$key[1]][$key[2]] = $value;
+			}
 
 		// Create array ordered by the 'order' key of the slides array: array([order-key] => [slide-key]);
 		$slidesOrder = array();
-		foreach($slidesPreOrder as $key => $value)
-			if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
-				$slidesOrder[$value['order']][] = $key;
+		if(count($slidesPreOrder) > 0){
+			foreach($slidesPreOrder as $key => $value)
+				if(isset($value['order']) && is_numeric($value['order']) && $value['order'] > 0)
+					$slidesOrder[$value['order']][] = $key;
+		}
 		ksort($slidesOrder);
 
 		// Order slides by the order key.
 		$slides = array();
-		foreach($slidesOrder as $value)
-			if(is_array($value))
-				foreach($value as $slideId){
-					$slides[] = $slidesPreOrder[$slideId];
-					unset($slidesPreOrder[$slideId]);
-				}
+		if(count($slidesOrder) > 0)
+			foreach($slidesOrder as $value)
+				if(is_array($value))
+					foreach($value as $slideId){
+						$slides[] = $slidesPreOrder[$slideId];
+						unset($slidesPreOrder[$slideId]);
+					}
 
 		// Add remaining (unordered) slides to the end of the array.
 		$slides = array_merge($slides, $slidesPreOrder);
@@ -124,9 +128,10 @@ class SlideshowPlugin {
 
 		// Filter settings to only contain settings, then remove prefix
 		$settings = array();
-		foreach($allSettings as $key => $value)
-			if(SlideshowPluginPostType::$prefixes['settings'] == substr($key, 0, strlen(SlideshowPluginPostType::$prefixes['settings'])))
-				$settings[substr($key, strlen(SlideshowPluginPostType::$prefixes['settings']))] = $value;
+		if(is_array($allSettings) && count($allSettings) > 0)
+			foreach($allSettings as $key => $value)
+				if(SlideshowPluginPostType::$prefixes['settings'] == substr($key, 0, strlen(SlideshowPluginPostType::$prefixes['settings'])))
+					$settings[substr($key, strlen(SlideshowPluginPostType::$prefixes['settings']))] = $value;
 
 		// Include output file that stores output in $output.
 		$output = '';

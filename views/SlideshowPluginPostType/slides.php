@@ -19,13 +19,16 @@
 </script>
 
 <ul class="sortable-slides-list">
+	<?php if(count($slides) > 0): ?>
 	<?php foreach($slides as $key => $slide):
 		// General values
-		$id = $url = $order = '';
+		$id = $url = $target = $order = '';
 		if(isset($slide['id']))
 			$id = $slide['id'];
 		if(isset($slide['url']))
 			$url = $slide['url'];
+		if(isset($slide['urlTarget']))
+			$target = $slide['urlTarget'];
 		if(isset($slide['order']))
 			$order = $slide['order'];
 			?>
@@ -52,8 +55,8 @@
 				<p style="float: left; padding: 0 5px;">
 					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
 					<select name="slide_<?php echo $id; ?>_urlTarget">
-						<option value="_self" <?php selected('_self', $slide['urlTarget']); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
-						<option value="_blank" <?php selected('_blank', $slide['urlTarget']); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
+						<option value="_self" <?php selected('_self', $target); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
+						<option value="_blank" <?php selected('_blank', $target); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
 					</select>
 				</p>
 				<p style="float: left; line-height: 50px;">
@@ -107,8 +110,8 @@
 				<p style="float: left; padding: 0 5px;">
 					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
 					<select name="slide_<?php echo $id; ?>_urlTarget">
-						<option value="_self" <?php selected('_self', $slide['urlTarget']); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
-						<option value="_blank" <?php selected('_blank', $slide['urlTarget']); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
+						<option value="_self" <?php selected('_self', $target); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
+						<option value="_blank" <?php selected('_blank', $target); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
 					</select>
 				</p>
 				<p style="float: left; line-height: 50px;">
@@ -133,6 +136,7 @@
 			</p>
 		</li>
 	<?php endforeach; ?>
+	<?php endif; ?>
 </ul>
 
 <div class="text-slide-template" style="display: none;">

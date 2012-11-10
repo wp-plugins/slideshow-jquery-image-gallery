@@ -63,72 +63,77 @@ class SlideshowPluginSecurity {
 		$allowedElements = self::$allowedElements;
 
 		// Loop through allowed elements decoding their HTML special chars and allowed attributes.
-		foreach($allowedElements as $element => $attributes){
+		if(is_array($allowedElements) && count($allowedElements) > 0){
+			foreach($allowedElements as $element => $attributes){
 
-			$position = 0;
+				$position = 0;
 
-			while(($position = stripos($text, $element, $position)) !== false){ // While element tags found
+				while(($position = stripos($text, $element, $position)) !== false){ // While element tags found
 
-				$openingTag = '<';
-				$encodedOpeningTag = htmlspecialchars($openingTag);
+					$openingTag = '<';
+					$encodedOpeningTag = htmlspecialchars($openingTag);
 
-				if(substr($text, $position - strlen($encodedOpeningTag), strlen($encodedOpeningTag)) == $encodedOpeningTag){ // Check if an opening tag '<' can be found before the tag name
+					if(substr($text, $position - strlen($encodedOpeningTag), strlen($encodedOpeningTag)) == $encodedOpeningTag){ // Check if an opening tag '<' can be found before the tag name
 
-					// Replace encoded opening tag
-					$text = substr_replace($text, '<', $position - strlen($encodedOpeningTag), strlen($encodedOpeningTag));
-					$position -= strlen($encodedOpeningTag) - strlen($openingTag);
+						// Replace encoded opening tag
+						$text = substr_replace($text, '<', $position - strlen($encodedOpeningTag), strlen($encodedOpeningTag));
+						$position -= strlen($encodedOpeningTag) - strlen($openingTag);
 
-					// Get the position of the first element closing tag
-					$closingTag = '>';
-					$encodedClosingTag = htmlspecialchars($closingTag);
-					$closingTagPosition = stripos($text, $encodedClosingTag, $position);
+						// Get the position of the first element closing tag
+						$closingTag = '>';
+						$encodedClosingTag = htmlspecialchars($closingTag);
+						$closingTagPosition = stripos($text, $encodedClosingTag, $position);
 
-					// Replace encoded closing tag
-					if($closingTagPosition !== false)
-						$text = substr_replace($text, '>', $closingTagPosition, strlen($encodedClosingTag));
+						// Replace encoded closing tag
+						if($closingTagPosition !== false)
+							$text = substr_replace($text, '>', $closingTagPosition, strlen($encodedClosingTag));
 
-					$elementAttributes = null;
-					if(isset($attributes['attributes']) && is_array($attributes['attributes']))
-						$elementAttributes = $attributes['attributes'];
-					elseif(isset($attributes['attributes']) && $attributes['attributes'] == 'default')
-						$elementAttributes = self::$defaultAllowedAttributes;
-					else
-						continue;
+						$elementAttributes = null;
+						if(isset($attributes['attributes']) && is_array($attributes['attributes']))
+							$elementAttributes = $attributes['attributes'];
+						elseif(isset($attributes['attributes']) && $attributes['attributes'] == 'default')
+							$elementAttributes = self::$defaultAllowedAttributes;
+						else
+							continue;
 
-					$tagText = substr($text, $position, $closingTagPosition - $position);
+						if(!is_array($elementAttributes))
+							continue;
 
-					// Decode allowed attributes
-					foreach($elementAttributes as $attribute){
+						$tagText = substr($text, $position, $closingTagPosition - $position);
 
-						$attributeOpener = $attribute . '=' . htmlspecialchars('"');
+						// Decode allowed attributes
+						foreach($elementAttributes as $attribute){
 
-						$attributePosition = 0;
-						if(($attributePosition = stripos($tagText, $attributeOpener, $attributePosition)) !== false){ // Attribute was found
+							$attributeOpener = $attribute . '=' . htmlspecialchars('"');
 
-							$attributeClosingPosition = 0;
-							if(($attributeClosingPosition = stripos($tagText, htmlspecialchars('"'), $attributePosition + strlen($attributeOpener))) === false) // If no closing position of attribute was found, skip.
-								continue;
+							$attributePosition = 0;
+							if(($attributePosition = stripos($tagText, $attributeOpener, $attributePosition)) !== false){ // Attribute was found
 
-							// Open the attribute
-							$tagText = str_ireplace($attributeOpener, $attribute . '="', $tagText);
+								$attributeClosingPosition = 0;
+								if(($attributeClosingPosition = stripos($tagText, htmlspecialchars('"'), $attributePosition + strlen($attributeOpener))) === false) // If no closing position of attribute was found, skip.
+									continue;
 
-							// Close the attribute
-							$attributeClosingPosition -= strlen($attributeOpener) - strlen($attribute . '="');
-							$tagText = substr_replace($tagText, '"', $attributeClosingPosition, strlen(htmlspecialchars('"')));
+								// Open the attribute
+								$tagText = str_ireplace($attributeOpener, $attribute . '="', $tagText);
+
+								// Close the attribute
+								$attributeClosingPosition -= strlen($attributeOpener) - strlen($attribute . '="');
+								$tagText = substr_replace($tagText, '"', $attributeClosingPosition, strlen(htmlspecialchars('"')));
+							}
+
 						}
 
+						// Put the attributes of the tag back in place
+						$text = substr_replace($text, $tagText, $position, $closingTagPosition - $position);
 					}
 
-					// Put the attributes of the tag back in place
-					$text = substr_replace($text, $tagText, $position, $closingTagPosition - $position);
+					$position++;
 				}
 
-				$position++;
+				// Decode closing tags
+				if(isset($attributes['endTag']) && $attributes['endTag'])
+					$text = str_ireplace(htmlspecialchars('</' . $element . '>'), '</' . $element . '>', $text);
 			}
-
-			// Decode closing tags
-			if(isset($attributes['endTag']) && $attributes['endTag'])
-				$text = str_ireplace(htmlspecialchars('</' . $element . '>'), '</' . $element . '>', $text);
 		}
 
 		return $text;

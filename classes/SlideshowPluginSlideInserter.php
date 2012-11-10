@@ -77,9 +77,11 @@ class SlideshowPluginSlideInserter {
 
 		$search = 'slide_' . $_POST['slideId'] . '_';
 		$settings = get_post_meta($_POST['postId'], 'settings', true);
-		foreach($settings as $key => $setting)
-			if(strtolower(substr($key, 0, strlen($search))) == strtolower($search))
-				unset($settings[$key]);
+		if(is_array($settings) && count($settings) > 0){
+			foreach($settings as $key => $setting)
+				if(strtolower(substr($key, 0, strlen($search))) == strtolower($search))
+					unset($settings[$key]);
+		}
 		update_post_meta($_POST['postId'], 'settings', $settings);
 
 		die;
