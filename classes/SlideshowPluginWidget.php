@@ -69,6 +69,7 @@ class SlideshowPluginWidget extends WP_Widget {
 	 * The form shown on the admins widget page. Here settings can be changed.
 	 *
 	 * @param mixed array $instance
+	 * @return string
 	 */
 	function form($instance){
 		// Defaults

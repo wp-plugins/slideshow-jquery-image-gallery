@@ -3,7 +3,7 @@
  Plugin Name: Slideshow
  Plugin URI: http://wordpress.org/extend/plugins/slideshow-jquery-image-gallery/
  Description: This plugin offers a slideshow that is easily deployable in your website. Add any image that has already been uploaded to add to your slideshow. Options and styles are customizable for every single slideshow on your website.
- Version: 2.1.15
+ Version: 2.1.16
  Requires at least: 3.3
  Author: StefanBoonstra
  Author URI: http://stefanboonstra.com
@@ -21,7 +21,7 @@
 class SlideshowPluginMain {
 
 	/** Variables */
-	static $version = '2.1.15';
+	static $version = '2.1.16';
 
 	/**
 	 * Bootstraps the application by assigning the right functions to
@@ -39,8 +39,8 @@ class SlideshowPluginMain {
 		// Deploy slideshow on do_action('slideshow_deploy'); hook.
 		add_action('slideshow_deploy', array('SlideshowPlugin', 'deploy'));
 
-		// Add shortcode
-		add_shortcode(SlideshowPluginShortcode::$shortCode, array('SlideshowPluginShortcode', 'slideshowDeploy'));
+		// Initialize shortcode
+		SlideshowPluginShortcode::init();
 
 		// Register widget
 		add_action('widgets_init', array('SlideshowPluginWidget', 'registerWidget'));

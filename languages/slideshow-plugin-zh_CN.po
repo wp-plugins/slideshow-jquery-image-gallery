@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-31 14:01+0100\n"
-"PO-Revision-Date: 2012-11-04 22:07+0100\n"
+"POT-Creation-Date: 2012-11-10 13:14+0100\n"
+"PO-Revision-Date: 2012-11-10 13:14+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Kevin Tell\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Language: zh_CN\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -21,6 +21,7 @@ msgid "Slideshows"
 msgstr "幻灯片"
 
 #: classes/SlideshowPluginPostType.php:41
+#: views/SlideshowPluginWidget/form.php:7
 msgid "Slideshow"
 msgstr "幻灯片"
 
@@ -49,162 +50,166 @@ msgstr ""
 msgid "No slideshows found"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:105
+#: classes/SlideshowPluginPostType.php:102
 msgid "Information"
 msgstr "信息"
 
-#: classes/SlideshowPluginPostType.php:114
+#: classes/SlideshowPluginPostType.php:111
 msgid "Slides List"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:123
+#: classes/SlideshowPluginPostType.php:120
 msgid "Slideshow Style"
 msgstr "幻灯片展示样式"
 
-#: classes/SlideshowPluginPostType.php:132
+#: classes/SlideshowPluginPostType.php:129
 msgid "Slideshow Settings"
 msgstr "幻灯片设置"
 
-#: classes/SlideshowPluginPostType.php:379
+#: classes/SlideshowPluginPostType.php:389
 msgid "light"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:381
+#: classes/SlideshowPluginPostType.php:391
 msgid "slide"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:402
+#: classes/SlideshowPluginPostType.php:412
 msgid "Yes"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:403
+#: classes/SlideshowPluginPostType.php:413
 msgid "No"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:405
+#: classes/SlideshowPluginPostType.php:415
 msgid "The style used for this slideshow"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:405
+#: classes/SlideshowPluginPostType.php:415
 msgid "Light"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:405
+#: classes/SlideshowPluginPostType.php:415
 msgid "Dark"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:405
+#: classes/SlideshowPluginPostType.php:415
 msgid "Custom"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:406
+#: classes/SlideshowPluginPostType.php:416
 msgid "Custom style editor"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:407
+#: classes/SlideshowPluginPostType.php:417
 msgid "Animation used for transition between slides"
 msgstr "幻灯片滑动的动画效果设置"
 
-#: classes/SlideshowPluginPostType.php:407
+#: classes/SlideshowPluginPostType.php:417
 msgid "Slide"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:407
+#: classes/SlideshowPluginPostType.php:417
 msgid "Fade"
 msgstr ""
 
-#: classes/SlideshowPluginPostType.php:407
-#: classes/SlideshowPluginPostType.php:408
-#: classes/SlideshowPluginPostType.php:409
-#: classes/SlideshowPluginPostType.php:410
+#: classes/SlideshowPluginPostType.php:417
+#: classes/SlideshowPluginPostType.php:418
+#: classes/SlideshowPluginPostType.php:419
+#: classes/SlideshowPluginPostType.php:420
 msgid "Animation"
 msgstr "动态"
 
-#: classes/SlideshowPluginPostType.php:408
+#: classes/SlideshowPluginPostType.php:418
 msgid "Number of seconds the slide takes to slide in"
 msgstr "幻灯片滑动速度"
 
-#: classes/SlideshowPluginPostType.php:409
+#: classes/SlideshowPluginPostType.php:419
 msgid "Number of seconds the description takes to slide in"
 msgstr "“描述”滑动速度"
 
-#: classes/SlideshowPluginPostType.php:410
+#: classes/SlideshowPluginPostType.php:420
 msgid "Seconds between changing slides"
 msgstr "幻灯片间置换的时间间隔"
 
-#: classes/SlideshowPluginPostType.php:411
+#: classes/SlideshowPluginPostType.php:421
 msgid "Number of slides to fit into one slide"
 msgstr "同一幅幻灯片中显示多少图片"
 
-#: classes/SlideshowPluginPostType.php:411
-#: classes/SlideshowPluginPostType.php:412
-#: classes/SlideshowPluginPostType.php:413
-#: classes/SlideshowPluginPostType.php:414
-#: classes/SlideshowPluginPostType.php:415
-#: classes/SlideshowPluginPostType.php:416
-#: classes/SlideshowPluginPostType.php:417
+#: classes/SlideshowPluginPostType.php:421
+#: classes/SlideshowPluginPostType.php:422
+#: classes/SlideshowPluginPostType.php:423
+#: classes/SlideshowPluginPostType.php:424
+#: classes/SlideshowPluginPostType.php:425
+#: classes/SlideshowPluginPostType.php:426
+#: classes/SlideshowPluginPostType.php:427
 msgid "Display"
 msgstr "显示"
 
-#: classes/SlideshowPluginPostType.php:412
+#: classes/SlideshowPluginPostType.php:422
 msgid "Width of the slideshow, set to parent&#39;s width on 0"
 msgstr "幻灯片宽度，0为继承父元素宽度"
 
-#: classes/SlideshowPluginPostType.php:413
+#: classes/SlideshowPluginPostType.php:423
 msgid "Height of the slideshow"
 msgstr "幻灯片高度"
 
-#: classes/SlideshowPluginPostType.php:414
+#: classes/SlideshowPluginPostType.php:424
 msgid "Height of the description boxes"
 msgstr "幻灯片中描述窗口的高度"
 
-#: classes/SlideshowPluginPostType.php:415
+#: classes/SlideshowPluginPostType.php:425
 msgid "Fit image into slide (stretching it)"
 msgstr "图片适应显示 (即拉伸图片"
 
-#: classes/SlideshowPluginPostType.php:416
+#: classes/SlideshowPluginPostType.php:426
 msgid "Show title and description"
 msgstr "显示标题和描述"
 
-#: classes/SlideshowPluginPostType.php:417
+#: classes/SlideshowPluginPostType.php:427
 msgid "Hide description box, it will pop up when a mouse hovers over the slide"
 msgstr "隐藏描述窗口，只有鼠标移至幻灯片才弹出"
 
-#: classes/SlideshowPluginPostType.php:418
+#: classes/SlideshowPluginPostType.php:428
 msgid "Automatically slide to the next slide"
 msgstr "幻灯片自动滚动显示"
 
-#: classes/SlideshowPluginPostType.php:418
-#: classes/SlideshowPluginPostType.php:419
-#: classes/SlideshowPluginPostType.php:420
-#: classes/SlideshowPluginPostType.php:421
+#: classes/SlideshowPluginPostType.php:428
+#: classes/SlideshowPluginPostType.php:429
+#: classes/SlideshowPluginPostType.php:430
+#: classes/SlideshowPluginPostType.php:431
 msgid "Control"
 msgstr "控制"
 
-#: classes/SlideshowPluginPostType.php:419
+#: classes/SlideshowPluginPostType.php:429
 msgid "Return to the beginning of the slideshow after last slide"
 msgstr "循环展示幻灯片"
 
-#: classes/SlideshowPluginPostType.php:420
+#: classes/SlideshowPluginPostType.php:430
 msgid "Activate buttons (so the user can scroll through the slides)"
 msgstr "激活按钮 (用户可通过按钮左右滚动显示幻灯片)"
 
-#: classes/SlideshowPluginPostType.php:421
+#: classes/SlideshowPluginPostType.php:431
 msgid "Show control panel (play and pause button)"
 msgstr "显示控制面板 (播放和停止按钮)"
 
-#: classes/SlideshowPluginPostType.php:422
+#: classes/SlideshowPluginPostType.php:432
 msgid "Randomize slides"
 msgstr "随机幻灯片"
 
-#: classes/SlideshowPluginPostType.php:422
-#: classes/SlideshowPluginPostType.php:424
+#: classes/SlideshowPluginPostType.php:432
+#: classes/SlideshowPluginPostType.php:434
 msgid "Miscellaneous"
 msgstr "其他"
 
-#: classes/SlideshowPluginPostType.php:424
+#: classes/SlideshowPluginPostType.php:434
 #, php-format
 msgid "Avoid content filter (disable if '%s' is shown)"
+msgstr ""
+
+#: classes/SlideshowPluginShortcode.php:129
+msgid "No slideshow selected."
 msgstr ""
 
 #: classes/SlideshowPluginSlideInserter.php:138
@@ -264,6 +269,7 @@ msgstr ""
 
 #: views/SlideshowPluginPostType/slides.php:47
 #: views/SlideshowPluginPostType/slides.php:141
+#: views/SlideshowPluginWidget/form.php:2
 msgid "Title"
 msgstr ""
 
@@ -343,6 +349,36 @@ msgstr "为本插件打分"
 #: views/SlideshowPluginPostType/support-plugin.php:24
 msgid "Questions / Suggestions"
 msgstr "问题/建议"
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:4
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:9
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:16
+msgid "Insert a Slideshow"
+msgstr ""
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:6
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:50
+msgid "Insert Slideshow"
+msgstr ""
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:26
+msgid "Select a slideshow"
+msgstr ""
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:35
+msgid "Untitled slideshow"
+msgstr ""
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:55
+msgid "Cancel"
+msgstr ""
+
+#: views/SlideshowPluginShortcode/shortcode-inserter.php:66
+#, php-format
+msgid ""
+"It seems you haven't created any slideshows yet. %sYou can create a "
+"slideshow here!%s"
+msgstr ""
 
 #: views/SlideshowPluginSlideInserter/insert-image-button.php:1
 msgid "Image slide"

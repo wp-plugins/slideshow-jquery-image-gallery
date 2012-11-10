@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.15
+Stable tag: 2.1.16
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -111,6 +111,13 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.16 =
+*   Security update enabling HTML in slides again, but only allowing it in a very strict format without any scripts.
+*   Added shortcode editor, which provides a more convenient way of inserting slideshows in your posts and pages.
+*   Updated the way slideshows are retrieved. A faulty ID will no longer cause the slideshow to not show at all.
+*   Slideshows can now also be fetched by their slugs.
+*   The example shortcode's ID on the slideshow settings page is now surrounded by quotes to prevent confusion.
 
 = 2.1.15 =
 *   Fixed: Security issues.

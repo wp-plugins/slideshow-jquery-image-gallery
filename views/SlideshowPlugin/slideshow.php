@@ -1,4 +1,4 @@
-<div class="slideshow_container slideshow_container_<?php echo htmlspecialchars($randomId); ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+<div class="slideshow_container slideshow_container_<?php echo (is_numeric($randomId)) ? $randomId : 0; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 		<div class="slideshow">
 			<?php if(count($slides) > 0): ?>
@@ -18,9 +18,9 @@
 						<?php
 							$title = $description = $color = '';
 							if(isset($slide['title']))
-								$title = htmlspecialchars($slide['title']);
+								$title = SlideshowPluginSecurity::htmlspecialchars_allow_exceptions($slide['title']);
 							if(isset($slide['description']))
-								$description = htmlspecialchars($slide['description']);
+								$description = SlideshowPluginSecurity::htmlspecialchars_allow_exceptions($slide['description']);
 							if(isset($slide['color']))
 								$color = htmlspecialchars($slide['color']);
 						?>
@@ -75,14 +75,14 @@
 						<div class="slide slide_<?php echo $i; ?>" style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 							<div class="description transparent">
 								<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
-									<h2><?php echo $attachment->post_title; ?></h2>
-									<p><?php echo $attachment->post_content; ?></p>
+									<h2><?php echo SlideshowPluginSecurity::htmlspecialchars_allow_exceptions($attachment->post_title); ?></h2>
+									<p><?php echo SlideshowPluginSecurity::htmlspecialchars_allow_exceptions($attachment->post_content); ?></p>
 								</a>
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
 								<img
-									src="<?php echo $imageSrc; ?>"
-									alt="<?php echo $attachment->post_title; ?>"
+									src="<?php echo htmlspecialchars($imageSrc); ?>"
+									alt="<?php echo htmlspecialchars($attachment->post_title); ?>"
 								/>
 							</a>
 						</div>

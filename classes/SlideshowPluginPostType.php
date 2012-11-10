@@ -62,9 +62,6 @@ class SlideshowPluginPostType {
 				'register_meta_box_cb' => array(__CLASS__, 'registerMetaBoxes')
 			)
 		);
-
-		// jQuery
-		//wp_enqueue_script('jquery');
 	}
 
 	/**
@@ -155,7 +152,7 @@ class SlideshowPluginPostType {
 		global $post;
 
 		$snippet = htmlentities(sprintf('<?php do_action(\'slideshow_deploy\', \'%s\'); ?>', $post->ID));
-		$shortCode = htmlentities(sprintf('[' . SlideshowPluginShortcode::$shortCode . ' id=%s]', $post->ID));
+		$shortCode = htmlentities(sprintf('[' . SlideshowPluginShortcode::$shortCode . ' id=\'%s\']', $post->ID));
 
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/information.php');
 	}

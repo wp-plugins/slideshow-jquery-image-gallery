@@ -29,8 +29,23 @@ class SlideshowPlugin {
 	 * @return String $output
 	 */
 	static function prepare($postId = null){
-		// Check if defined which Slideshow to use
-		if(empty($postId) || !is_numeric($postId) || $postId < 0){
+		// Get post by its ID, or by its slug
+		if(is_numeric($postId))
+			$post = wp_get_single_post($postId);
+		if(is_string($postId)){
+			$query = new WP_Query(array(
+				'post_type' => SlideshowPluginPostType::$postType,
+				'name' => $postId,
+				'orderby' => 'post_date',
+				'order' => 'DESC'
+			));
+
+			if($query->have_posts())
+				$post = $query->next_post();
+		}
+
+		// When no slideshow is found, get one at random
+		if(empty($post)){
 			$post = get_posts(array(
 				'numberposts' => 1,
 				'orderby' => 'rand',
@@ -39,12 +54,12 @@ class SlideshowPlugin {
 
 			if(is_array($post))
 				$post = $post[0];
-		}else
-			$post = wp_get_single_post($postId);
+		}
 
-		// Exit function on error
-		if(empty($post))
-			return '';
+		// Exit on error
+		if(empty($post)){echo 'dayum';
+			return '<!-- Wordpress Slideshow - No slideshows available -->';
+		}
 
 		// Get settings
 		$allSettings = SlideshowPluginPostType::getSimpleSettings($post->ID, null, false);

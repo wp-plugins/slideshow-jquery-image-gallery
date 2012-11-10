@@ -43,8 +43,6 @@
 					$color = $slide['color'];
 				?>
 
-				<p style="padding: 0 5px; color: #f00;"><?php _e('Due to security issues, using HTML in text slides is temporarily disabled. My apologies.') ?></p>
-
 				<p style="padding: 0 5px;">
 				<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
 				<input type="text" name="slide_<?php echo $id; ?>_description" value="<?php echo $description; ?>" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
@@ -139,8 +137,6 @@
 
 <div class="text-slide-template" style="display: none;">
 	<li class="widefat sortable-slides-list-item">
-		<p style="padding: 0 5px; color: #f00;"><?php _e('Due to security issues, using HTML in text slides is temporarily disabled. My apologies.') ?></p>
-
 		<p style="padding: 0 5px;">
 			<input type="text" class="title" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
 			<input type="text" class="description" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
