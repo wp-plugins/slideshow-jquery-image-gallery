@@ -9,6 +9,9 @@
  */
 class SlideshowPlugin {
 
+	/** int $sessionCounter */
+	private static $sessionCounter = 0;
+
 	/**
 	 * Function deploy prints out the prepared html
 	 *
@@ -57,7 +60,7 @@ class SlideshowPlugin {
 		}
 
 		// Exit on error
-		if(empty($post)){echo 'dayum';
+		if(empty($post)){
 			return '<!-- Wordpress Slideshow - No slideshows available -->';
 		}
 
@@ -106,8 +109,8 @@ class SlideshowPlugin {
 			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/functional.css'
 		);
 
-		// Create a microtime timestamp to host multiple slideshows with different styles and settings on the same page
-		$randomId = rand();
+		// The slideshow's session ID, allows JavaScript and CSS to distinguish between multiple slideshows
+		$sessionID = self::$sessionCounter++;
 
 		// Get stylesheet for printing
 		$style = '';
@@ -124,7 +127,7 @@ class SlideshowPlugin {
 
 		// Append the random ID to the slideshow container in the stylesheet, to identify multiple slideshows
 		if(!empty($style))
-			$style = str_replace('.slideshow_container', '.slideshow_container_' . $randomId, $style);
+			$style = str_replace('.slideshow_container', '.slideshow_container_' . $sessionID, $style);
 
 		// Filter settings to only contain settings, then remove prefix
 		$settings = array();
@@ -149,7 +152,15 @@ class SlideshowPlugin {
 		wp_enqueue_script(
 			'slideshow_script',
 			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.js',
-			array('jquery')
+			array('jquery'),
+			SlideshowPluginMain::$version
+		);
+
+		// Include slideshow settings by localizing them
+		wp_localize_script(
+			'slideshow_script',
+			'SlideshowPluginSettings_' . $sessionID,
+			$settings
 		);
 
 		// Return output

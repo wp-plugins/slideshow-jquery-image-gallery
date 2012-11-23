@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.17
+Stable tag: 2.1.18
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -111,6 +111,11 @@ slideshow may not be styled.
 *   Slides can now be randomized.
 *   Multiple slideshows can now be shown with each its separate styling.
 *   Users can now search insertable images by post id.
+
+= 2.1.18 =
+*   Text slide descriptions are now displayed in text areas, making editing of long descriptions more convenient.
+*   Backgrounds of text slides can now be set to transparent by leaving the 'Background color' field empty.
+*   Settings are now loaded from a JavaScript variable, so (the major) search engines won't read them as actual content.
 
 = 2.1.17 =
 *   Fixed: Invalid argument being supplied for the foreach loop in SlideshowPluginPostType on line 352

@@ -1,4 +1,4 @@
-<div class="slideshow_container slideshow_container_<?php echo (is_numeric($randomId)) ? $randomId : 0; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
+<div class="slideshow_container slideshow_container_<?php echo (is_numeric($sessionID)) ? $sessionID : 0; ?>" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 	<div class="slideshow_overflow" style="width: <?php echo (is_numeric($settings['width']))? $settings['width'] : 0; ?>px; height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 		<div class="slideshow">
 			<?php if(count($slides) > 0): ?>
@@ -115,7 +115,7 @@
 		<div class="button next transparent"></div>
 	</div>
 
-	<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>
+	<!--<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>-->
 
 	<div class="manufacturer">
 		<a href="http://www.stefanboonstra.com/slideshow/">Wordpress Slideshow</a>

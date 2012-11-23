@@ -1,4 +1,4 @@
-<p style="text-align: center;">
+<p style="text-align: center;" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<i><?php _e('Insert', 'slideshow-plugin'); ?>:</i><br/>
 	<?php echo SlideshowPluginSlideInserter::getImageSlideInsertButton(); ?>
 	<?php echo SlideshowPluginSlideInserter::getTextSlideInsertButton(); ?>
@@ -46,10 +46,10 @@
 					$color = $slide['color'];
 				?>
 
-				<p style="padding: 0 5px;">
-				<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
-				<input type="text" name="slide_<?php echo $id; ?>_description" value="<?php echo $description; ?>" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
-				<input type="text" name="slide_<?php echo $id; ?>_color" value="<?php echo $color; ?>" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+				<p style="padding: 0 15px 0 5px;">
+					<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
+					<i><?php _e('Description', 'slideshow-plugin'); ?></i><textarea name="slide_<?php echo $id; ?>_description" rows="7" cols="" style="width: 100%;"><?php echo $description; ?></textarea><br />
+					<input type="text" name="slide_<?php echo $id; ?>_color" value="<?php echo $color; ?>" class="color {required:false}" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
 				</p>
 
 				<p style="float: left; padding: 0 5px;">
@@ -141,10 +141,10 @@
 
 <div class="text-slide-template" style="display: none;">
 	<li class="widefat sortable-slides-list-item">
-		<p style="padding: 0 5px;">
+		<p style="padding: 0 15px 0 5px;">
 			<input type="text" class="title" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
-			<input type="text" class="description" /><i><?php _e('Description', 'slideshow-plugin'); ?></i><br />
-			<input type="text" class="color" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+			<i><?php _e('Description', 'slideshow-plugin'); ?></i><textarea class="description" cols="" rows="7" style="width: 100%;"></textarea><br />
+			<input type="text" class="color {required:false}" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
 		</p>
 
 		<p style="float: left; padding: 0 5px;">
