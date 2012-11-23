@@ -107,15 +107,11 @@ slideshow may not be styled.
 
 == Changelog ==
 
-= 2.2.0 Pre-release =
-*   Slides can now be randomized.
-*   Multiple slideshows can now be shown with each its separate styling.
-*   Users can now search insertable images by post id.
-
 = 2.1.18 =
 *   Text slide descriptions are now displayed in text areas, making editing of long descriptions more convenient.
 *   Backgrounds of text slides can now be set to transparent by leaving the 'Background color' field empty.
 *   Settings are now loaded from a JavaScript variable, so (the major) search engines won't read them as actual content.
+*   Widget title's HTML tags are now discarded when no widget title is set.
 
 = 2.1.17 =
 *   Fixed: Invalid argument being supplied for the foreach loop in SlideshowPluginPostType on line 352

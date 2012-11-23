@@ -8,7 +8,7 @@
 class SlideshowPluginWidget extends WP_Widget {
 
 	/** Variables */
-	static $widgetName = 'Slideshow Widget';
+	static $widgetName = 'Slideshow';
 
 	/**
 	 * Initializes the widget
@@ -60,7 +60,7 @@ class SlideshowPluginWidget extends WP_Widget {
 
 		// Output widget
 		echo $beforeWidget .
-			$beforeTitle . $title . $afterTitle .
+			(!empty($title) ? $beforeTitle . $title . $afterTitle : '') .
 			$output .
 		$afterWidget;
 	}
