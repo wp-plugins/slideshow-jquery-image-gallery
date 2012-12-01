@@ -9,7 +9,7 @@
 		<option value="-1" <?php selected($instance['slideshowId'], -1); ?>><?php _e('Random Slideshow', 'slideshow-plugin'); ?></option>
 		<?php if(count($slideshows) > 0): ?>
 		<?php foreach($slideshows as $slideshow): ?>
-			<option value="<?php echo $slideshow->ID ?>" <?php selected($instance['slideshowId'], $slideshow->ID); ?>><?php echo $slideshow->post_title ?></option>
+			<option value="<?php echo $slideshow->ID ?>" <?php selected($instance['slideshowId'], $slideshow->ID); ?>><?php echo !empty($slideshow->post_title) ? $slideshow->post_title : __('Untitled slideshow', 'slideshow-plugin'); ?></option>
 		<?php endforeach; ?>
 		<?php endif; ?>
 	</select>

@@ -69,6 +69,7 @@ class SlideshowPluginPostType {
 	 * is a slideshow edit page.
 	 */
 	static function enqueue(){
+        // Return when not on a slideshow edit page.
 		$currentScreen = get_current_screen();
 		if($currentScreen->post_type != self::$postType)
 			return;
@@ -259,8 +260,9 @@ class SlideshowPluginPostType {
 	 * @return int $postId On failure
 	 */
 	static function save($postId){
-		// Verify nonce, check if user has sufficient rights and return on auto-save.
-		if((isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], plugin_basename(__FILE__))) ||
+		// Return on unverified nonce, insufficient rights, on auto-save and when the postId doesn't represent a slideshow.
+		if( get_post_type($postId) != self::$postType ||
+            (isset($_POST['nonce']) && !wp_verify_nonce($_POST['nonce'], plugin_basename(__FILE__))) ||
 			!current_user_can('edit_post', $postId) ||
 			defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
 			return $postId;

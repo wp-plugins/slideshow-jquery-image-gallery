@@ -194,9 +194,10 @@ class SlideshowPluginSlideInserter {
 	 * Enqueues styles and scripts necessary for the media upload button.
 	 */
 	static function enqueueFiles(){
-		// Check if already enqueued
-		if(self::$enqueuedFiles)
-			return;
+        // Return when not on a slideshow edit page, or files have already been included.
+        $currentScreen = get_current_screen();
+        if($currentScreen->post_type != SlideshowPluginPostType::$postType || self::$enqueuedFiles)
+            return;
 
 		// Enqueue style
 		wp_enqueue_style(

@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.4.2
-Stable tag: 2.1.18
+Stable tag: 2.1.19
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -106,6 +106,14 @@ slideshow may not be styled.
 
 
 == Changelog ==
+
+= 2.1.19 =
+*   Fixed: Slides are now always floated, despite any parent CSS settings.
+*   Fixed: Slideshow settings will no longer cloud any other posts with their post-meta.
+*   PHP snippet will now only be shown when the current user can edit themes.
+*   Videos in the slideshow will from now on depend on Wordpress' swfobject.js file.
+*   Changed slideshow's script namespace from 'slideshow_script' to 'slideshow-jquery-image-gallery-script'.
+*   Untitled slideshows in the widget form will now display as 'Untitled slideshow', instead of an empty field.
 
 = 2.1.18 =
 *   Text slide descriptions are now displayed in text areas, making editing of long descriptions more convenient.

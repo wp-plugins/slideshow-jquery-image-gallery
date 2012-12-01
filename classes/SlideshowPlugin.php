@@ -142,23 +142,20 @@ class SlideshowPlugin {
 		include(SlideshowPluginMain::getPluginPath() . '/views/' . __CLASS__ . '/slideshow.php');
 		$output .= ob_get_clean();
 
-		// Enqueue flash object creation script
-		wp_enqueue_script(
-			'swfobject',
-			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . 'swfobject.js'
-		);
-
 		// Enqueue slideshow script
 		wp_enqueue_script(
-			'slideshow_script',
+			'slideshow-jquery-image-gallery-script',
 			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.js',
-			array('jquery'),
+			array(
+                'jquery',
+                'swfobject'
+            ),
 			SlideshowPluginMain::$version
 		);
 
 		// Include slideshow settings by localizing them
 		wp_localize_script(
-			'slideshow_script',
+			'slideshow-jquery-image-gallery-script',
 			'SlideshowPluginSettings_' . $sessionID,
 			$settings
 		);
