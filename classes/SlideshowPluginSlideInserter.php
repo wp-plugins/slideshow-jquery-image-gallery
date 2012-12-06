@@ -121,10 +121,18 @@ class SlideshowPluginSlideInserter {
 		if(count($attachments) > 0){
 			foreach($attachments as $attachment){
 				$image = wp_get_attachment_image_src($attachment->ID);
-				if(!$image[3]) $image[0] = SlideshowPluginMain::getPluginUrl() . '/images/SlideshowPluginPostType/no-img.png';
+				if(!is_array($image) || !$image){
+					if(!empty($attachment->guid))
+						$imageSrc = $attachment->guid;
+					else
+						continue;
+				}else{
+					$imageSrc = $image[0];
+				}
+				if(!$imageSrc || empty($imageSrc)) $imageSrc = SlideshowPluginMain::getPluginUrl() . '/images/SlideshowPluginPostType/no-img.png';
 				echo '<tr valign="top">
 					<td class="image">
-						<img width="60" height="60" src="' . $image[0] . '" class="attachment" alt="' . $attachment->post_title . '" title="' . $attachment->post_title . '">
+						<img width="60" height="60" src="' . $imageSrc . '" class="attachment" alt="' . $attachment->post_title . '" title="' . $attachment->post_title . '">
 					</td>
 					<td class="column-title">
 						<strong class="title">

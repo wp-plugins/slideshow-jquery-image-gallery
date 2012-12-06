@@ -19,11 +19,11 @@
 	<?php endif; ?>
 	<tr
 		<?php echo !empty($value['group'])? 'class="group-' . strtolower(str_replace(' ', '-', $value['group'])) . '"': ''; ?>
-		<?php echo !empty($value[5])? 'style="display:none;"': ''; ?>
+		<?php echo !empty($value['dependsOn'])? 'style="display:none;"': ''; ?>
 	>
-		<td><?php echo $value[3]; ?></td>
-		<td><?php echo $inputFields[$key]; ?></td>
-		<td><?php _e('Default', 'slideshow-plugin'); ?>: &#39;<?php echo (isset($value[4]))? $value[4][$value[2]]: $value[2]; ?>&#39;</td>
+		<td><?php echo $value['description']; ?></td>
+		<td><?php echo SlideshowPluginSettingsHandler::getInputField(SlideshowPluginSettingsHandler::$settingsKey, htmlspecialchars($key), $value); ?></td>
+		<td><?php _e('Default', 'slideshow-plugin'); ?>: &#39;<?php echo (isset($value['options']))? $value['options'][$value['default']]: $value['default']; ?>&#39;</td>
 	</tr>
 
 	<?php endforeach; ?>

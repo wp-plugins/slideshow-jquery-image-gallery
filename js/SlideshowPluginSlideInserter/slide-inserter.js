@@ -120,11 +120,28 @@ jQuery(document).ready(function(){
 	});
 
 	/**
-	 * Loop through list items, fill hidden field with loop id
+	 * Loop through list items, setting slide orders
 	 */
 	function slideshowSlideInserterIndexSlidesOrder(){
+		// Loop through sortables
 		jQuery.each(jQuery('.sortable-slides-list').find('li'), function(key, value){
-			jQuery(value).find('.slide_order').attr('value', key + 1);
+
+			// Loop through all input, select and text area boxes
+			jQuery.each(jQuery(this).find('input, select, textarea'), function(key2, input){
+
+				// Remove brackets
+				var name = jQuery(input).attr('name');
+
+				// No name found, skip
+				if(name == undefined)
+					return;
+
+				// Divide name parts
+				name = name.replace(/[\[\]']+/g, ' ').split(' ');
+
+				// Put name with new order ID back on the page
+				jQuery(input).attr('name', name[0] + '[' + (key + 1) + '][' + name[2] + ']');
+			});
 		});
 	}
 
@@ -205,10 +222,11 @@ jQuery(document).ready(function(){
 		imageSlide.find('.postId').attr('value', id);
 
 		// Set names to be saved to the database
-		imageSlide.find('.url').attr('name', 'slide_' + slideshowHighestSlideId + '_url');
-		imageSlide.find('.type').attr('name', 'slide_' + slideshowHighestSlideId + '_type');
-		imageSlide.find('.postId').attr('name', 'slide_' + slideshowHighestSlideId + '_postId');
-		imageSlide.find('.slide_order').attr('name', 'slide_' + slideshowHighestSlideId + '_order');
+		imageSlide.find('.url').attr('name', 'slides[0][url]');
+		imageSlide.find('.urlTarget').attr('name', 'slides[0][urlTarget]');
+		imageSlide.find('.type').attr('name', 'slides[0][type]');
+		imageSlide.find('.postId').attr('name', 'slides[0][postId]');
+		imageSlide.find('.slide_order').attr('name', 'slides[0][order]');
 
 		// Register delete link (only needs to delete from DOM)
 		imageSlide.find('.slideshow-delete-new-slide').click(function(){
@@ -237,12 +255,13 @@ jQuery(document).ready(function(){
 		var textSlide = jQuery('.text-slide-template').find('li').clone();
 
 		// Set names to be saved to the database
-		textSlide.find('.title').attr('name', 'slide_' + slideshowHighestSlideId + '_title');
-		textSlide.find('.description').attr('name', 'slide_' + slideshowHighestSlideId + '_description');
-		textSlide.find('.color').attr('name', 'slide_' + slideshowHighestSlideId + '_color');
-		textSlide.find('.url').attr('name', 'slide_' + slideshowHighestSlideId + '_url');
-		textSlide.find('.type').attr('name', 'slide_' + slideshowHighestSlideId + '_type');
-		textSlide.find('.slide_order').attr('name', 'slide_' + slideshowHighestSlideId + '_order');
+		textSlide.find('.title').attr('name', 'slides[0][title]');
+		textSlide.find('.description').attr('name', 'slides[0][description]');
+		textSlide.find('.color').attr('name', 'slides[0][color]');
+		textSlide.find('.url').attr('name', 'slides[0][url]');
+		textSlide.find('.urlTarget').attr('name', 'slides[0][urlTarget]');
+		textSlide.find('.type').attr('name', 'slides[0][type]');
+		textSlide.find('.slide_order').attr('name', 'slides[0][order]');
 
 		// Register delete link (only needs to delete from DOM)
 		textSlide.find('.slideshow-delete-new-slide').click(function(){
@@ -271,9 +290,9 @@ jQuery(document).ready(function(){
 		var videoSlide = jQuery('.video-slide-template').find('li').clone();
 
 		// Set names to be saved to the database
-		videoSlide.find('.videoId').attr('name', 'slide_' + slideshowHighestSlideId + '_videoId');
-		videoSlide.find('.type').attr('name', 'slide_' + slideshowHighestSlideId + '_type');
-		videoSlide.find('.slide_order').attr('name', 'slide_' + slideshowHighestSlideId + '_order');
+		videoSlide.find('.videoId').attr('name', 'slides[0][videoId]');
+		videoSlide.find('.type').attr('name', 'slides[0][type]');
+		videoSlide.find('.slide_order').attr('name', 'slides[0][order]');
 
 		// Register delete link (only needs to delete from DOM)
 		videoSlide.find('.slideshow-delete-new-slide').click(function(){

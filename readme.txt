@@ -4,8 +4,8 @@ Contributors: stefanboonstra
 Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
-Tested up to: 3.4.2
-Stable tag: 2.1.19
+Tested up to: 3.5
+Stable tag: 2.1.20
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -92,13 +92,13 @@ slideshow may not be styled.
 
 == Screenshots ==
 
-1. Here's what some default slideshows can look like. Sit back, grab a beer, enjoy.
+1. Here's what a default slideshow can look like. Sit back, grab a beer, enjoy.
 
-2. Create a new slideshow. A shortcode and a code snippet of how to call it is already visible.
+2. Create a new slideshow. A shortcode and a code snippet of how to call it are already visible.
 
 3. If you haven't uploaded any images yet, you can do so on the Wordpress media page. Don't forget to insert the images into the slideshow after uploading!
 
-4. Click the 'Insert Image Slide' button in the Slides List to search and pick images from the Wordpress media page.
+4. Click the 'Insert Image Slide' button in the Slides List to search and pick images from the WordPress media page.
 
 5. The images you selected are directly visible in your Slides List, don't forget to save!
 
@@ -106,6 +106,12 @@ slideshow may not be styled.
 
 
 == Changelog ==
+
+= 2.1.20 =
+*   Fixed: Query filters will no longer alter the output of the slideshow.
+*   Fixed: Images not always showing in image inserter popup.
+*   Compatibility with WordPress 3.5 confirmed.
+*   First back-end increment towards version 2.2.0, introducing a more efficient way to store and retrieve the slideshow's settings and slides.
 
 = 2.1.19 =
 *   Fixed: Slides are now always floated, despite any parent CSS settings.
@@ -122,7 +128,7 @@ slideshow may not be styled.
 *   Widget title's HTML tags are now discarded when no widget title is set.
 
 = 2.1.17 =
-*   Fixed: Invalid argument being supplied for the foreach loop in SlideshowPluginPostType on line 352
+*   Fixed: Invalid argument being supplied for the foreach loop in SlideshowPluginPostType on line 352.
 *   Fixed: Undefined index being thrown by URL target setting on slideshow creation.
 *   Video slide now accepts YouTube URLs as well.
 
@@ -138,7 +144,7 @@ slideshow may not be styled.
 *   Added Chinese translation.
 
 = 2.1.14 =
-*   Fixed: Text slide descriptions allow HTML again
+*   Fixed: Text slide descriptions allow HTML again.
 
 = 2.1.13 =
 *   Fixed: PHP security issues.
@@ -211,7 +217,7 @@ slideshow may not be styled.
 *   Play and pause buttons are now available, as is the option not to auto-play and/or loop the slideshow.
 *   Stylesheets no longer partially depend on the website's stylesheet, except for the fonts.
 *   The script and its functional stylesheet are now compressed to save loading time.
-*   Added jQuery sortables script to sort slides
+*   Added jQuery sortables script to sort slides.
 *   Images you've already uploaded and attached to other posts can now be loaded into the slideshow, saving disk space (and time).
 
 = 1.3.5 =
@@ -248,7 +254,7 @@ slideshow may not be styled.
 = 1.2.0 =
 *   Slideshows can now be placed in posts as well, using shortcode [slideshow id=*SlideshowPostId*].
 *   Added a widget that can be loaded with an existing slideshow of choice.
-*   Tested up to version 3.4
+*   Tested up to version 3.4.
 
 = 1.1.0 =
 *   Added jQuery library as Wordpress websites don't seem to load them by default.

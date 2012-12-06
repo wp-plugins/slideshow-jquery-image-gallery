@@ -7,7 +7,7 @@
  *
  * @since 1.2.0
  * @author: Stefan Boonstra
- * @version: 25-09-12
+ * @version: 06-12-12
  */
 class SlideshowPluginShortcode {
 
@@ -51,8 +51,8 @@ class SlideshowPluginShortcode {
 			$postId = $atts['id'];
 
 		$output = '';
-		$settings = SlideshowPluginPostType::getSimpleSettings($postId, null, false);
-		if($settings['setting_avoidFilter'] == 'true'){
+		$settings = SlideshowPluginSettingsHandler::getSettings($postId);
+		if($settings['avoidFilter'] == 'true'){
 			// Filter content after all Wordpress HTML parsers are done, then replace bookmarks with raw HTML
 			add_filter('the_content', array(__CLASS__, 'insertSlideshow'), 999);
 			add_filter('the_excerpt', array(__CLASS__, 'insertSlideshow'), 999);

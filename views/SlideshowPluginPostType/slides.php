@@ -22,16 +22,17 @@
 	<?php if(count($slides) > 0): ?>
 	<?php foreach($slides as $key => $slide):
 		// General values
-		$id = $url = $target = $order = '';
-		if(isset($slide['id']))
-			$id = $slide['id'];
+		$url = $target = $order = '';
 		if(isset($slide['url']))
 			$url = $slide['url'];
 		if(isset($slide['urlTarget']))
 			$target = $slide['urlTarget'];
 		if(isset($slide['order']))
 			$order = $slide['order'];
-			?>
+
+		// The name is used to prefix a setting name with
+		$name = SlideshowPluginSettingsHandler::$slidesKey . '[' . $key . ']';
+		?>
 
 		<li class="widefat sortable-slides-list-item">
 			<?php if($slide['type'] == 'text'):
@@ -47,14 +48,14 @@
 				?>
 
 				<p style="padding: 0 15px 0 5px;">
-					<input type="text" name="slide_<?php echo $id; ?>_title" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
-					<i><?php _e('Description', 'slideshow-plugin'); ?></i><textarea name="slide_<?php echo $id; ?>_description" rows="7" cols="" style="width: 100%;"><?php echo $description; ?></textarea><br />
-					<input type="text" name="slide_<?php echo $id; ?>_color" value="<?php echo $color; ?>" class="color {required:false}" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
+					<input type="text" name="<?php echo $name; ?>[title]" value="<?php echo $title; ?>" /><i><?php _e('Title', 'slideshow-plugin'); ?></i><br />
+					<i><?php _e('Description', 'slideshow-plugin'); ?></i><textarea name="<?php echo $name; ?>[description]" rows="7" cols="" style="width: 100%;"><?php echo $description; ?></textarea><br />
+					<input type="text" name="<?php echo $name; ?>[color]" value="<?php echo $color; ?>" class="color {required:false}" /><i><?php _e('Background color', 'slideshow-plugin'); ?></i><br />
 				</p>
 
 				<p style="float: left; padding: 0 5px;">
-					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
-					<select name="slide_<?php echo $id; ?>_urlTarget">
+					<input type="text" name="<?php echo $name; ?>[url]" value="<?php echo $url; ?>" /><br />
+					<select name="<?php echo $name; ?>[urlTarget]">
 						<option value="_self" <?php selected('_self', $target); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
 						<option value="_blank" <?php selected('_blank', $target); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
 					</select>
@@ -64,8 +65,8 @@
 				</p>
 				<p style="clear: both;"></p>
 
-				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="text" />
-				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
+				<input type="hidden" name="<?php echo $name; ?>[type]" value="text" />
+				<input type="hidden" name="<?php echo $name; ?>[order]" value="<?php echo $order; ?>" class="slide_order" />
 
 			<?php elseif($slide['type'] == 'video'):
 
@@ -76,11 +77,11 @@
 				?>
 
 				<p style="padding: 0 5px;">
-					<input type="text" name="slide_<?php echo $id; ?>_videoId" value="<?php echo $videoId; ?>" /><i><?php _e('Youtube Video ID', 'slideshow-plugin'); ?></i>
+					<input type="text" name="<?php echo $name; ?>[videoId]" value="<?php echo $videoId; ?>" /><i><?php _e('Youtube Video ID', 'slideshow-plugin'); ?></i>
 				</p>
 
-				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="video" />
-				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
+				<input type="hidden" name="<?php echo $name; ?>[type]" value="video" />
+				<input type="hidden" name="<?php echo $name; ?>[order]" value="<?php echo $order; ?>" class="slide_order" />
 
 			<?php elseif($slide['type'] == 'attachment'):
 
@@ -89,13 +90,23 @@
 				if(!isset($attachment))
 					continue;
 
-				$editUrl = admin_url() . '/media.php?attachment_id=' . $attachment->ID . '&amp;action=edit';
 				$image = wp_get_attachment_image_src($attachment->ID);
-				if(!$image[3]) $image[0] = $noPreviewIcon; ?>
+				$imageSrc = '';
+				if(!is_array($image) || !$image){
+					if(!empty($attachment->guid))
+						$imageSrc = $attachment->guid;
+					else
+						continue;
+				}else{
+					$imageSrc = $image[0];
+				}
+				if(!$imageSrc || empty($imageSrc)) $imageSrc = $noPreviewIcon;
+
+				$editUrl = admin_url() . '/media.php?attachment_id=' . $attachment->ID . '&amp;action=edit'; ?>
 
 				<p style="float: left; padding: 0 5px;">
 					<a href="<?php echo $editUrl; ?>" title="<?php _e('Edit', 'slideshow-plugin'); ?> &#34;<?php echo $attachment->post_title; ?>&#34;">
-						<img width="80" height="60" src="<?php echo $image[0]; ?>" class="attachment-80x60" alt="<?php echo $attachment->post_title; ?>" title="<?php echo $attachment->post_title; ?>" />
+						<img width="80" height="60" src="<?php echo $imageSrc; ?>" class="attachment-80x60" alt="<?php echo $attachment->post_title; ?>" title="<?php echo $attachment->post_title; ?>" />
 					</a>
 				</p>
 
@@ -108,8 +119,8 @@
 				<p style="clear: both"></p>
 
 				<p style="float: left; padding: 0 5px;">
-					<input type="text" name="slide_<?php echo $id; ?>_url" value="<?php echo $url; ?>" /><br />
-					<select name="slide_<?php echo $id; ?>_urlTarget">
+					<input type="text" name="<?php echo $name; ?>[url]" value="<?php echo $url; ?>" /><br />
+					<select name="<?php echo $name; ?>[urlTarget]">
 						<option value="_self" <?php selected('_self', $target); ?>><?php _e('Same window', 'slideshow-plugin'); ?></option>
 						<option value="_blank" <?php selected('_blank', $target); ?>><?php _e('New window', 'slideshow-plugin'); ?></option>
 					</select>
@@ -119,9 +130,9 @@
 				</p>
 				<p style="clear: both;"></p>
 
-				<input type="hidden" name="slide_<?php echo $id; ?>_type" value="attachment" />
-				<input type="hidden" name="slide_<?php echo $id; ?>_postId" value="<?php echo $attachment->ID; ?>" />
-				<input type="hidden" name="slide_<?php echo $id; ?>_order" value="<?php echo $order; ?>" class="slide_order" />
+				<input type="hidden" name="<?php echo $name; ?>[type]" value="attachment" />
+				<input type="hidden" name="<?php echo $name; ?>[postId]" value="<?php echo $attachment->ID; ?>" />
+				<input type="hidden" name="<?php echo $name; ?>[order]" value="<?php echo $order; ?>" class="slide_order" />
 
 			<?php else: ?>
 
