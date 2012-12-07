@@ -64,72 +64,76 @@ class SlideshowPluginUpdater {
 		));
 
 		// Loop through slideshow
-		foreach($slideshows as $slideshow){
-			// Get settings
-			$settings = get_post_meta(
-				$slideshow->ID,
-				'settings',
-				true
-			);
+		if(is_array($slideshows) && count($slideshows > 0)){
+			foreach($slideshows as $slideshow){
+				// Get settings
+				$settings = get_post_meta(
+					$slideshow->ID,
+					'settings',
+					true
+				);
+				if(!is_array($settings))
+					$settings = array();
 
-			// Old prefixes
-			$settingsPrefix = 'setting_';
-			$stylePrefix = 'style_';
-			$slidePrefix = 'slide_';
+				// Old prefixes
+				$settingsPrefix = 'setting_';
+				$stylePrefix = 'style_';
+				$slidePrefix = 'slide_';
 
-			// Meta keys
-			$settingsKey = 'settings';
-			$styleSettingsKey = 'styleSettings';
-			$slidesKey = 'slides';
+				// Meta keys
+				$settingsKey = 'settings';
+				$styleSettingsKey = 'styleSettings';
+				$slidesKey = 'slides';
 
-			// Extract key => value into new arrays
-			$newSettings = array();
-			$styleSettings = array();
-			$slides = array();
-			foreach($settings as $key => $value){
-				if($settingsPrefix == substr($key, 0, strlen($settingsPrefix)))
-					$newSettings[substr($key, strlen($settingsPrefix))] = $value;
-				elseif($stylePrefix == substr($key, 0, strlen($stylePrefix)))
-					$styleSettings[substr($key, strlen($stylePrefix))] = $value;
-				elseif($slidePrefix == substr($key, 0, strlen($slidePrefix)))
-					$slides[substr($key, strlen($slidePrefix))] = $value;
-			}
+				// Extract key => value into new arrays
+				$newSettings = array();
+				$styleSettings = array();
+				$slides = array();
+				foreach($settings as $key => $value){
+					if($settingsPrefix == substr($key, 0, strlen($settingsPrefix)))
+						$newSettings[substr($key, strlen($settingsPrefix))] = $value;
+					elseif($stylePrefix == substr($key, 0, strlen($stylePrefix)))
+						$styleSettings[substr($key, strlen($stylePrefix))] = $value;
+					elseif($slidePrefix == substr($key, 0, strlen($slidePrefix)))
+						$slides[substr($key, strlen($slidePrefix))] = $value;
+				}
 
-			// Slides are prefixed with another prefix, their order ID. All settings of one slide should go into an
-			// array referenced by their order ID. Create order lookup array below, then order slides accordingly
-			$slidesOrderLookup = array();
-			foreach($slides as $key => $value){
-				$key = explode('_', $key);
+				// Slides are prefixed with another prefix, their order ID. All settings of one slide should go into an
+				// array referenced by their order ID. Create order lookup array below, then order slides accordingly
+				$slidesOrderLookup = array();
+				foreach($slides as $key => $value){
+					$key = explode('_', $key);
 
-				if($key[1] == 'order')
-					$slidesOrderLookup[$value] = $key[0];
-			}
+					if($key[1] == 'order')
+						$slidesOrderLookup[$value] = $key[0];
+				}
 
-			// Order slides with order lookup array
-			$orderedSlides = array();
-			foreach($slides as $key => $value){
-				$key = explode('_', $key);
+				// Order slides with order lookup array
+				$orderedSlides = array();
+				foreach($slides as $key => $value){
+					$key = explode('_', $key);
 
-				foreach($slidesOrderLookup as $order => $id){
-					if($key[0] == $id){
+					foreach($slidesOrderLookup as $order => $id){
+						if($key[0] == $id){
 
-						// Create array if slot is empty
-						if(!isset($orderedSlides[$order]) || !is_array($orderedSlides[$order]))
-							$orderedSlides[$order] = array();
+							// Create array if slot is empty
+							if(!isset($orderedSlides[$order]) || !is_array($orderedSlides[$order]))
+								$orderedSlides[$order] = array();
 
-						// Add slide value to array
-						$orderedSlides[$order][$key[1]] = $value;
+							// Add slide value to array
+							$orderedSlides[$order][$key[1]] = $value;
 
-						// Slide ID found and value placed in correct order slot, break to next $value
-						break;
+							// Slide ID found and value placed in correct order slot, break to next $value
+							break;
+						}
 					}
 				}
-			}
 
-			// Update post meta
-			update_post_meta($slideshow->ID, $settingsKey, $newSettings);
-			update_post_meta($slideshow->ID, $styleSettingsKey, $styleSettings);
-			update_post_meta($slideshow->ID, $slidesKey, $orderedSlides);
+				// Update post meta
+				update_post_meta($slideshow->ID, $settingsKey, $newSettings);
+				update_post_meta($slideshow->ID, $styleSettingsKey, $styleSettings);
+				update_post_meta($slideshow->ID, $slidesKey, $orderedSlides);
+			}
 		}
 
 		update_option('slideshow-plugin-updated-from-v2-to-v2-1-20', 'updated');

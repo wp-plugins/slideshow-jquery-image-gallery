@@ -177,13 +177,12 @@ class SlideshowPluginPostType {
 
 		// Get settings
 		$settings = SlideshowPluginSettingsHandler::getStyleSettings($post->ID, true);
-		//var_dump($settings);
 
 		// Fill custom style with default css if empty
 		if(isset($settings['custom']) && isset($settings['custom']['value']) && empty($settings['custom']['value'])){
 			ob_start();
 			include(SlideshowPluginMain::getPluginPath() . '/style/SlideshowPlugin/style-custom.css');
-			$settings['style_custom'][1] = ob_get_clean();
+			$settings['custom']['value'] = ob_get_clean();
 		}
 
 		// Include style settings file

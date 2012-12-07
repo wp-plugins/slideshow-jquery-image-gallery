@@ -311,48 +311,45 @@ class SlideshowPluginSettingsHandler {
 
 		// Default values
 		$data = array(
-			'animation' => array('default' => 'slide'),
-			'slideSpeed' => array('default' => '1'),
-			'descriptionSpeed' => array('default' => '0.4'),
-			'intervalSpeed' => array('default' => '5'),
-			'play' => array('default' => 'true'),
-			'loop' => array('default' => 'true'),
-			'slidesPerView' => array('default' => '1'),
-			'width' => array('default' => '0'),
-			'height' => array('default' => '200'),
-			'descriptionHeight' => array('default' => '50'),
-			'stretchImages' => array('default' => 'true'),
-			'controllable' => array('default' => 'true'),
-			'controlPanel' => array('default' => 'false'),
-			'showDescription' => array('default' => 'true'),
-			'hideDescription' => array('default' => 'true'),
-			'random' => array('default' => 'false'),
-			'avoidFilter' => array('default' => 'true')
+			'animation' => 'slide',
+			'slideSpeed' => '1',
+			'descriptionSpeed' => '0.4',
+			'intervalSpeed' => '5',
+			'play' => 'true',
+			'loop' => 'true',
+			'slidesPerView' => '1',
+			'width' => '0',
+			'height' => '200',
+			'descriptionHeight' => '50',
+			'stretchImages' => 'true',
+			'controllable' => 'true',
+			'controlPanel' => 'false',
+			'showDescription' => 'true',
+			'hideDescription' => 'true',
+			'random' => 'false',
+			'avoidFilter' => 'true'
 		);
 
 		// Full definition
 		if($fullDefinition){
-			$data = array_merge_recursive(
-				array(
-					'animation' => array('type' => 'select', 'description' => __('Animation used for transition between slides', 'slideshow-plugin'), 'options' => array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
-					'slideSpeed' => array('type' => 'text', 'description' => __('Number of seconds the slide takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
-					'descriptionSpeed' => array('type' => 'text', 'description' => __('Number of seconds the description takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
-					'intervalSpeed' => array('type' => 'text', 'description' => __('Seconds between changing slides', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
-					'slidesPerView' => array('type' => 'text', 'description' => __('Number of slides to fit into one slide', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-					'width' => array('type' => 'text', 'description' => __('Width of the slideshow, set to parent&#39;s width on 0', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-					'height' => array('type' => 'text', 'description' => __('Height of the slideshow', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-					'descriptionHeight' => array('type' => 'text', 'description' => __('Height of the description boxes', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-					'stretchImages' => array('type' => 'radio', 'description' => __('Fit image into slide (stretching it)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
-					'showDescription' => array('type' => 'radio', 'description' => __('Show title and description', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
-					'hideDescription' => array('type' => 'radio', 'description' => __('Hide description box, it will pop up when a mouse hovers over the slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showDescription]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
-					'play' => array('type' => 'radio', 'description' => __('Automatically slide to the next slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-					'loop' => array('type' => 'radio', 'description' => __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-					'controllable' => array('type' => 'radio', 'description' => __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-					'controlPanel' => array('type' => 'radio', 'description' => __('Show control panel (play and pause button)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-					'random' => array('type' => 'radio', 'description' => __('Randomize slides', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
-					'avoidFilter' => array('type' => 'radio', 'description' => sprintf(__('Avoid content filter (disable if \'%s\' is shown)', 'slideshow-plugin'), SlideshowPluginShortcode::$bookmark), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
-				),
-				$data
+			$data = array(
+				'animation' => array('type' => 'select', 'default' => $data['animation'], 'description' => __('Animation used for transition between slides', 'slideshow-plugin'), 'options' => array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
+				'slideSpeed' => array('type' => 'text', 'default' => $data['slideSpeed'], 'description' => __('Number of seconds the slide takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
+				'descriptionSpeed' => array('type' => 'text', 'default' => $data['descriptionSpeed'], 'description' => __('Number of seconds the description takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
+				'intervalSpeed' => array('type' => 'text', 'default' => $data['intervalSpeed'], 'description' => __('Seconds between changing slides', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
+				'slidesPerView' => array('type' => 'text', 'default' => $data['slidesPerView'], 'description' => __('Number of slides to fit into one slide', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
+				'width' => array('type' => 'text', 'default' => $data['width'], 'description' => __('Width of the slideshow, set to parent&#39;s width on 0', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
+				'height' => array('type' => 'text', 'default' => $data['height'], 'description' => __('Height of the slideshow', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
+				'descriptionHeight' => array('type' => 'text', 'default' => $data['descriptionHeight'], 'description' => __('Height of the description boxes', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
+				'stretchImages' => array('type' => 'radio', 'default' => $data['stretchImages'], 'description' => __('Fit image into slide (stretching it)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
+				'showDescription' => array('type' => 'radio', 'default' => $data['showDescription'], 'description' => __('Show title and description', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
+				'hideDescription' => array('type' => 'radio', 'default' => $data['hideDescription'], 'description' => __('Hide description box, it will pop up when a mouse hovers over the slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showDescription]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
+				'play' => array('type' => 'radio', 'default' => $data['play'], 'description' => __('Automatically slide to the next slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'loop' => array('type' => 'radio', 'default' => $data['loop'], 'description' => __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'controllable' => array('type' => 'radio', 'default' => $data['controllable'], 'description' => __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'controlPanel' => array('type' => 'radio', 'default' => $data['controlPanel'], 'description' => __('Show control panel (play and pause button)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'random' => array('type' => 'radio', 'default' => $data['random'], 'description' => __('Randomize slides', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
+				'avoidFilter' => array('type' => 'radio', 'default' => $data['avoidFilter'], 'description' => sprintf(__('Avoid content filter (disable if \'%s\' is shown)', 'slideshow-plugin'), SlideshowPluginShortcode::$bookmark), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
 			);
 		}
 

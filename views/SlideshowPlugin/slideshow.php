@@ -94,10 +94,7 @@
 								</a>
 							</div>
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"'; ?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
-								<img
-									src="<?php echo htmlspecialchars($imageSrc); ?>"
-									alt="<?php echo htmlspecialchars($attachment->post_title); ?>"
-								/>
+								<img src="<?php echo htmlspecialchars($imageSrc); ?>" alt="<?php echo htmlspecialchars($attachment->post_title); ?>" />
 							</a>
 						</div>
 
