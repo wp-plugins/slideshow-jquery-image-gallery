@@ -35,10 +35,11 @@ different images, settings and styles for each one of them.
 
 = Languages =
 
- - English
- - Dutch
- - Russian (Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
  - Chinese (Translated by [Kevin Tell](http://www.ivygg.com/))
+ - Dutch
+ - English
+ - French (Translated by [Wptheme](http://wptheme.fr/)
+ - Russian (Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
 
  Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
  thanks in advance!
