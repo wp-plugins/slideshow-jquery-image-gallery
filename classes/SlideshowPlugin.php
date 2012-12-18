@@ -3,6 +3,7 @@
  * Class SlideslowPlugin is called whenever a slideshow do_action tag is come across.
  * Responsible for outputting the slideshow's HTML, CSS and Javascript.
  *
+ * @since 1.0.0
  * @author: Stefan Boonstra
  * @version: 06-12-12
  */
@@ -14,6 +15,7 @@ class SlideshowPlugin {
 	/**
 	 * Function deploy prints out the prepared html
 	 *
+	 * @since 1.2.0
 	 * @param int $postId
 	 */
 	static function deploy($postId = null){
@@ -27,13 +29,14 @@ class SlideshowPlugin {
 	 * Passing this function no parameter or passing it a negative one will
 	 * result in a random pick of slideshow
 	 *
+	 * @since 2.1.0
 	 * @param int $postId
 	 * @return String $output
 	 */
 	static function prepare($postId = null){
 		// Get post by its ID, if the ID is not a negative value
 		if(is_numeric($postId) && $postId >= 0)
-			$post = wp_get_single_post($postId);
+			$post = get_post($postId);
 
 		// Get slideshow by slug when it's a non-empty string
 		if(is_string($postId) && !is_numeric($postId) && !empty($postId)){
@@ -66,12 +69,17 @@ class SlideshowPlugin {
 		if(empty($post))
 			return '<!-- Wordpress Slideshow - No slideshows available -->';
 
+		// Log slideshow's issues to be able to track them on the page.
+		$log = array();
+
 		// Get slides
-		$slides = SlideshowPluginSettingsHandler::getSlides($post->ID);
+		$slides = SlideshowPluginSlideshowSettingsHandler::getSlides($post->ID);
+		if(!is_array($slides) || count($slides) <= 0)
+			$log[] = 'No slides were found';
 
 		// Get settings
-		$settings = SlideshowPluginSettingsHandler::getSettings($post->ID);
-		$styleSettings = SlideshowPluginSettingsHandler::getStyleSettings($post->ID);
+		$settings = SlideshowPluginSlideshowSettingsHandler::getSettings($post->ID);
+		$styleSettings = SlideshowPluginSlideshowSettingsHandler::getStyleSettings($post->ID);
 
 		// Randomize if setting is true.
 		if(isset($settings['random']) && $settings['random'] == 'true')
@@ -80,7 +88,9 @@ class SlideshowPlugin {
 		// Enqueue functional sheet
 		wp_enqueue_style(
 			'slideshow_functional_style',
-			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/functional.css'
+			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/functional.css',
+			array(),
+			SlideshowPluginMain::$version
 		);
 
 		// The slideshow's session ID, allows JavaScript and CSS to distinguish between multiple slideshows

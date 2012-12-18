@@ -3,10 +3,10 @@
  Plugin Name: Slideshow
  Plugin URI: http://wordpress.org/extend/plugins/slideshow-jquery-image-gallery/
  Description: The slideshow plugin is easily deployable on your website. Add any image that has already been uploaded to add to your slideshow, add text slides, or even add a video. Options and styles are customizable for every single slideshow on your website.
- Version: 2.1.21
+ Version: 2.1.22
  Requires at least: 3.3
  Author: StefanBoonstra
- Author URI: http://stefanboonstra.com
+ Author URI: http://stefanboonstra.com/
  License: GPLv2
 */
 
@@ -15,13 +15,14 @@
  * methods for the other classes to use like the auto-includer and the
  * base path/url returning method.
  *
+ * @since 1.0.0
  * @author Stefan Boonstra
- * @version 06-12-12
+ * @version 18-12-12
  */
 class SlideshowPluginMain {
 
 	/** Variables */
-	static $version = '2.1.21';
+	static $version = '2.1.22';
 
 	/**
 	 * Bootstraps the application by assigning the right functions to
@@ -36,6 +37,12 @@ class SlideshowPluginMain {
 		// For ajax requests
 		SlideshowPluginAjax::init();
 
+		// Register slideshow post type
+		SlideshowPluginPostType::init();
+
+		// Add general settings page
+		SlideshowPluginGeneralSettings::init();
+
 		// Deploy slideshow on do_action('slideshow_deploy'); hook.
 		add_action('slideshow_deploy', array('SlideshowPlugin', 'deploy'));
 
@@ -45,11 +52,8 @@ class SlideshowPluginMain {
 		// Register widget
 		add_action('widgets_init', array('SlideshowPluginWidget', 'registerWidget'));
 
-		// Register slideshow post type
-		SlideshowPluginPostType::initialize();
-
 		// Initialize plugin updater
-		SlideshowPluginUpdater::init();
+		SlideshowPluginInstaller::init();
 	}
 
 	/**
@@ -93,7 +97,7 @@ class SlideshowPluginMain {
 			$file = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $name . '.php';
 
 			if(is_file($file))
-				require_once($file);
+				require_once $file;
 		}
 
 		spl_autoload_register('slideshowPluginAutoLoader');

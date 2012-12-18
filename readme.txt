@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.1.21
+Stable tag: 2.1.22
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -38,7 +38,7 @@ different images, settings and styles for each one of them.
  - Chinese (Translated by [Kevin Tell](http://www.ivygg.com/))
  - Dutch
  - English
- - French (Translated by [Wptheme](http://wptheme.fr/)
+ - French (Translated by [Wptheme](http://wptheme.fr/))
  - Russian (Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
 
  Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
@@ -108,6 +108,13 @@ slideshow may not be styled.
 
 == Changelog ==
 
+= 2.1.22 =
+*   Added French translation.
+*   Added a "General Settings" page, containing user capability settings.
+*   Cleaned up unnecessary settings that were showing on page.
+*   Replaced the, in WordPress 3.5, deprecated function 'wp_get_single_post' with the 'get_post' function.
+*   Added an on-page error logger to be able to solve back-end issues faster. Nothing is shown when no errors exist, doesn't affect SEO.
+
 = 2.1.21 =
 *   Fixed: Adding new slides was made impossible by a faulty setting.
 *   Fixed: Image tag placed on multiple lines caused some sites to not display images correctly due to an inserted break character.
@@ -117,7 +124,6 @@ slideshow may not be styled.
 *   Fixed: Images not always showing in image inserter popup.
 *   Compatibility with WordPress 3.5 confirmed.
 *   First back-end increment towards version 2.2.0, introducing a more efficient way to store and retrieve the slideshow's settings and slides.
-*   Added French translation
 
 = 2.1.19 =
 *   Fixed: Slides are now always floated, despite any parent CSS settings.

@@ -27,8 +27,8 @@
 
 						<div class="slide slide_<?php echo $i; ?>" <?php if(!empty($color)) echo 'style="background: #' . $color . ';"'; ?> style="height: <?php echo (is_numeric($settings['height']))? $settings['height'] : 0; ?>px;">
 							<a <?php if(!empty($url)) echo 'href="' . $url . '"';?> <?php if(!empty($target)) echo 'target="' . $target . '"'; ?>>
-								<h2><?php echo $title; ?></h2>
-								<p><?php echo $description; ?></p>
+                                <h2><?php echo $title; ?></h2>
+                                <p><?php echo $description; ?></p>
 							</a>
 						</div>
 
@@ -112,15 +112,19 @@
 		<div class="button next transparent"></div>
 	</div>
 
-	<!--<div class="settings" style="display: none;"><?php echo json_encode($settings); ?></div>-->
-
-	<div class="manufacturer">
+	<div class="slideshow_plugin_manufacturer">
 		<a href="http://www.stefanboonstra.com/slideshow/">Wordpress Slideshow</a>
 	</div>
 
-	<div style="display: none;">
-		<?php echo SlideshowPluginMain::$version; ?>
-	</div>
+	<!-- WordPress Slideshow Version <?php echo SlideshowPluginMain::$version; ?> -->
+
+	<?php if(is_array($log) && count($log) > 0): ?>
+	<!-- Error log
+	<?php foreach($log as $logMessage): ?>
+		- <?php echo htmlspecialchars($logMessage); ?>
+	<?php endforeach; ?>
+	-->
+	<?php endif; ?>
 
 	<?php if(!empty($style)): ?>
 	<style type="text/css">
