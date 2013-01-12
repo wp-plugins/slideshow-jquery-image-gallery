@@ -123,6 +123,13 @@ Since the slideshow is most often called after the </head> tag, the slideshow ca
 the website and has to output them on the page. A strict doctype does not allow stylesheets to be in the body of the
 website and thus the slideshow may not be styled.
 
+= Why does Internet Explorer show a big blank space above the slideshow? =
+
+Internet Explorer is a very strict browser, so when a big blank space above your slideshow is showing your page may
+contain some invalid HTML. Most times invalid HTML is caused by placing the slideshow's shortcode or PHP snippet into
+an anchor tag (`<a></a>`) or paragraph tag (`<p></p>`), while you can only place a slideshow within a 'div' element
+(`<div></div>`).
+
 
 == Screenshots ==
 
