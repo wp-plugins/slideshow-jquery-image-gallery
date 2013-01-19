@@ -13,7 +13,7 @@ Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
 
 == Description ==
 
-Slideshow version 2.2.0 Beta is now available for testing. [Click here to check it out!](http://stefanboonstra.com/)
+Slideshow version 2.2.0 Beta is now available for testing. [Click here to try it out!](http://stefanboonstra.com/)
 
 Slideshow provides an easy way to integrate a slideshow for any Wordpress installation.
 
