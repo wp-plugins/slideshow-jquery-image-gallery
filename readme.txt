@@ -164,7 +164,7 @@ personal taste.
 
 == Changelog ==
 
-= 2.2.0 Beta =
+= 2.2.0 =
 *   The slideshow script has been completely renewed, making it more lightweight, more versatile and responsive altogether.
 *   Slideshow now has a continuing loop.
 *   Pagination bullets can now be shown.
@@ -352,6 +352,16 @@ personal taste.
 
 = 1.0.0 =
 *	Initial release.
+
+
+== Upgrade Notice ==
+
+= 2.2.0 =
+This update brings a completely renewed slideshow, which comes with the necessary changes to the way the HTML and CSS is
+built up. To keep your slideshows styled after the update, all slideshows will be reset to the 'Light' or 'Dark'
+stylesheet. Your customized slideshows will remain intact, but it's sensible to create a new custom stylesheet and use
+the old one to customize it with. To support responsiveness, there's also been some changes to the slideshow's settings.
+Any setting you have changed to alter the dimensions of the plugin, may be lost. I'm sorry for the inconvenience.
 
 
 == Links ==
