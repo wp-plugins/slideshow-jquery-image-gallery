@@ -73,18 +73,14 @@ class SlideshowPlugin {
 		// Log slideshow's issues to be able to track them on the page.
 		$log = array();
 
-		// Get slides
-		$slides = SlideshowPluginSlideshowSettingsHandler::getSlides($post->ID);
-		if(!is_array($slides) || count($slides) <= 0)
-			$log[] = 'No slides were found';
+		// Get views
+		$views = SlideshowPluginSlideshowSettingsHandler::getViews($post->ID);
+		if(!is_array($views) || count($views) <= 0)
+			$log[] = 'No views were found';
 
 		// Get settings
 		$settings = SlideshowPluginSlideshowSettingsHandler::getSettings($post->ID);
 		$styleSettings = SlideshowPluginSlideshowSettingsHandler::getStyleSettings($post->ID);
-
-		// Randomize if setting is true.
-		if(isset($settings['random']) && $settings['random'] == 'true')
-			shuffle($slides);
 
 		// Enqueue functional sheet
 		wp_enqueue_style(
@@ -132,13 +128,28 @@ class SlideshowPlugin {
 		// Enqueue slideshow script
 		wp_enqueue_script(
 			'slideshow-jquery-image-gallery-script',
-			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.js',
-			array(
-                'jquery',
-                'swfobject'
-            ),
+			SlideshowPluginMain::getPluginUrl() . '/js/' . __CLASS__ . '/slideshow.min.js',
+			array('jquery'),
 			SlideshowPluginMain::$version
 		);
+
+		// Set dimensionWidth and dimensionHeight if dimensions should be preserved
+		if(isset($settings['preserveSlideshowDimensions']) && $settings['preserveSlideshowDimensions'] == 'true'){
+
+			$aspectRatio = explode(':', $settings['aspectRatio']);
+
+			// Width
+			if(isset($aspectRatio[0]) && is_numeric($aspectRatio[0]))
+				$settings['dimensionWidth'] = $aspectRatio[0];
+			else
+				$settings['dimensionWidth'] = 1;
+
+			// Height
+			if(isset($aspectRatio[1]) && is_numeric($aspectRatio[1]))
+				$settings['dimensionHeight'] = $aspectRatio[1];
+			else
+				$settings['dimensionHeight'] = 1;
+		}
 
 		// Include slideshow settings by localizing them
 		wp_localize_script(

@@ -226,6 +226,59 @@ class SlideshowPluginSlideshowSettingsHandler {
 	}
 
 	/**
+	 * Returns an array of SlideshowPluginSlideshowView objects if $returnAsObjects is true, otherwise returns an array
+	 * of view arrays that contain slide properties.
+	 *
+	 * To prevent the result from being cached set $enableCache to false. It's set to true by default.
+	 *
+	 * @since 2.2.0
+	 * @param int $slideshowId
+	 * @param bool $returnAsObjects (optional, defaults to true)
+	 * @param bool $enableCache (optional, defaults to true)
+	 * @return mixed $views
+	 */
+	static function getViews($slideshowId, $returnAsObjects = true, $enableCache = true){
+
+		// Get slides
+		$slides = self::getSlides($slideshowId, $enableCache);
+
+		// Get settings. Since in version 2.2.X slides aren't put into views yet, this has to be done manually
+		$settings = SlideshowPluginSlideshowSettingsHandler::getSettings($slideshowId, false, $enableCache);
+		$slidesPerView = 1;
+		if(isset($settings['slidesPerView']))
+			$slidesPerView = $settings['slidesPerView'];
+
+		// Loop through slides, forcing them into views
+		$i = 0;
+		$viewId = -1;
+		$views = array();
+		if(is_array($slides)){
+			foreach($slides as $slide){
+
+				// Create new view when view is full or not yet created
+				if($i % $slidesPerView == 0){
+
+					$viewId++;
+					if($returnAsObjects)
+						$views[$viewId] = new SlideshowPluginSlideshowView();
+					else
+						$views[$viewId] = array();
+				}
+
+				// Add slide to view
+				if($returnAsObjects)
+					$views[$viewId]->addSlide($slide);
+				else
+					$views[$viewId][] = $slide;
+
+				$i++;
+			}
+		}
+
+		return $views;
+	}
+
+	/**
 	 * Get new settings from $_POST variable and merge them with
 	 * the old and default settings.
 	 *
@@ -245,7 +298,6 @@ class SlideshowPluginSlideshowSettingsHandler {
 		// Old settings
 		$oldSettings = self::getSettings($postId);
 		$oldStyleSettings = self::getStyleSettings($postId);
-		$oldSlides = self::getSlides($postId);
 
 		// Get new settings from $_POST, making sure they're arrays
 		$newPostSettings = $newPostStyleSettings = $newPostSlides = array();
@@ -328,17 +380,25 @@ class SlideshowPluginSlideshowSettingsHandler {
 			'slideSpeed' => '1',
 			'descriptionSpeed' => '0.4',
 			'intervalSpeed' => '5',
-			'play' => 'true',
-			'loop' => 'true',
 			'slidesPerView' => '1',
-			'width' => '0',
+			'maxWidth' => '0',
+			'preserveSlideshowDimensions' => 'true',
+			'aspectRatio' => '4:1',
 			'height' => '200',
-			'descriptionHeight' => '50',
 			'stretchImages' => 'true',
-			'controllable' => 'true',
-			'controlPanel' => 'false',
 			'showDescription' => 'true',
 			'hideDescription' => 'true',
+			'enableResponsiveness' => 'true',
+//			'descriptionHeight' => '50',
+			'play' => 'true',
+			'loop' => 'true',
+			'pauseOnHover' => 'true',
+			'controllable' => 'true',
+			'hideNavigationButtons' => 'false',
+			'showPagination' => 'true',
+			'hidePagination' => 'true',
+			'controlPanel' => 'false',
+			'hideControlPanel' => 'true',
 			'random' => 'false',
 			'avoidFilter' => 'true'
 		);
@@ -353,21 +413,29 @@ class SlideshowPluginSlideshowSettingsHandler {
 		// Full definition
 		if($fullDefinition){
 			$data = array(
-				'animation' => array('type' => 'select', 'default' => $data['animation'], 'description' => __('Animation used for transition between slides', 'slideshow-plugin'), 'options' => array('slide' => __('Slide', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
+				'animation' => array('type' => 'select', 'default' => $data['animation'], 'description' => __('Animation used for transition between slides', 'slideshow-plugin'), 'options' => array('slide' => __('Slide Left', 'slideshow-plugin'), 'slideRight' => __('Slide Right', 'slideshow-plugin'), 'slideUp' => __('Slide Up', 'slideshow-plugin'), 'slideDown' => __('Slide Down', 'slideshow-plugin'), 'directFade' => __('Direct Fade', 'slideshow-plugin'), 'fade' => __('Fade', 'slideshow-plugin'), 'random' => __('Random Animation', 'slideshow-plugin')), 'group' => __('Animation', 'slideshow-plugin')),
 				'slideSpeed' => array('type' => 'text', 'default' => $data['slideSpeed'], 'description' => __('Number of seconds the slide takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
 				'descriptionSpeed' => array('type' => 'text', 'default' => $data['descriptionSpeed'], 'description' => __('Number of seconds the description takes to slide in', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
 				'intervalSpeed' => array('type' => 'text', 'default' => $data['intervalSpeed'], 'description' => __('Seconds between changing slides', 'slideshow-plugin'), 'group' => __('Animation', 'slideshow-plugin')),
 				'slidesPerView' => array('type' => 'text', 'default' => $data['slidesPerView'], 'description' => __('Number of slides to fit into one slide', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-				'width' => array('type' => 'text', 'default' => $data['width'], 'description' => __('Width of the slideshow, set to parent&#39;s width on 0', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-				'height' => array('type' => 'text', 'default' => $data['height'], 'description' => __('Height of the slideshow', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-				'descriptionHeight' => array('type' => 'text', 'default' => $data['descriptionHeight'], 'description' => __('Height of the description boxes', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
-				'stretchImages' => array('type' => 'radio', 'default' => $data['stretchImages'], 'description' => __('Fit image into slide (stretching it)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
+				'maxWidth' => array('type' => 'text', 'default' => $data['maxWidth'], 'description' => __('Maximum width. When maximum width is 0, maximum width is ignored', 'slideshow-plugin'), 'group' => __('Display', 'slideshow-plugin')),
+				'preserveSlideshowDimensions' => array('type' => 'radio', 'default' => $data['preserveSlideshowDimensions'], 'description' => __('Shrink height when width shrinks (Fixed height can be defined when setting this value to \'No\')', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
+				'aspectRatio' => array('type' => 'text', 'default' => $data['aspectRatio'], 'description' => sprintf('<a href="' . __('http://en.wikipedia.org/wiki/Aspect_ratio_(image)', 'slideshow-plugin') . '" title="' . __('More info', 'slideshow-plugin') . '" target="_blank">' . __('Proportional relationship%s between width and height (width:height)', 'slideshow-plugin'), '</a>'), 'dependsOn' => array('settings[preserveSlideshowDimensions]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
+				'height' => array('type' => 'text', 'default' => $data['height'], 'description' => __('Slideshow\'s height', 'slideshow-plugin'), 'dependsOn' => array('settings[preserveSlideshowDimensions]', 'false'), 'group' => __('Display', 'slideshow-plugin')),
+				'stretchImages' => array('type' => 'radio', 'default' => $data['stretchImages'], 'description' => __('Fit image into slide (Stretch image)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
 				'showDescription' => array('type' => 'radio', 'default' => $data['showDescription'], 'description' => __('Show title and description', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Display', 'slideshow-plugin')),
-				'hideDescription' => array('type' => 'radio', 'default' => $data['hideDescription'], 'description' => __('Hide description box, it will pop up when a mouse hovers over the slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showDescription]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
+				'hideDescription' => array('type' => 'radio', 'default' => $data['hideDescription'], 'description' => __('Hide description box, pop up when mouse hovers over', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showDescription]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
+				'enableResponsiveness' => array('type' => 'radio', 'default' => $data['enableResponsiveness'], 'description' => __('Enable responsiveness (Shrink slideshow\'s width when page\'s width shrinks)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showDescription]', 'true'), 'group' => __('Display', 'slideshow-plugin')),
+//				'descriptionHeight' => array('type' => 'text', 'default' => $data['descriptionHeight'], 'description' => __('Height of the description boxes', 'slideshow-plugin'), 'dependsOn' => array('settings[hideDescription]', 'false'), 'group' => __('Display', 'slideshow-plugin')),
 				'play' => array('type' => 'radio', 'default' => $data['play'], 'description' => __('Automatically slide to the next slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
 				'loop' => array('type' => 'radio', 'default' => $data['loop'], 'description' => __('Return to the beginning of the slideshow after last slide', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-				'controllable' => array('type' => 'radio', 'default' => $data['controllable'], 'description' => __('Activate buttons (so the user can scroll through the slides)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
-				'controlPanel' => array('type' => 'radio', 'default' => $data['controlPanel'], 'description' => __('Show control panel (play and pause button)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'pauseOnHover' => array('type' => 'radio', 'default' => $data['loop'], 'description' => __('Pause slideshow when mouse hovers over', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'controllable' => array('type' => 'radio', 'default' => $data['controllable'], 'description' => __('Activate navigation buttons', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'hideNavigationButtons' => array('type' => 'radio', 'default' => $data['hideNavigationButtons'], 'description' => __('Hide navigation buttons, show when mouse hovers over', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[controllable]', 'true'), 'group' => __('Control', 'slideshow-plugin')),
+				'showPagination' => array('type' => 'radio', 'default' => $data['showPagination'], 'description' => __('Activate pagination', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'hidePagination' => array('type' => 'radio', 'default' => $data['hidePagination'], 'description' => __('Hide pagination, show when mouse hovers over', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[showPagination]', 'true'), 'group' => __('Control', 'slideshow-plugin')),
+				'controlPanel' => array('type' => 'radio', 'default' => $data['controlPanel'], 'description' => __('Activate control panel (play and pause button)', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Control', 'slideshow-plugin')),
+				'hideControlPanel' => array('type' => 'radio', 'default' => $data['hideControlPanel'], 'description' => __('Hide control panel, show when mouse hovers over', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'dependsOn' => array('settings[controlPanel]', 'true'), 'group' => __('Control', 'slideshow-plugin')),
 				'random' => array('type' => 'radio', 'default' => $data['random'], 'description' => __('Randomize slides', 'slideshow-plugin'), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin')),
 				'avoidFilter' => array('type' => 'radio', 'default' => $data['avoidFilter'], 'description' => sprintf(__('Avoid content filter (disable if \'%s\' is shown)', 'slideshow-plugin'), SlideshowPluginShortcode::$bookmark), 'options' => array('true' => $yes, 'false' => $no), 'group' => __('Miscellaneous', 'slideshow-plugin'))
 			);
@@ -423,9 +491,10 @@ class SlideshowPluginSlideshowSettingsHandler {
 	 * @param string $settingsKey
 	 * @param string $settingsName
 	 * @param mixed $settings
+	 * @param bool $hideDependentValues (optional, defaults to true)
 	 * @return mixed $inputField
 	 */
-	static function getInputField($settingsKey, $settingsName, $settings){
+	static function getInputField($settingsKey, $settingsName, $settings, $hideDependentValues = true){
 
 		if(!is_array($settings) || empty($settings) || empty($settingsName))
 			return null;
@@ -433,7 +502,7 @@ class SlideshowPluginSlideshowSettingsHandler {
 		$inputField = '';
 		$name = $settingsKey . '[' . $settingsName . ']';
 		$displayValue = (!isset($settings['value']) || (empty($settings['value']) && !is_numeric($settings['value'])) ? $settings['default'] : $settings['value']);
-		$class = ((isset($settings['dependsOn']))? 'depends-on-field-value ' . $settings['dependsOn'][0] . ' ' . $settings['dependsOn'][1] . ' ': '') . $settingsKey . '-' . $settingsName;
+		$class = ((isset($settings['dependsOn']) && $hideDependentValues)? 'depends-on-field-value ' . $settings['dependsOn'][0] . ' ' . $settings['dependsOn'][1] . ' ': '') . $settingsKey . '-' . $settingsName;
 		switch($settings['type']){
 			case 'text':
 				$inputField .= '<input
