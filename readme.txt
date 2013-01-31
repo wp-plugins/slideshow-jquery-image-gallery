@@ -40,8 +40,8 @@ different images, settings and styles for each one of them.
  - Dutch
  - English
  - French (60% Translated by [Wptheme](http://wptheme.fr/))
- - Spanish (62% Translated by [Violeta Rosales](https://twitter.com/violetisha))
  - Russian (56% Translated by [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
+ - Spanish (62% Translated by [Violeta Rosales](https://twitter.com/violetisha))
 
 Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. Many
 thanks in advance!
