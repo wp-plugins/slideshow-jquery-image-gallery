@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 14:26+0100\n"
-"PO-Revision-Date: 2013-01-31 14:27+0100\n"
+"POT-Creation-Date: 2013-02-01 15:08+0100\n"
+"PO-Revision-Date: 2013-02-01 15:08+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Kevin Tell\n"
 "Language: zh_CN\n"
@@ -152,7 +152,7 @@ msgid "Fit image into slide (stretching it)"
 msgstr "图片适应显示 (即拉伸图片"
 
 #: classes/SlideshowPluginInstaller.php:399
-#: classes/SlideshowPluginSlideshowSettingsHandler.php:426
+#: classes/SlideshowPluginSlideshowSettingsHandler.php:427
 msgid "Show title and description"
 msgstr "显示标题和描述"
 
@@ -301,8 +301,8 @@ msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:422
 msgid ""
-"Shrink height when width shrinks (Fixed height can be defined when setting "
-"this value to 'No')"
+"Shrink slideshow's height when width shrinks (Fixed height can be defined "
+"when setting this value to 'No')"
 msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:423
@@ -315,7 +315,9 @@ msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:423
 #, php-format
-msgid "Proportional relationship%s between width and height (width:height)"
+msgid ""
+"Proportional relationship%s between slideshow's width and height (width:"
+"height)"
 msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:424
@@ -326,13 +328,13 @@ msgstr ""
 msgid "Fit image into slide (Stretch image)"
 msgstr ""
 
-#: classes/SlideshowPluginSlideshowSettingsHandler.php:427
-msgid "Hide description box, pop up when mouse hovers over"
+#: classes/SlideshowPluginSlideshowSettingsHandler.php:426
+msgid ""
+"Enable responsiveness (Shrink slideshow's width when page's width shrinks)"
 msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:428
-msgid ""
-"Enable responsiveness (Shrink slideshow's width when page's width shrinks)"
+msgid "Hide description box, pop up when mouse hovers over"
 msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:432

@@ -5,7 +5,7 @@
  *
  * @since 1.0.0
  * @author: Stefan Boonstra
- * @version: 18-12-12
+ * @version: 01-02-2013
  */
 class SlideshowPluginPostType {
 
@@ -20,7 +20,8 @@ class SlideshowPluginPostType {
 	 */
 	static function init(){
 		add_action('init', array(__CLASS__, 'registerSlideshowPostType'));
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue'));
+		add_action('wp_print_styles', array(__CLASS__, 'enqueue'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueAdmin'));
 		add_action('save_post', array('SlideshowPluginSlideshowSettingsHandler', 'save'));
 	}
 
@@ -79,12 +80,32 @@ class SlideshowPluginPostType {
 	}
 
 	/**
+	 * Enqueues the styles that have to be placed in the header
+	 *
+	 * TODO The functional stylesheet needs to move to the bottom of the page again, once the stylesheets of the plugin
+	 * TODO can be loaded beneath the functional stylesheet.
+	 *
+	 * @since 2.2.0
+	 */
+	static function enqueue(){
+
+		// Functional stylesheet
+		wp_enqueue_style(
+			'slideshow_functional_style',
+			SlideshowPluginMain::getPluginUrl() . '/style/SlideshowPlugin/functional.css',
+			array(),
+			SlideshowPluginMain::$version
+		);
+	}
+
+	/**
 	 * Enqueues scripts and stylesheets for when the admin page
 	 * is a slideshow edit page.
 	 *
 	 * @since 2.1.11
 	 */
-	static function enqueue(){
+	static function enqueueAdmin(){
+
         // Return when not on a slideshow edit page.
 		$currentScreen = get_current_screen();
 		if($currentScreen->post_type != self::$postType)

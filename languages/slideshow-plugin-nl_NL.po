@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slideshow Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 14:08+0100\n"
-"PO-Revision-Date: 2013-01-31 14:24+0100\n"
+"POT-Creation-Date: 2013-02-01 15:06+0100\n"
+"PO-Revision-Date: 2013-02-01 15:08+0100\n"
 "Last-Translator: Stefan Boonstra <stefanboonstra@hotmail.com>\n"
 "Language-Team: Stefan Boonstra <wordpress@stefanboonstra.com>\n"
 "Language: nl_NL\n"
@@ -154,7 +154,7 @@ msgid "Fit image into slide (stretching it)"
 msgstr "Pas afbeelding in de slideshow (oprekken)"
 
 #: classes/SlideshowPluginInstaller.php:399
-#: classes/SlideshowPluginSlideshowSettingsHandler.php:426
+#: classes/SlideshowPluginSlideshowSettingsHandler.php:427
 msgid "Show title and description"
 msgstr "Toon titel en beschrijving"
 
@@ -306,11 +306,11 @@ msgstr ""
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:422
 msgid ""
-"Shrink height when width shrinks (Fixed height can be defined when setting "
-"this value to 'No')"
+"Shrink slideshow's height when width shrinks (Fixed height can be defined "
+"when setting this value to 'No')"
 msgstr ""
-"Maak hoogte kleiner wanneer breedte kleiner wordt (Vastgestelde hoogte moet "
-"worden ingesteld als deze instelling op 'Nee' staat)"
+"Krimp de slideshow's hoogte wanneer de breedte kleiner wordt (Vastgestelde "
+"hoogte kan worden ingesteld als deze instelling op 'Nee' staat)"
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:423
 msgid "http://en.wikipedia.org/wiki/Aspect_ratio_(image)"
@@ -322,8 +322,12 @@ msgstr "Meer informatie"
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:423
 #, php-format
-msgid "Proportional relationship%s between width and height (width:height)"
-msgstr "Proportionele verhouding%s tussen breedte en hoogte (breedte:hoogte)"
+msgid ""
+"Proportional relationship%s between slideshow's width and height (width:"
+"height)"
+msgstr ""
+"Proportionele verhouding%s tussen de slideshow's breedte en hoogte (breedte:"
+"hoogte)"
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:424
 msgid "Slideshow's height"
@@ -333,18 +337,18 @@ msgstr "Slideshow's hoogte"
 msgid "Fit image into slide (Stretch image)"
 msgstr "Pas afbeelding in de slideshow (Afbeedling uitrekken)"
 
-#: classes/SlideshowPluginSlideshowSettingsHandler.php:427
-msgid "Hide description box, pop up when mouse hovers over"
-msgstr ""
-"Verbeg beschrijving, toon deze alleen wanneer de muisaanwijzer boven de "
-"slideshow is"
-
-#: classes/SlideshowPluginSlideshowSettingsHandler.php:428
+#: classes/SlideshowPluginSlideshowSettingsHandler.php:426
 msgid ""
 "Enable responsiveness (Shrink slideshow's width when page's width shrinks)"
 msgstr ""
 "Gebruik responsiviteit (Maak slideshow smaller wanneer de pagina smaller "
 "wordt)"
+
+#: classes/SlideshowPluginSlideshowSettingsHandler.php:428
+msgid "Hide description box, pop up when mouse hovers over"
+msgstr ""
+"Verbeg beschrijving, toon deze alleen wanneer de muisaanwijzer boven de "
+"slideshow is"
 
 #: classes/SlideshowPluginSlideshowSettingsHandler.php:432
 msgid "Pause slideshow when mouse hovers over"
