@@ -20,8 +20,9 @@ class SlideshowPluginPostType {
 	 */
 	static function init(){
 		add_action('init', array(__CLASS__, 'registerSlideshowPostType'));
-		add_action('wp_print_styles', array(__CLASS__, 'enqueue'));
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueAdmin'));
+		add_action('wp_print_styles', array(__CLASS__, 'enqueueStyles'));
+		add_action('admin_print_styles', array(__CLASS__, 'enqueueAdminStyles'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueueAdminScripts'));
 		add_action('save_post', array('SlideshowPluginSlideshowSettingsHandler', 'save'));
 	}
 
@@ -85,9 +86,9 @@ class SlideshowPluginPostType {
 	 * TODO The functional stylesheet needs to move to the bottom of the page again, once the stylesheets of the plugin
 	 * TODO can be loaded beneath the functional stylesheet.
 	 *
-	 * @since 2.2.0
+	 * @since 2.2.1
 	 */
-	static function enqueue(){
+	static function enqueueStyles(){
 
 		// Functional stylesheet
 		wp_enqueue_style(
@@ -99,12 +100,31 @@ class SlideshowPluginPostType {
 	}
 
 	/**
-	 * Enqueues scripts and stylesheets for when the admin page
-	 * is a slideshow edit page.
+	 * Enqueues the admin stylesheets when one a slideshow edit page.
+	 *
+	 * @since 2.2.2
+	 */
+	static function enqueueAdminStyles(){
+
+		// Return when not on a slideshow edit page.
+		$currentScreen = get_current_screen();
+		if($currentScreen->post_type != self::$postType)
+			return;
+
+		wp_enqueue_style(
+			'slideshow-plugin-post-type-stylesheet',
+			SlideshowPluginMain::getPluginUrl() . '/style/' . __CLASS__ . '/style.css',
+			array(),
+			SlideshowPluginMain::$version
+		);
+	}
+
+	/**
+	 * Enqueues scripts for when the admin page is a slideshow edit page.
 	 *
 	 * @since 2.1.11
 	 */
-	static function enqueueAdmin(){
+	static function enqueueAdminScripts(){
 
         // Return when not on a slideshow edit page.
 		$currentScreen = get_current_screen();

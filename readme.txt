@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -37,6 +37,7 @@ different images, settings and styles for each one of them.
 = Languages =
 
  - Chinese (27% Translated by [Kevin Tell](http://www.ivygg.com/))
+ - Czech (100% Translated by Edhel)
  - Dutch
  - English
  - French (60% Translated by [Wptheme](http://wptheme.fr/))
@@ -163,6 +164,13 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.2 =
+*   Fixed: Float and size bugs caused by the maximum width element.
+*   Fixed: PHP errors were showing in 'Delete slide' links.
+*   Live width calculations have been halved to improve performance.
+*   Default settings have been tuned to cater better to most users.
+*   Added Czech translation by Edhel.
 
 = 2.2.1 =
 *   Fixed: A bug in the width calculations caused slideshows in width-less elements to be hidden.
@@ -360,16 +368,6 @@ personal taste.
 
 = 1.0.0 =
 *	Initial release.
-
-
-== Upgrade Notice ==
-
-= 2.2.0 =
-This update brings a completely renewed slideshow, which comes with the necessary changes to the way the HTML and CSS is
-built up. To keep your slideshows styled after the update, all slideshows will be reset to the 'Light' or 'Dark'
-stylesheet. Your customized slideshows will remain intact, but it's sensible to create a new custom stylesheet and use
-the old one to customize it with. To support responsiveness, there's also been some changes to the slideshow's settings.
-Any setting you have changed to alter the dimensions of the plugin, may be lost. I'm sorry for the inconvenience.
 
 
 == Links ==
