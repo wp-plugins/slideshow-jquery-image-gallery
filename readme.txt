@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -164,6 +164,10 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.3 =
+*   Fixed: A 'console.log();' message presumably caused Internet Explorer to have problems when inserting slides.
+*   Fixed: Slideshows that are hidden on page's load now wait to become visible before calculating their size.
 
 = 2.2.2 =
 *   Fixed: Float and size bugs caused by the maximum width element.
