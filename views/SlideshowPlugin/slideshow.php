@@ -1,10 +1,4 @@
-<div
-	class="slideshow_container slideshow_container_<?php echo $sessionID; ?>"
-	style="
-		<?php echo (isset($settings['preserveSlideshowDimensions']) && $settings['preserveSlideshowDimensions'] == 'false' && isset($settings['height']) && $settings['height'] > 0) ? 'height: ' . $settings['height'] . 'px; ' : ''; ?>
-		<?php echo (isset($settings['maxWidth']) && $settings['maxWidth'] > 0) ? 'max-width: ' . $settings['maxWidth'] . 'px;' : ''; ?>
-	"
->
+<div class="slideshow_container slideshow_container_<?php echo $sessionID; ?>" style="<?php echo (isset($settings['preserveSlideshowDimensions']) && $settings['preserveSlideshowDimensions'] == 'false' && isset($settings['height']) && $settings['height'] > 0) ? 'height: ' . $settings['height'] . 'px;' : ''; ?> <?php echo (isset($settings['maxWidth']) && $settings['maxWidth'] > 0) ? 'max-width: ' . $settings['maxWidth'] . 'px;' : ''; ?>">
 
 	<div class="slideshow_controlPanel slideshow_transparent"><ul><li class="slideshow_togglePlay"></li></ul></div>
 
@@ -23,10 +17,6 @@
 
 		?>
 
-	</div>
-
-	<div class="slideshow_plugin_manufacturer">
-		<a href="http://www.stefanboonstra.com/slideshow/">Wordpress Slideshow</a>
 	</div>
 
 	<!-- WordPress Slideshow Version <?php echo SlideshowPluginMain::$version; ?> -->

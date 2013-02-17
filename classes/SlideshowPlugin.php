@@ -111,6 +111,14 @@ class SlideshowPlugin {
 			$style = str_replace('.slideshow_container', '.slideshow_container_' . $sessionID, $style);
 		}
 
+		// Register YouTube API to enqueue when necessary
+//		wp_register_script(
+//			'slideshow-jquery-image-gallery-youtube-iframe-api',
+//			(isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://www.youtube.com/iframe_api',
+//			array(),
+//			SlideshowPluginMain::$version
+//		);
+
 		// Include output file to store output in $output.
 		$output = '';
 		ob_start();

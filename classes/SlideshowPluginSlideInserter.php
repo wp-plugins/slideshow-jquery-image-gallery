@@ -77,10 +77,12 @@ class SlideshowPluginSlideInserter {
 	 * @since 2.0.0
 	 */
 	static function printSearchResults(){
+		global $wpdb;
+
 		// Numberposts and offset
 		$numberPosts = 10;
 		$offset = 0;
-		if(isset($_POST['offset']))
+		if(isset($_POST['offset']) && is_numeric($_POST['offset']))
 			$offset = $_POST['offset'];
 
 		// Get attachments with a title alike the search string, needs to be filtered
@@ -94,6 +96,39 @@ class SlideshowPluginSlideInserter {
 			'suppress_filters' => false
 		));
 		remove_filter('posts_where', array(__CLASS__, 'printSearchResultsWhereFilter'));
+
+		// Look for images by their file's name when not enough matching results were found
+		if(count($attachments) < $numberPosts){
+			$searchString = $wpdb->escape($_POST['search']);
+
+			$query = new WP_Query(array(
+				'post_type' => 'attachment',
+				'post_status' => 'inherit',
+				'posts_per_page' => $numberPosts - count($attachments),
+				'meta_query' => array(
+					array(
+						'key' => '_wp_attached_file',
+						'value' => $searchString,
+						'compare' => 'LIKE'
+					)
+				)
+			));
+
+			$queryAttachments = $query->get_posts();
+			if(is_array($queryAttachments) && count($queryAttachments) > 0){
+
+				for($i = 0; $i < count($queryAttachments); $i++){
+
+					$inAttachmentsArray = false;
+					foreach($attachments as $attachmentValue)
+						if($attachmentValue->ID == $queryAttachments[$i]->ID)
+							$inAttachmentsArray = true;
+
+					if(!$inAttachmentsArray)
+						$attachments[] = $queryAttachments[$i];
+				}
+			}
+		}
 
 		// Check if there are enough attachments to print a 'Load more images' button
 		$loadMoreResults = false;
@@ -165,11 +200,14 @@ class SlideshowPluginSlideInserter {
 	static function printSearchResultsWhereFilter($where){
 		global $wpdb;
 
+		$searchString = $_POST['search'];
+		$searchString = $wpdb->escape($searchString);
+
 		if(isset($_POST['search']))
 			$where .= $wpdb->prepare(
 				" AND (post_title LIKE '%%%s%%' OR ID LIKE '%%%s%%') ",
-				$_POST['search'],
-				$_POST['search']
+				$searchString,
+				$searchString
 			);
 
 		return $where;
