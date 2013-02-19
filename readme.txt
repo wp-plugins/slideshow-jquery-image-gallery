@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -164,6 +164,9 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.5 =
+*   Fixed: Slideshow settings nonce prevented 3.4 and older WP users from saving their slideshows.
 
 = 2.2.4 =
 *   Fixed: Video slideshows will now work on mobile devices supported by YouTube.

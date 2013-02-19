@@ -307,6 +307,9 @@ class SlideshowPluginPostType {
 	static function settingsMetaBox(){
 		global $post;
 
+		// Nonce
+		wp_nonce_field(SlideshowPluginSlideshowSettingsHandler::$nonceAction, SlideshowPluginSlideshowSettingsHandler::$nonceName);
+
 		// Get settings
 		$settings = SlideshowPluginSlideshowSettingsHandler::getSettings($post->ID, true);
 
