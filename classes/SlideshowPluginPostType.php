@@ -106,6 +106,10 @@ class SlideshowPluginPostType {
 	 */
 	static function enqueueAdminStyles(){
 
+		// Return when function doesn't exist
+		if(!function_exists('get_current_screen'))
+			return;
+
 		// Return when not on a slideshow edit page.
 		$currentScreen = get_current_screen();
 		if($currentScreen->post_type != self::$postType)
@@ -125,6 +129,10 @@ class SlideshowPluginPostType {
 	 * @since 2.1.11
 	 */
 	static function enqueueAdminScripts(){
+
+		// Return if function doesn't exist
+		if(!function_exists('get_current_screen'))
+			return;
 
         // Return when not on a slideshow edit page.
 		$currentScreen = get_current_screen();

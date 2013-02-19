@@ -228,6 +228,11 @@ class SlideshowPluginSlideInserter {
 	 * @since 2.0.0
 	 */
 	static function enqueueFiles(){
+
+		// Return if function doesn't exist
+		if(!function_exists('get_current_screen'))
+			return;
+
         // Return when not on a slideshow edit page, or files have already been included.
         $currentScreen = get_current_screen();
         if($currentScreen->post_type != SlideshowPluginPostType::$postType || self::$enqueuedFiles)
