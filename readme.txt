@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: slideshow, slider, slide, slides, show, images, image, photo, gallery, galleries, jquery, javascript, video, text
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.2.8
+Stable tag: 2.2.9
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -164,6 +164,10 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.9 =
+*   Fixed: Descriptions didn't show when 'Hide descriptions' was set to 'No'.
+*   Fixed: Title was given wrong size by CSS.
 
 = 2.2.8 =
 *   Fixed: Images that have a, to WordPress, unknown size weren't able to show on all websites.
