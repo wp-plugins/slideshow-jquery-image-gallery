@@ -48,8 +48,9 @@ different images, settings and styles for each one of them.
 
 Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. The original
 translation file can be downloaded
-[by clicking here](http://plugins.svn.wordpress.org/slideshow-jquery-image-gallery/trunk/languages/slideshow-plugin-original.po).
-This file can be easily edited with [PoEdit](http://www.poedit.net/), a free translation tool. Many thanks in advance!
+[by clicking here](http://plugins.svn.wordpress.org/slideshow-jquery-image-gallery/trunk/languages/slideshow-plugin-original.po)
+and saving the page to your computer. This file can be easily edited with [PoEdit](http://www.poedit.net/), a free
+translation tool. Many thanks in advance!
 
 = Project board =
 
