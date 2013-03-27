@@ -45,6 +45,7 @@ different images, settings and styles for each one of them.
  - Russian (100% Translated by Dmitry Fatakov and [Oleg Fritz](http://www.facebook.com/profile.php?id=100001331241069))
  - Spanish (61% Translated by [Violeta Rosales](https://twitter.com/violetisha))
  - Swedish (100% Translated by [Åke Isacsson](http://www.nojdkund.se/))
+ - Turkish (100% Translated by [İlker Akdoğan](http://www.kelkirpi.net/))
 
 Feel free to send me your own translation of the plugin to my e-mail address: wordpress@stefanboonstra.com. The original
 translation file can be downloaded
@@ -130,12 +131,6 @@ scripts.
 - Often when the slideshow isn't showing, there's a javascript error somewhere on the page and this error has caused
 javascript to break. For the slideshow to work again, this error needs to be fixed. Check if any errors were thrown by
 opening Google Chrome or Firefox (with Firebug installed) and press the 'F12' key. Errors show in the console tab.
-
-= The slideshow looks like it's not styled =
-
-Since the slideshow is most often called after the </head> tag, the slideshow can't print it's styles in the head of
-the website and has to output them on the page. A strict doctype does not allow stylesheets to be in the body of the
-website and thus the slideshow may not be styled.
 
 = Why does Internet Explorer show a big blank space above the slideshow? =
 
