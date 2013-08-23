@@ -177,6 +177,9 @@ personal taste.
 
 == Changelog ==
 
+= 2.2.13 =
+*   The SlideshowPluginAjax.php has been re-added to SVN.
+
 = 2.2.12 =
 *   Compatible with WordPress 3.6.
 *   Complete javascript revision to be better manageable with the help of the Prepros tool.
