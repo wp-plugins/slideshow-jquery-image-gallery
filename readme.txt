@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: responsive, slideshow, slider, slide show, images, image, photo, video, text, gallery, galleries, jquery, javascript
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.2.13
+Stable tag: 2.2.14
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -176,6 +176,9 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.14 =
+*   Fixed: Slideshow didn't show because of a JavaScript error when calculating an unstretched image's dimension.
 
 = 2.2.13 =
 *   The SlideshowPluginAjax.php has been re-added to SVN.
