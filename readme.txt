@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: responsive, slideshow, slider, slide show, images, image, photo, video, text, gallery, galleries, jquery, javascript
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.2.14
+Stable tag: 2.2.15
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -176,6 +176,11 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.15 =
+*   The image dimension calculation algorithm now uses a more stable and more efficient way to determine the size of images.
+*   Added slideshow API.
+*   Fixed: WP Color Picker (Iris) adds a hashtag to color codes. As slideshow does this as well, text slides didn't display color properly.
 
 = 2.2.14 =
 *   Fixed: Slideshow didn't show because of a JavaScript error when calculating an unstretched image's dimension.
