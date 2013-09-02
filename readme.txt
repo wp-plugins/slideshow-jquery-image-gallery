@@ -5,7 +5,7 @@ Donate link: http://stefanboonstra.com/donate-to-slideshow/
 Tags: responsive, slideshow, slider, slide show, images, image, photo, video, text, gallery, galleries, jquery, javascript
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 2.2.15
+Stable tag: 2.2.16
 License: GPLv2
 
 Integrate a fancy slideshow in just five steps. - Rainbows. Rainbows everywhere.
@@ -176,6 +176,13 @@ personal taste.
 
 
 == Changelog ==
+
+= 2.2.16 =
+*   Inserting images can now be done using the WordPress 3.5 uploader.
+*   Images can now fill up an entire slide without losing their dimensions, using the 'Zoom to fit' option.
+*   Fixed: Descriptions came up and stayed up on fly-over.
+*   Fixed: Image calculations failed in a few because of a 'jQuery.outerWidth()' bug.
+*   Fixed: Control panel wasn't correctly initialized when slideshow was set to automatically slide to the next slide.
 
 = 2.2.15 =
 *   The image dimension calculation algorithm now uses a more stable and more efficient way to determine the size of images.
@@ -463,4 +470,5 @@ personal taste.
 
 *	[Stefan Boonstra](http://stefanboonstra.com/)
 *   [Slideshow project board](https://trello.com/board/slideshow-plugin-wordpress/506311260cc04591010463c2)
+*   [GitHub](https://github.com/Boonstra/Slideshow)
 *   [Prepros](http://alphapixels.com/prepros/)
